@@ -2,6 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import novios from './img/novios1.svg'
+
+import PrimaryButton from './components/PrimaryButton'
+import SecondaryButton from './components/SecondaryButton'
+import ImageContainer from './components/ImgContainer'
+import Footer from './components/Footer'
+
 function App() {
   return (
     <div className="App">
@@ -18,7 +25,14 @@ function App() {
         >
           Learn React
         </a>
+        
       </header>
+      <PrimaryButton name={"INICIAR SESIÓN"} />
+      <SecondaryButton name={"CERRAR SESIÓN"} />
+      <ImageContainer imageUrl={novios} />
+      <Footer />
+      
+      
     </div>
   );
 }
