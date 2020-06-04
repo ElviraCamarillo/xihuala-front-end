@@ -2,12 +2,15 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import novios from './img/novios1.svg'
 
 import PrimaryButton from './components/PrimaryButton'
 import SecondaryButton from './components/SecondaryButton'
 import ImageContainer from './components/ImgContainer'
 import Footer from './components/Footer'
+import Index from './pages/Index'
 
 function App() {
   return (
@@ -24,9 +27,10 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-        
+        </a>        
       </header>
+      
+      <Index />
       <PrimaryButton name={"INICIAR SESIÓN"} />
       <SecondaryButton name={"CERRAR SESIÓN"} />
       <ImageContainer imageUrl={novios} />
