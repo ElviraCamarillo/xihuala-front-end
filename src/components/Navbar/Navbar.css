@@ -1,0 +1,109 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+}
+.desktop{
+    display: none;
+}
+.movil{
+    display: block;
+}
+.Menu {
+    width: 70%;
+    min-height: 100vh;
+    color: #000000;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: -400px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    padding: 20px 20px;
+}
+.Menu-button {
+    width: 50px;
+    height: 30px;
+    border-radius: 10%;
+    background-color: transparent;
+    color: white;
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: medium;
+}
+.logo{
+    width: 100px;
+    height: 60px;
+    left: 10px;
+}
+.Menu-button:hover {
+    border-color: #B8860B;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.Menu-button:focus {
+    outline: none;
+}
+.Menu-active {
+    top: 0;
+    left: 0;
+}
+ul{
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: rgba(0,0,0,.4);
+    text-align: left;
+    list-style-type: disc;
+    margin: 0;
+    padding: 20px;
+  }  
+  li a {
+      color: black;
+      text-align: center;
+      padding: 0;
+      text-decoration: none;
+      text-align: left;
+      font-size: 30px;
+      margin: auto;
+    }
+  li{
+      list-style-type: none;
+      margin: 2px;
+  }
+  li a:hover{
+      border-bottom-style: solid;
+      border-color: darkorange;
+      cursor: pointer;
+  }
+  @media only screen and (min-device-width: 768px) {
+      .desktop{
+          display: block;
+          padding: 0;
+      }
+      .movil{
+          display: none;
+      }
+      li {
+          float: left;
+      }
+      ul{
+          text-align: left;
+          border: none;
+      }
+      .logo{
+        width: 150px;
+        height: 100px;
+        margin-left: 10px;
+    }
+    .nav{
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    li a {
+        padding: 16px;
+      }
+  }
