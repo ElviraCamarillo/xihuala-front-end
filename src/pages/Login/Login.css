@@ -1,0 +1,79 @@
+.row{
+  padding: 20px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.image-container{
+  padding: 30px;
+}
+
+h2{
+  color: #B8860B;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: left;
+}
+
+.login-form label{
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+
+.login-form input{
+  height: 40px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.forgot-pass{
+  text-align: right;
+  color: #B8860B;
+}
+
+.noAccount{
+  color: #B8860B;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+@media only screen and (min-width: 520px ){
+  .row{
+    padding: 20px 0;
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .image-container{
+    padding: 30px;
+  }
+  
+  h2{
+    color: #B8860B;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: left;
+  }
+  
+  .login-form label{
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+  
+  .login-form input{
+    height: 40px;
+    width: 80%;
+    margin-bottom: 10px;
+  }
+  
+  .forgot-pass{
+    text-align: right;
+    color: #B8860B;
+  }
+  
+  .noAccount{
+    color: #B8860B;
+    font-weight: bold;
+    font-size: 30px;
+  }
+}

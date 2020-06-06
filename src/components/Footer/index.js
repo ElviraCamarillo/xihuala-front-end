@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <div>
       <footer>
-        <p>Aviso de privacidad</p>
-        <p>Xihuala App©, todos los derechos reservados</p>
+        <p className='text-dark'>Aviso de privacidad</p>
+        <p className='text-dark'>Xihuala App©, todos los derechos reservados</p>
       </footer>
     </div>
   )
