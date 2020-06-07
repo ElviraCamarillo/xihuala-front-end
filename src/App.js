@@ -13,6 +13,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import Footer from './components/Footer'
 import Event from './pages/Event'
 import EventDetail from './pages/EventDetail'
+import Expenses from './pages/Expenses'
 
 
 export default class App extends Component {
@@ -49,6 +50,9 @@ export default class App extends Component {
           </Route>
           <Route exact path="/profile">
             <Perfil/>
+          </Route>
+          <Route exact path="/expenses">
+            <Expenses/>
           </Route>
           <Footer />
 
