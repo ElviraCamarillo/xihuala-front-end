@@ -31,7 +31,7 @@ export default class Navbar extends Component {
     <div>
       <div className="desktop">
         <div className="nav">
-          <img src={logo} className="logo"/> 
+          <img src={logo} className="logo"  alt=''/> 
           <ul>
               <li>
                 <Link to="/Perfil">Perfil</Link>
@@ -65,7 +65,7 @@ export default class Navbar extends Component {
       </div>
       <div className="movil">
         <div className="nav">
-          <img src={logo} className="logo"/> <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}/></button>
+          <img src={logo} className="logo"  alt=''/> <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}  alt=''/></button>
         </div>
         <div className={`Menu ${menuClass}`}>
           <h2>Hola user</h2>

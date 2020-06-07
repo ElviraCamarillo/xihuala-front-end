@@ -5,7 +5,6 @@ import novios from '../../img/novios4.svg'
 import ImgContainer from '../../components/ImgContainer'
 import HeaderPreLogin from '../../components/HeaderPreLogin'
 import PrimaryButton from '../../components/PrimaryButton'
-import SecondaryButton from '../../components/SecondaryButton'
 
 import './ForgotPassword.css'
 

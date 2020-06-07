@@ -10,6 +10,8 @@ import Login from './pages/Login'
 import Signin from './pages/Signin'
 import ForgotPassword from './pages/ForgotPassword'
 import Navbar from './components/Navbar'
+import Event from './pages/Event'
+import EventDetail from './pages/EventDetail'
 
 
 export default class App extends Component {
@@ -37,6 +39,12 @@ export default class App extends Component {
           </Route>
           <Route exact path="/forgot-password">
             <ForgotPassword/>
+          </Route>
+          <Route exact path="/event">
+            <Event/>
+          </Route>
+          <Route exact path="/event-detail">
+            <EventDetail/>
           </Route>
          {/*  <Switch>
             <Route exact path="/">
