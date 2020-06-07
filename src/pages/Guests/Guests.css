@@ -1,0 +1,18 @@
+.container-guests{
+    display: inline-block;
+}
+.container-table{
+    padding: auto;
+}
+.table-total{
+    background-color: rgba(0,0,0,0.8);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 30px;
+}
+@media only screen and (min-device-width: 768px) {
+    .container-guests{ 
+        display: flex;
+        justify-content: space-around;
+      }
+}

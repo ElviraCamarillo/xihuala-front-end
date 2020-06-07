@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-// Import pages
 import Index from './pages/Index'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
@@ -14,7 +13,8 @@ import Footer from './components/Footer'
 import Event from './pages/Event'
 import EventDetail from './pages/EventDetail'
 import Home from './pages/Home'
-
+import Guests from './pages/Guests'
+import Expenses from './pages/Expenses'
 
 export default class App extends Component {
   constructor(props){
@@ -23,10 +23,11 @@ export default class App extends Component {
     }
   }
 
-  render () {
+  render () {    
     return (
       <Router>
-        <div className="App">      
+        <div className="App">        
+
           <Route exact path="/">
             <Index />
           </Route>
@@ -51,9 +52,16 @@ export default class App extends Component {
           <Route exact path="/profile">
             <Perfil/>
           </Route>
-          <Footer />
+          <Route exact path="/guests">
+            <Guests/>
+          </Route>
+          <Route exact path="/expenses">
+            <Expenses/>
+          </Route>
+          <Footer/>        
+
         </div>
-      </Router>      
+      </Router>     
     )
   }
 }
