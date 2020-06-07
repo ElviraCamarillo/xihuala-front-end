@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Index from './pages/Index'
+import Login from './pages/Login'
+import Signin from './pages/Signin'
+import Perfil from './pages/Perfil'
+import ForgotPassword from './pages/ForgotPassword'
+import Event from './pages/Event'
+import EventDetail from './pages/EventDetail'
+import Home from './pages/Home'
+import Guests from './pages/Guests'
+import Expenses from './pages/Expenses'
+
+export default class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+    }
+  }
+
+  render () {    
+    return (
+      <Router>
+        <div className="App">        
+
+          <Route exact path="/">
+            <Index />
+          </Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/login">
+            <Login/>
+          </Route>
+          <Route exact path="/signin">
+            <Signin/>
+          </Route>
+          <Route exact path="/forgot-password">
+            <ForgotPassword/>
+          </Route>
+          <Route exact path="/event">
+            <Event/>
+          </Route>
+          <Route exact path="/event-detail">
+            <EventDetail/>
+          </Route>
+          <Route exact path="/profile">
+            <Perfil/>
+          </Route>
+          <Route exact path="/guests">
+            <Guests/>
+          </Route>
+          <Route exact path="/expenses">
+            <Expenses/>
+          </Route>
+        </div>
+      </Router>     
+    )
+  }
 }
-
-export default App;

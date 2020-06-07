@@ -1,0 +1,95 @@
+.row{
+  padding: 20px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0;
+}
+
+.index-title{
+  color: #B8860B;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: left;
+}
+
+.index-text{
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: left;
+}
+
+.index-title2{
+  color: #B8860B;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: left;
+}
+
+.index-text2{
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: left;
+}
+
+.img-carousel {
+  height: 300px;
+  width: 300px;
+}
+
+.cards-section{
+  padding-top: 50px;
+}
+
+@media only screen and (min-width: 520px ){   
+  .row{
+    padding: 20px 0;
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .index-title{
+    color: #B8860B;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+  }
+  
+  .index-text{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    padding: 0 15%;
+    line-height: 40px;
+  }
+
+  .index-title2{
+    color: #B8860B;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: left;
+  }
+  
+  .index-text2{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: left;
+    line-height: 40px;
+  }
+
+  .carousel{
+    width: 800px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .img-carousel {
+    height: 500px;
+  }
+
+  .cards-section{
+    padding-top: 50px;
+  }
+
+}
