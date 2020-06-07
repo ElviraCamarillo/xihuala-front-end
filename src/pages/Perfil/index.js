@@ -21,33 +21,34 @@ export default class Perfil extends Component {
         </div>
         <div className="container-body">
           <div className="container-form">
-                <div className="row">
-                    <div className="container-p">
+                <div className="row-input">
+                    <div className='col-12 col-md-6'>
                         <label>Correo electronico</label>
                     </div>
-                    <div>
+                    <div className='col-12 col-md-6'>
                         <input placeholder="mail" disabled/>
                     </div>
-                    
                 </div>
-                <div className="row">
-                    <div className="container-p">
+                <div className="row-input">
+                    <div className='col-12 col-md-6'>
                         <label>Nombre(s)</label>
                     </div>
-                    <div>
+                    <div className='col-12 col-md-6'>
                         <input placeholder="first_name"/>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="container-p">
+                <div className="row-input">
+                    <div className='col-12 col-md-6'>
                         <label>Apellidos</label>
                     </div>
-                    <div>
-                        <input placeholder="laast_name"/>
+                    <div className='col-12 col-md-6'>
+                        <input placeholder="last_name"/>
                     </div>
-                    
                 </div>
-                <PrimaryButton name={"Actualizar perfil"}/>
+                <div>
+                    <PrimaryButton name={"Actualizar perfil"}/>  
+                </div>
+                
           </div>
           <div className="container-image">
             <Image imageUrl={novios} />

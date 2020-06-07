@@ -19,7 +19,7 @@ h2{
     padding: auto;
     display: inline;
 }
-.row{
+.row-input{
     margin: 1rem;
     display: block;
     text-align: left;
@@ -52,7 +52,7 @@ label{
     .container-image{
         display: block;
     }
-    .row{
+    .row-input{
         margin: 1rem;
         display: flex;
         justify-content: space-around;
