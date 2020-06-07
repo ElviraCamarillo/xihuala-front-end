@@ -2,6 +2,7 @@
   padding: 20px 0;
   padding-left: 30px;
   padding-right: 30px;
+  margin: 0;
 }
 
 .index-title{
@@ -59,7 +60,7 @@
     font-weight: bold;
     font-size: 30px;
     text-align: center;
-    padding: 0 200px;
+    padding: 0 15%;
     line-height: 40px;
   }
 

@@ -21,7 +21,7 @@ export default function Index() {
     <div>
       <body>
           
-        {/* <HeaderPreLogin /> */}
+        <HeaderPreLogin />
 
         <section className='section1 row'>
           <div className='col-12'>
@@ -59,13 +59,13 @@ export default function Index() {
         </section>
 
         <section className='cards-section row'>
-          <div className='col-12 col-md-4'>
+          <div className='col-12 col-sm-12 col-md-12 col-lg-4'>
             <Card cardIcon={eventIcon} cardTitle={'Registra tu evento'} cardText={'Empieza indicando donde será la ceremonia religiosa, la fiesta y cuantos invitados consideras.'} />
           </div>
-          <div className='col-12 col-md-4'>
+          <div className='col-12 col-sm-12 col-md-12 col-lg-4'>
           <Card cardIcon={guestIcon} cardTitle={'Organiza a tus invitados'} cardText={'Mantén el control de las confirmaciones de tus invitados, así como de peticiones especiales.'} />
           </div>
-          <div className='col-12 col-md-4'>
+          <div className='col-12 col-sm-12 col-md-12 col-lg-4'>
           <Card cardIcon={inviteIcon} cardTitle={'Envía las invitaciones'} cardText={'Envía las invitaciones de forma totalmente digital y recibe las confirmaciones de tus invitados.'} />
           </div>
         </section>

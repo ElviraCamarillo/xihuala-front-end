@@ -5,12 +5,14 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
-/* import Index from './pages/Index'
+import Index from './pages/Index'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
-import ForgotPassword from './pages/ForgotPassword' */
-
 import Perfil from './pages/Perfil'
+import ForgotPassword from './pages/ForgotPassword'
+import Footer from './components/Footer'
+import Event from './pages/Event'
+import EventDetail from './pages/EventDetail'
 
 
 export default class App extends Component {
@@ -26,9 +28,8 @@ export default class App extends Component {
     return (
       <Router>
         <div className="App">
-         
-          <Perfil/>
-          {/* <Route exact path="/">
+        
+           <Route exact path="/">
             <Index />
           </Route>
           <Route exact path="/login">
@@ -39,24 +40,18 @@ export default class App extends Component {
           </Route>
           <Route exact path="/forgot-password">
             <ForgotPassword/>
-          </Route> */}
-         {/*  <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/Notes">
-              <Note isUserLogedIn={isUserLogedIn}/>
-            </Route>
-            <Route exact path="/Converter">
-              <Converter />
-            </Route>
-            <Route exact path="/CreditCard">
-              <CreditCard />
-            </Route>
-            <Route exact path="/Hooks">
-              <Hooks />
-            </Route>
-          </Switch> */}
+          </Route>
+          <Route exact path="/event">
+            <Event/>
+          </Route>
+          <Route exact path="/event-detail">
+            <EventDetail/>
+          </Route>
+          <Route exact path="/profile">
+            <Perfil/>
+          </Route>
+          <Footer />
+
           
         </div>
       </Router>      
