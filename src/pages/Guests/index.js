@@ -85,10 +85,8 @@ export default class Guests extends Component {
             </tbody>
             </Table>
             <SecondaryButton name={"Enviar invitaciones"}/>
-          </div>
-          
+          </div>        
         </div>
-        <Footer />
     </div>
     );
   }

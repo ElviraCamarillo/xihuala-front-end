@@ -54,8 +54,6 @@ export default class Perfil extends Component {
             <Image imageUrl={novios} />
           </div>
         </div>
-      
-        <Footer />
     </div>
     );
   }
