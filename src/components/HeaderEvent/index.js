@@ -4,7 +4,7 @@ import './HeaderEvent.css'
 
 export default function HeaderEvent() {
   return (
-    <header className='event-header row sticky-top'>
+    <header className='event-header row'>
       <div className='event-btn col-12'>
         <div>
           <a className='event-detail text-dark' href=''>DETALLE</a>
