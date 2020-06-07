@@ -2,12 +2,23 @@
     display: flex;
     justify-content: space-between;
     margin: 1%;
+    
 }
 .desktop{
     display: none;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 100;
+    position: sticky;
+    z-index: 100;
 }
 .movil{
     display: block;
+    margin-left: 2%;
+    width: 100%;
+    position: sticky;
+    z-index: 100;
+    background-color: #ffffff;
 }
 .Menu {
     width: 70%;
@@ -76,6 +87,7 @@ ul{
       border-bottom-style: solid;
       border-color: darkorange;
       cursor: pointer;
+      text-decoration: none;
   }
   @media only screen and (min-device-width: 768px) {
       .desktop{

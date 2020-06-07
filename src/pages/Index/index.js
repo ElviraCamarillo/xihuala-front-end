@@ -21,7 +21,7 @@ export default function Index() {
     <div>
       <body>
           
-        <HeaderPreLogin />
+        {/* <HeaderPreLogin /> */}
 
         <section className='section1 row'>
           <div className='col-12'>

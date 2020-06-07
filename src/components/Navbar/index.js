@@ -64,7 +64,7 @@ export default class Navbar extends Component {
         </div>
       </div>
       <div className="movil">
-        <div className="nav">
+        <div className="nav ">
           <img src={logo} className="logo"/> <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}/></button>
         </div>
         <div className={`Menu ${menuClass}`}>
