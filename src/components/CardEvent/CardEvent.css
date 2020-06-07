@@ -1,0 +1,42 @@
+.card-information-expenses,
+.card-information-guest,
+.card-title-event{
+  display: flex;
+  min-height: 40px;
+  align-items:center;
+  margin-bottom: .5rem;
+}
+.card-title-event{
+  margin-bottom: 0;
+}
+.card-information-expenses img,
+.card-information-guest img,
+.card-title-event img{
+  max-width: 30px;
+  margin-right: 1rem;
+  max-height:30px;
+}
+.card-information-expenses p,
+.card-information-guest p,
+.card-title-event p{
+  margin-bottom: 0;
+}
+.ctn__card{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0,0,0,.15);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 767px){
+    .card-title-event{
+        margin-bottom: 1rem;
+    }
+    .ctn__card p{
+        font-size: .875rem;
+    }
+}

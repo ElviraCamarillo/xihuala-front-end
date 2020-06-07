@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // CSS
 import "./Navbar.css";
 import logo from '../../img/logo-color.svg'
-import hamburger from '../../img/hamburger-menu.png'
+import hamburger from '../../img/icon__menu.png'
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ export default class Navbar extends Component {
     const menuClass = isMenuActive ? "Menu-active" : "";
     return (
     <div>
-      <div className="desktop">
+      <div className="desktop__header">
         <div className="nav">
           <img src={logo} className="logo"  alt=''/> 
           <ul>
@@ -37,7 +37,7 @@ export default class Navbar extends Component {
                 <Link to="/Perfil">Perfil</Link>
                 </li>
                 <li>
-                <Link to="/Evento">Evento</Link>
+                <Link to="/Evento">Crear evento</Link>
               </li>
               <li>
                 <Link to="/logout">Salir</Link>
@@ -63,9 +63,10 @@ export default class Navbar extends Component {
           </ul>
         </div>
       </div>
-      <div className="movil">
+      <div className="movil__header">
         <div className="nav">
-          <img src={logo} className="logo"  alt=''/> <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}  alt=''/></button>
+          <img src={logo} className="logo"  alt=''/> 
+          <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}  alt=''/></button>
         </div>
         <div className={`Menu ${menuClass}`}>
           <h2>Hola user</h2>

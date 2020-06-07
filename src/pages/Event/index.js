@@ -74,7 +74,6 @@ export default class Event extends Component {
               <ImgContainer imageUrl={novios} />
             </div>          
           </section>
-
         </body>
       </div>
     )

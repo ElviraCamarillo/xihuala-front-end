@@ -4,50 +4,57 @@
     margin: 1%;
     
 }
-.desktop{
+.desktop__header{
     display: none;
     width: 100%;
     background-color: #ffffff;
     z-index: 100;
-    position: sticky;
-    z-index: 100;
-}
-.movil{
-    display: block;
-    margin-left: 2%;
-    width: 100%;
-    position: sticky;
-    z-index: 100;
-    background-color: #ffffff;
-}
-.Menu {
-    width: 70%;
-    min-height: 100vh;
-    color: #000000;
-    background-color: #ffffff;
     position: fixed;
     top: 0;
-    left: -400px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    padding: 20px 20px;
+    left: 0;
+    right: 0;
+}
+.movil__header{
+  display: block;
+  margin-left: 2%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: .5rem 1rem;
+  margin-left: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,.15);
+}
+.movil__header .nav{
+    margin: 0;
+}
+.Menu {
+  width: 100%;
+  max-width: 260px;
+  height: 100vh;
+  color: #000000;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: -400px;
+  box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+  padding: 20px 20px;
+  transition: all linear .25s;
 }
 .Menu-button {
-    width: 50px;
-    height: 30px;
-    border-radius: 10%;
-    background-color: transparent;
-    color: white;
-    position: fixed;
-    top: 10px;
-    right: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: medium;
-}
-.logo{
-    width: 100px;
-    height: 60px;
-    left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  padding: 0;
 }
 .Menu-button:hover {
     border-color: #B8860B;
@@ -55,6 +62,9 @@
 }
 .Menu-button:focus {
     outline: none;
+}
+.Menu-button img{
+    max-width: 100%;
 }
 .Menu-active {
     top: 0;
@@ -69,14 +79,14 @@ ul{
     list-style-type: disc;
     margin: 0;
     padding: 20px;
-  }  
+}  
   li a {
       color: black;
       text-align: center;
       padding: 0;
       text-decoration: none;
       text-align: left;
-      font-size: 30px;
+      font-size: 1rem;
       margin: auto;
     }
   li{
@@ -89,12 +99,17 @@ ul{
       cursor: pointer;
       text-decoration: none;
   }
-  @media only screen and (min-device-width: 768px) {
-      .desktop{
+  .logo{
+    max-width: 140px;
+    max-height: 120px;
+    margin-left: 10px;
+}
+  @media only screen and (min-width: 768px) {
+      .desktop__header {
           display: block;
           padding: 0;
       }
-      .movil{
+      .movil__header{
           display: none;
       }
       li {
@@ -104,11 +119,7 @@ ul{
           text-align: left;
           border: none;
       }
-      .logo{
-        width: 150px;
-        height: 100px;
-        margin-left: 10px;
-    }
+      
     .nav{
         box-shadow: 0 10px 20px rgba(0,0,0,0.19);
         width: 100%;
