@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 // Import icons
 import calendarIcon from '../../img/event-color-icon.svg'

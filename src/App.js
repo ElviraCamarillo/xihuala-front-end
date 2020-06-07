@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -9,7 +9,6 @@ import Login from './pages/Login'
 import Signin from './pages/Signin'
 import Perfil from './pages/Perfil'
 import ForgotPassword from './pages/ForgotPassword'
-import Footer from './components/Footer'
 import Event from './pages/Event'
 import EventDetail from './pages/EventDetail'
 import Home from './pages/Home'
@@ -58,8 +57,6 @@ export default class App extends Component {
           <Route exact path="/expenses">
             <Expenses/>
           </Route>
-          <Footer/>        
-
         </div>
       </Router>     
     )

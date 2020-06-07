@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 // CSS
 import "./Navbar.css";
 import logo from '../../img/logo-color.svg'
@@ -24,7 +25,6 @@ export default class Navbar extends Component {
     this.toggleMenu()
   }
   render() {
-    const { isUserLogedIn } = this.props
     const { isMenuActive } = this.state;
     const menuClass = isMenuActive ? "Menu-active" : "";
     return (
