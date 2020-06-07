@@ -9,6 +9,7 @@ export default function HeaderPreLogin() {
   return (
     <header className='index-header row sticky-top'>
       <div className='index-logo col-12 col-md-6'>
+       
         <img className='logo-index' src={logo} alt=""></img>
       </div>
       <div className='index-btn col-12 col-md-6'>
