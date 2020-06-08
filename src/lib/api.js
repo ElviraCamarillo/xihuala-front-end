@@ -31,8 +31,34 @@ async function login (email, password) {
     }
   }
 
+  async function newUser (dataNewUSer) {
+    try {
+      console.log(dataNewUSer)
+      const response = await window.fetch(`${API_URL}/users/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...dataNewUSer })
+      })
+      console.log(response)
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('Error al crear nuevo usuario')
+      console.log(error)
+      return {
+        data: {
+          newPost: ''
+        }
+      }
+    }
+  }
+
+
 const api = {
-  login
+  login,
+  newUser
 }
 
 export default api

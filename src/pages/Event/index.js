@@ -12,7 +12,6 @@ import phoneIcon from '../../img/phone-icon.svg'
 // Import components
 import ImgContainer from '../../components/ImgContainer'
 import PrimaryButton from '../../components/PrimaryButton'
-import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
