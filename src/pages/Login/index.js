@@ -35,7 +35,6 @@ export default class Login extends Component {
               <input type="text" id="email-login" name="email-login" />
               <label className='text-dark' for="password-login">Contraseña:</label>
               <input type="text" id="password-login" name="password-login" />
-           
               <div className='d-flex flex-column justify-content-center align-items-center'>
                 <PrimaryButton name={"INICIAR SESIÓN"} type='submit'/>
                 <br/>
