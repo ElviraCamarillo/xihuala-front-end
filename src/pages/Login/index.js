@@ -14,14 +14,22 @@ import './Login.css'
 export default class Login extends Component {
   constructor(props){
     super (props)
+    this.state = {
+      email: '',
+      password: '',
+    }
+  }
+  handleInput({ target: { name, value } }) {
+    this.setState({
+        [name]: value
+    })        
   }
   async onSubmit(event){
     event.preventDefault()
-    const email = 'elvira2@kodemia.mx'
-    const password = 'Kodemia123'
-    console.log(email)
+    const email = this.state.email
+    const password = this.state.password
     const payload = await Api.login(email, password)
-    console.log(payload)
+    localStorage.setItem('tokenapp', payload.data.token);
   }
   render(){
     return (
@@ -32,10 +40,19 @@ export default class Login extends Component {
             <h2>Inicia sesión</h2>
             <form className='login-form d-flex flex-column' onSubmit={this.onSubmit.bind(this)} action="">
               <label className='text-dark' for="email-login">Correo electrónico:</label>
-              <input type="text" id="email-login" name="email-login" />
+              <input 
+                type="text" 
+                id="email-login" 
+                name="email"
+                onChange={ this.handleInput.bind(this) }
+              />
               <label className='text-dark' for="password-login">Contraseña:</label>
-              <input type="text" id="password-login" name="password-login" />
-           
+              <input 
+                type="password" 
+                id="password-login" 
+                name="password" 
+                onChange={ this.handleInput.bind(this) }
+              />
               <div className='d-flex flex-column justify-content-center align-items-center'>
                 <PrimaryButton name={"INICIAR SESIÓN"} type='submit'/>
                 <br/>
