@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+
+// Import components
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
 import PrimaryButton from './../../components/PrimaryButton'
 import SecondaryButton from './../../components/SecondaryButton'
-import 'bootstrap/dist/css/bootstrap.css';
+import HeaderEvent from '../../components/HeaderEvent'
+
+// Import CSS
 import { Table } from 'reactstrap';
 import './Guests.css'
+
 export default class Guests extends Component {
   constructor(props) {
     super(props);
@@ -13,41 +18,44 @@ export default class Guests extends Component {
     };
   }
   render() {
-   
     return (
-        <div>
+      <div>
         <Navbar/>
+        <div className="ctn-eventGuests">
+        <HeaderEvent/>
         <div className="container-title">
-            <h2>Invitados</h2>
+          <h2>Invitados</h2>
         </div>
         <div className="container-guests">
           <div className="container-form-guests">
                 <div className="row">
-                    <div className='col-12 col-md-6'>
+                    <div className='col-12 col-md-5'>
                         <label>Nombre de familia</label>
                     </div>
-                    <div className='col-12 col-md-6'>
-                        <input placeholder="nombre"/>
+                    <div className='col-12 col-md-7'>
+                        <input placeholder="Nombre"/>
                     </div>
                 </div>
                 <div className="row">
-                    <div className='col-12 col-md-6'>
+                    <div className='col-12 col-md-5'>
                         <label>Número de invitados</label>
                     </div>
-                    <div className='col-12 col-md-6'>
+                    <div className='col-12 col-md-7'>
                         <input placeholder="Total invitados"/>
                     </div>
                 </div>
                 <div className="row">
-                    <div className='col-12 col-md-6'>
-                        <label>Correo electronico</label>
+                    <div className='col-12 col-md-5'>
+                        <label>Correo electrónico</label>
                     </div>
-                    <div className='col-12 col-md-6'>
-                        <input placeholder="mail"/>
+                    <div className='col-12 col-md-7'>
+                        <input placeholder="mail@mail.com"/>
                     </div>
                     
                 </div>
-                <PrimaryButton name={"Agregar familia"}/>
+                <div className="row row-inputform">
+                  <PrimaryButton name={"Agregar familia"} />
+                </div>
           </div>
           <div className="container-table">
           <div>
@@ -87,7 +95,9 @@ export default class Guests extends Component {
             <SecondaryButton name={"Enviar invitaciones"}/>
           </div>        
         </div>
-    </div>
+        </div>
+      <Footer/>
+      </div>
     );
   }
 }

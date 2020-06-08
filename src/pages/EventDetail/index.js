@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+// Import icon
 import novios from '../../img/novios8.svg'
 import titleIcon from '../../img/event-color-icon.svg'
 import locationIcon from '../../img/location-icon.svg'
@@ -7,20 +8,22 @@ import dateIcon from '../../img/date-icon.svg'
 import timeIcon from '../../img/hour-icon.svg'
 import phoneIcon from '../../img/phone-icon.svg'
 
+// Import pages
 import ImgContainer from '../../components/ImgContainer'
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
+// Import CSS
 import './EventDetail.css'
 
 export default class EventDetail extends Component {
   render() {
     return (
-      <div>
-        <body>
-          <Navbar/>
-          <HeaderEvent/>
+      <div className="wrap-event-detail">
+        <Navbar/>
 
+        <HeaderEvent/>
           <section className='row'>
             <div className='col-12 col-md-6'>
               <div className='d-flex pb-md-5 pb-2'>
@@ -58,8 +61,7 @@ export default class EventDetail extends Component {
               <ImgContainer imageUrl={novios} />
             </div>          
           </section>
-
-        </body>
+          <Footer/>
       </div>
     )
   }

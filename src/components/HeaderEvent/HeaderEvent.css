@@ -1,17 +1,17 @@
 .event-header{
   padding: 20px 0;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   background-color: rgb(245, 245, 245);
-  height: 110px;
   margin: 0;
 }
 
 .event-btn {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;  
-  justify-content: center;
+  justify-content: space-between;
+  font-weight: 700;
 }
 
 .event-btn .register{
@@ -27,25 +27,27 @@
   font-weight: bold;
   font-size: 20px;
 }
+.event-btn div {
+  max-width: 90px;
+  font-size: .875rem;
+}
 
 @media only screen and (min-width: 768px ){
   .event-header{
     padding: 20px 0;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 2rem;
+    padding-right: 2rem;
     background-color: rgb(245, 245, 245);
-    height: 80px;
     margin: 0;
   }
   
   .event-btn {
     display: flex;
     flex-direction: row;
-    align-items: center;  
+    align-items: flex-end;  
     justify-content: space-evenly;
-    padding: 20px 0;
+    padding: 0;
     font-size: 15px;
-    font-weight: bold;
   }
 
   .event-btn a:hover{

@@ -9,20 +9,25 @@ h2{
     justify-content: flex-start;
     padding: auto;
     margin-top: 4%;
-    margin-left:20% ;
+    
 }
 .container-body{
     display: flex;
+    align-items: center;
 }
 .container-form{
-    margin: auto;
-    padding: auto;
-    display: inline;
+    display: block;
+    width: 100%;
+    padding-right: 2rem;
+}
+.container-form input{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .row-input{
-    margin: 1rem;
     display: block;
     text-align: left;
+    margin-bottom: 1rem;
 }
 .container-p{
     justify-self: start;
@@ -33,6 +38,16 @@ h2{
     padding: auto;
     display: none;
 }
+.ctn-profile{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5.25rem;
+    margin-bottom: 4rem;
+}
+
 input{
     height: 40px;
     width: 80%;
@@ -53,7 +68,6 @@ label{
         display: block;
     }
     .row-input{
-        margin: 1rem;
         display: flex;
         justify-content: space-around;
         text-align: left;

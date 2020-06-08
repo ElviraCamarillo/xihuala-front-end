@@ -1,8 +1,11 @@
+.navbar-container{
+    margin-bottom: 2%;
+}
 .nav{
     display: flex;
     justify-content: space-between;
-    margin: 1%;
-    
+    padding-left: 2rem;
+    padding-right: 2rem; 
 }
 .desktop__header{
     display: none;
@@ -21,16 +24,18 @@
   position: fixed;
   z-index: 100;
   background-color: #ffffff;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   padding: .5rem 1rem;
   margin-left: 0;
   box-shadow: 0 0 10px rgba(0,0,0,.15);
+  height: 68px;
 }
 .movil__header .nav{
     margin: 0;
+    padding-left:0;
+    padding-right:0;
 }
 .Menu {
   width: 100%;
@@ -70,7 +75,7 @@
     top: 0;
     left: 0;
 }
-ul{
+.nav ul{
     border-bottom-style: solid;
     border-top-style: solid;
     border-width: thin;
@@ -80,7 +85,7 @@ ul{
     margin: 0;
     padding: 20px;
 }  
-  li a {
+.nav li a {
       color: black;
       text-align: center;
       padding: 0;
@@ -89,44 +94,43 @@ ul{
       font-size: 1rem;
       margin: auto;
     }
-  li{
+.nav li{
       list-style-type: none;
       margin: 2px;
   }
-  li a:hover{
+.nav li a:hover{
       border-bottom-style: solid;
       border-color: darkorange;
       cursor: pointer;
       text-decoration: none;
   }
-  .logo{
+.logo{
     max-width: 140px;
     max-height: 120px;
-    margin-left: 10px;
 }
-  @media only screen and (min-width: 768px) {
-      .desktop__header {
-          display: block;
-          padding: 0;
-      }
-      .movil__header{
-          display: none;
-      }
-      li {
-          float: left;
-      }
-      ul{
-          text-align: left;
-          border: none;
-      }
-      
+@media only screen and (min-width: 768px) {
+    .desktop__header {
+        display: block;
+        padding: 0;
+    }
+    .movil__header{
+        display: none;
+    }
+    .nav li {
+        float: left;
+    }
+    .nav ul{
+        text-align: left;
+        border: none;
+    }
+    
     .nav{
         box-shadow: 0 10px 20px rgba(0,0,0,0.19);
         width: 100%;
         margin: 0;
-        padding: 0;
+        padding:0 2rem !important;
     }
-    li a {
+    .nav li a {
         padding: 16px;
-      }
-  }
+    }
+}

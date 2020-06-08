@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
 
+//Import icons
 import novios from '../../img/novios3.svg'
 
+// Import components
 import ImgContainer from '../../components/ImgContainer'
 import HeaderPreLogin from '../../components/HeaderPreLogin'
 import PrimaryButton from '../../components/PrimaryButton'
+import Footer from '../../components/Footer'
 
+// Import CSS
 import './Signin.css'
 
 export default class Signin extends Component {
   render() {
     return (
       <div>
-        <body>
 
           <HeaderPreLogin />
 
@@ -41,7 +44,7 @@ export default class Signin extends Component {
             </div>          
           </section>
 
-        </body>
+        <Footer/>
       </div>
     )
   }

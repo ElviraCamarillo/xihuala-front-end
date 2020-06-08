@@ -1,5 +1,7 @@
 .wrap__home{
-  margin-top: 5rem;
+  margin-top: 5.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;  
 }
 .home-title{
   color: #B8860B;
@@ -7,11 +9,15 @@
   font-size: 2.5rem;
   text-align: left;
   margin-top: 2rem;
-  margin-left: 2rem;
+  display: inline-block;
+  width: 100%;
+  
 }
 .image-container{
   text-align: right;
+  padding-top: 0;
 }
+
 .container-home .card-container{
   width: 100%;
 }

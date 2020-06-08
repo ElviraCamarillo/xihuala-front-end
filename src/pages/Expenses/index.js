@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
 
+//  Import icons
 import titleIcon from '../../img/expense-color-icon.svg'
+
+// Import components
 import PrimaryButton from '../../components/PrimaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 
+// ImportCss
 import './Expenses.css'
 
 export default class Event extends Component {
   render() {
     return (
       <div>
-        <body>
-          <Navbar/>
-          <HeaderEvent/>
+        <Navbar/>
+        <div className="ctn-eventExpenses">
 
+        
+        <HeaderEvent/>
           <section className='row'>
             <div className='col-12 col-md-6'>
               <div className='d-flex pb-5'>
@@ -89,8 +95,8 @@ export default class Event extends Component {
               </div>              
             </div>          
           </section>
-
-        </body>
+          </div>
+        <Footer/>
       </div>
     )
   }

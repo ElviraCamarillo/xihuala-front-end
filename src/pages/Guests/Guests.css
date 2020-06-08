@@ -10,9 +10,66 @@
     font-weight: bold;
     font-size: 30px;
 }
-@media only screen and (min-device-width: 768px) {
+.ctn-eventGuests{
+    margin-top: 4.25rem;
+}
+.container-form-guests{
+    min-width: auto;
+}
+.container-guests{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+.ctn-eventGuests .container-title{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-form-guests label{
+    font-size: 1rem;
+}
+.container-form-guests .row{
+    padding-left: 0;
+    padding-right: 0;
+}
+.container-form-guests input{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.container-form-guests{
+    margin-bottom: 3rem;
+}
+.row-inputform {
+    justify-content: center;
+}
+.row-inputform button{
+    display: inline-block;
+}
+
+@media only screen and (min-width: 768px) {
+    
     .container-guests{ 
         display: flex;
-        justify-content: space-around;
-      }
+        justify-content: space-between;
+        padding-right: 2rem;
+        padding-left: 2rem;
+        max-width: 1024px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .container-form-guests{
+        min-width: 500px;
+    }
+    .ctn-eventGuests .container-title{
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .row-inputform {
+        justify-content: flex-end;
+    }
+   
 }

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 // CSS
 import "./Navbar.css";
+
+// Import icons
 import logo from '../../img/logo-color.svg'
 import hamburger from '../../img/icon__menu.png'
+
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -28,16 +31,16 @@ export default class Navbar extends Component {
     const { isMenuActive } = this.state;
     const menuClass = isMenuActive ? "Menu-active" : "";
     return (
-    <div>
+    <div className='navbar-container'>
       <div className="desktop__header">
         <div className="nav">
           <img src={logo} className="logo"  alt=''/> 
           <ul>
               <li>
-                <Link to="/Perfil">Perfil</Link>
+                <Link to="/profile">Perfil</Link>
                 </li>
                 <li>
-                <Link to="/Evento">Crear evento</Link>
+                <Link to="/event">Crear evento</Link>
               </li>
               <li>
                 <Link to="/logout">Salir</Link>

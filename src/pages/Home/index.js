@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 
+// Import components
 import Navbar from '../../components/Navbar'
 import ImgContainer from '../../components/ImgContainer'
+import Footer from '../../components/Footer'
+import CardEvent from '../../components/CardEvent'
 
+// Import icons
 import novios5 from '../../img/novios5.svg'
 
+// Import CSS
 import './Home.css'
-import CardEvent from '../../components/CardEvent'
 
 export default class Home extends Component {
   
@@ -25,8 +29,8 @@ export default class Home extends Component {
             <ImgContainer imageUrl={novios5} />
           </div> 
         </div>
+        <Footer/>
       </div>
-        
     )
   }
 }
