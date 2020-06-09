@@ -1,10 +1,8 @@
-.row{
-  padding: 20px 0;
-  padding-left: 30px;
-  padding-right: 30px;
-}
+
 .wrap-event-detail{
-  margin-top: 4.25rem;
+  margin-top: 64px;
+  background-color: #f8f5fd;
+  min-height: 95vh;
 }
 
 .image-container{
@@ -16,13 +14,6 @@
   width: 100%;
 }
 
-h2{
-  color: #B8860B;
-  font-weight: bold;
-  font-size: 40px;
-  text-align: left;
-}
-
 .icon-container{
   width: 15%;
   display: flex;
@@ -31,6 +22,11 @@ h2{
 
 .icon-container img {
   margin-right: 10px;
+}
+
+.event__info img{
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .event-form label{
@@ -49,12 +45,6 @@ h2{
 }
 
 @media only screen and (min-width: 768px ){
-  .row{
-    padding: 20px 0;
-    padding-left: 70px;
-    padding-right: 70px;
-  }
-
   .image-container{
     padding: 30px;
   }
@@ -63,13 +53,6 @@ h2{
   width: 85%;
   }
   
-  h2{
-    color: #B8860B;
-    font-weight: bold;
-    font-size: 40px;
-    text-align: left;
-  }
-
   .icon-container{
     width: 15%;
     display: flex;

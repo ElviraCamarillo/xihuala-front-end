@@ -1,11 +1,83 @@
 *{
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
 }
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
+  
+  color: rgba(0,0,0,0.87);
 }
+
+.wrap__inner {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.title__section {
+  color: #7342BF;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: left;
+}
+
+.card__app{
+  box-shadow: 0 10px 10px rgba(68, 31, 125, .2);
+  background-color: #fff;
+}
+
+.btn__app{
+  padding: 0 2rem;
+  border-radius: .5rem;
+  border: none;
+  transition: all linear .25s;
+  line-height: 3rem;
+  font-weight: 600;
+  text-align: center;
+  width: auto;
+}
+.btn__app.large{
+  width: 100%;
+}
+.btn__app.small{
+  line-height: 2rem;
+}
+
+.btn__dark {
+  background-color: #441f7d;
+  color: #fff;
+}
+.btn__dark:hover {
+  background-color: #7342BF;
+  color: #fff;
+}
+.btn__outline {
+  border: 2px solid #441f7d;
+  background-color: #fff;
+  color: #441f7d;
+  text-transform: uppercase;
+}
+.btn__outline:hover {
+  background-color: #441f7d;
+  color: #fff;
+}
+
+@media screen and (max-width: 1200px){
+  .wrap__inner{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 640px){
+  .wrap__inner{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+

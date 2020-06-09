@@ -1,8 +1,10 @@
 .wrap__home{
-  margin-top: 5.25rem;
-  padding-left: 2rem;
-  padding-right: 2rem;  
+  margin-top: 60px;
+  background-color: #f8f5fd;
+  padding-top: 0;
+  min-height: 95vh; 
 }
+
 .home-title{
   color: #B8860B;
   font-weight: bold;
@@ -16,6 +18,9 @@
 .image-container{
   text-align: right;
   padding-top: 0;
+}
+.wrap__home .image-container img{
+  align-self: flex-start;
 }
 
 .container-home .card-container{

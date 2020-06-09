@@ -1,8 +1,8 @@
 .event-header{
-  padding: 20px 0;
+  padding: 20px 0 ;
   padding-left: 1rem;
   padding-right: 1rem;
-  background-color: rgb(245, 245, 245);
+  background-color: #E8E2F1;
   margin: 0;
 }
 
@@ -28,17 +28,24 @@
   font-size: 20px;
 }
 .event-btn div {
-  max-width: 90px;
+  max-width: 200px;
   font-size: .875rem;
+}
+.event-btn div a{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+}
+.event-btn div a:hover,
+.event-btn div a.active {
+  border-bottom: 2px solid #7342BF;
 }
 
 @media only screen and (min-width: 768px ){
   .event-header{
-    padding: 20px 0;
     padding-left: 2rem;
     padding-right: 2rem;
-    background-color: rgb(245, 245, 245);
-    margin: 0;
   }
   
   .event-btn {
@@ -49,18 +56,9 @@
     padding: 0;
     font-size: 15px;
   }
-
-  .event-btn a:hover{
-    text-decoration: none;
-  }
-
   .event-btn div{
-    padding-bottom: 10px;
+    max-width: 200px;
+    padding-bottom: 0;
   }
 
-  .event-btn div:hover{
-    border-bottom: black;
-    border-bottom-style: solid;
-    border-bottom-width: 5px;
-  }
 }

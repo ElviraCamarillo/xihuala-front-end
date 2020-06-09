@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -25,40 +25,54 @@ export default class App extends Component {
 
   render () {    
     return (
-      <Router>
-        <div className="App">        
+      <BrowserRouter>
+        <div className="App">  
+        <Switch>     
           <Route exact path="/">
             <Index />
           </Route>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <Login/>
-          </Route>
-          <Route exact path="/signin">
-            <Signin/>
-          </Route>
+          <Route 
+            exact 
+            path="/home" 
+            component={Home} 
+          />
+          <Route 
+            exact 
+            path="/login" 
+            component={Login}
+          />
+          <Route exact path="/signup" component={Signin} />
           <Route exact path="/forgot-password">
             <ForgotPassword/>
           </Route>
           <Route exact path="/event">
             <Event/>
           </Route>
-          <Route exact path="/event-detail">
-            <EventDetail/>
-          </Route>
+          <Route 
+            exact 
+            path="/events/:id" 
+            component={EventDetail} 
+          />
           <Route exact path="/profile">
             <Perfil/>
           </Route>
-          <Route exact path="/guests">
-            <Guests/>
-          </Route>
-          <Route exact path="/expenses">
-            <Expenses/>
-          </Route>
+
+          <Route 
+            exact 
+            path="/events/:id/guests"
+            component={Guests}
+          />
+
+          <Route 
+            exact
+            path="/events/:id/expenses"
+            component={Expenses}
+          />
+
+        </Switch> 
+
         </div>
-      </Router>     
+      </BrowserRouter>     
     )
   }
 }
