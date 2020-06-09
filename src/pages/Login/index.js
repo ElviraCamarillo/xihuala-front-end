@@ -17,6 +17,8 @@ export default class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      response: '',
+      statusresponse:''
     }
   }
   handleInput({ target: { name, value } }) {
@@ -24,12 +26,43 @@ export default class Login extends Component {
         [name]: value
     })        
   }
+
   async onSubmit(event){
     event.preventDefault()
+    console.log(this.props)
     const email = this.state.email
     const password = this.state.password
+    if(email == "" || password == ""){
+      this.setState({
+        response: 'Faltan datos obligatorios',
+        statusresponse: 'error'
+      });
+      setTimeout(() => {
+        this.setState({
+          response: '',
+          statusresponse: ''
+        });
+      }, 4000)
+      return
+    }
+
     const payload = await Api.login(email, password)
-    localStorage.setItem('tokenapp', payload.data.token);
+    if(payload.sucess === true){
+      console.log('redirect to home')
+      localStorage.setItem('tokenapp', payload.data.token);
+      this.props.history.push(`/home`)
+    }else{
+      this.setState({
+        response: 'Datos inválidos',
+        statusresponse: 'error'
+      });
+      setTimeout(() => {
+        this.setState({
+          response: '',
+          statusresponse: ''
+        });
+      }, 4000)
+    }
   }
   render(){
     return (
@@ -53,6 +86,7 @@ export default class Login extends Component {
                 name="password" 
                 onChange={ this.handleInput.bind(this) }
               />
+              <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
               <div className='d-flex flex-column justify-content-center align-items-center'>
                 <PrimaryButton name={"INICIAR SESIÓN"} type='submit'/>
                 <br/>

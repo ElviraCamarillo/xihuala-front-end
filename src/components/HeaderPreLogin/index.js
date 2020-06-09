@@ -1,5 +1,7 @@
 import React from 'react'
-
+import {
+  Link
+} from "react-router-dom";
 import logo from '../../img/logo-color.svg'
 
 
@@ -13,8 +15,9 @@ export default function HeaderPreLogin() {
         <img className='logo-index' src={logo} alt=""></img>
       </div>
       <div className='index-btn col-12 col-md-6'>
-        <a className='register text-dark' href='/signin'>Regístrate</a>
-        <a className='login' href='/login'>Iniciar sesión</a>
+        <Link to='/signup' className="register text-dark">Regístrate</Link>
+        <Link to='/login' className="login ">Iniciar sesión</Link>
+        
       </div>
     </header>
   )

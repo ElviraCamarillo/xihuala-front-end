@@ -55,10 +55,64 @@ async function login (email, password) {
     }
   }
 
+  async function getUserSession (token) {
+    try {
+      const response = await window.fetch(`${API_URL}/users/getsession`, {
+        headers: { authorization: token }
+      })
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('error', error)
+      return {
+        data: {
+          session: []
+        }
+      }
+    }
+  }
+
+  async function getEventsByUserId (token, id_user) {
+    try {
+      console.log(id_user)
+      const response = await window.fetch(`${API_URL}/events/user/${id_user}`, {
+        headers: { authorization: token }
+      })
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('error', error)
+      return {
+        data: {
+          session: []
+        }
+      }
+    }
+  }
+  async function getEvent (token, id_event) {
+    try {
+      console.log(id_event)
+      const response = await window.fetch(`${API_URL}/events/${id_event}`, {
+        headers: { authorization: token }
+      })
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('error', error)
+      return {
+        data: {
+          event: []
+        }
+      }
+    }
+  }
 
 const api = {
   login,
-  newUser
+  newUser,
+  getUserSession,
+  getEventsByUserId,
+  getEvent
 }
 
 export default api

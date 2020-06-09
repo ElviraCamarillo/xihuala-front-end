@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Redirect, withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 
 //Import icons
 import novios from '../../img/novios3.svg'
@@ -10,21 +13,26 @@ import PrimaryButton from '../../components/PrimaryButton'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
 
+
 // Import CSS
 import './Signin.css'
 
 export default class Signin extends Component {
   constructor(props){
     super(props)
-      this.state = {
-        name: '',
-        lastname: '',
-        email: '',
-        password: '',
-        ispassok: true,
-        response:''
-      }
+    this.state = {
+      name: '',
+      lastname: '',
+      email: '',
+      password: '',
+      ispassok: true,
+      response:'',
+      statusresponse: ''
+    }
   }
+  static contextTypes = {
+    router: PropTypes.object
+  } 
   handleInput({ target:{ name, value }}){
     this.setState({
       [name]: value
@@ -37,18 +45,21 @@ export default class Signin extends Component {
     const email = this.state.email
     const password = this.state.password
     const verifypassword = this.state.verifyPass
+    console.log(this.props)
     if(verifypassword !== password) {
       // si pass no coinciden
       console.log('password no coinciden')
       this.setState({
         ispassok: false,
         response: 'Las contraseñas no coinciden',
+        statusresponse: 'error'
       });
       // en 4 segundos quitamos el mensaje 
       setTimeout(() => {
         this.setState({
           ispassok: true,
           response: '',
+          statusresponse: ''
         });
       }, 4000)
 
@@ -56,6 +67,28 @@ export default class Signin extends Component {
       // si todo ok
       const payload = await Api.newUser({name, lastName, email, password})
       console.log(payload)
+      if(payload.success === true){
+        this.setState({
+          response: 'Usuario registrado correctamente',
+          statusresponse: 'success'
+        });
+        setTimeout(() => {
+          this.props.history.push(`/login`)
+        }, 5000)
+      }else{
+        this.setState({
+          response: payload.error,
+          statusresponse: 'error'
+        });
+        setTimeout(() => {
+          this.setState({
+            response: '',
+            statusresponse: ''
+          });
+        }, 4000)
+      }
+      
+
     }
 
   }
@@ -111,7 +144,8 @@ export default class Signin extends Component {
                   onChange={this.handleInput.bind(this)}
                   autoComplete="off"
                 />
-                <p className="response">{this.state.response}</p>
+                <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
+                
                 <div className='d-flex flex-column justify-content-center align-items-start'>
                   <PrimaryButton name={"REGÍSTRATE"}/>
                 </div>                                         
