@@ -10,7 +10,7 @@ export default function Card({cardIcon, cardTitle, cardText}) {
         <h2>{cardTitle}</h2>
       </div>
       <div className='card-text'>
-        <p className='text-dark'>{cardText}</p>
+        <p className=''>{cardText}</p>
       </div>
       
     </div>

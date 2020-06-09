@@ -9,15 +9,17 @@ import './HeaderPreLogin.css'
 
 export default function HeaderPreLogin() {
   return (
-    <header className='index-header row sticky-top'>
-      <div className='index-logo col-12 col-md-6'>
-       
-        <img className='logo-index' src={logo} alt=""></img>
-      </div>
-      <div className='index-btn col-12 col-md-6'>
-        <Link to='/signup' className="register text-dark">Regístrate</Link>
-        <Link to='/login' className="login ">Iniciar sesión</Link>
-        
+    <header className='index-header'>
+      <div className="wrap__inner">
+        <div className="row">
+          <div className='col-4 col-md-6'>
+            <img className='logo-index' src={logo} alt="" />
+          </div>
+          <div className='col-8 col-md-6 text-right'>
+            <Link to='/signup' className="link__menu">Regístrate</Link>
+            <Link to='/login' className="link__menu">Iniciar sesión</Link>
+          </div>
+        </div>
       </div>
     </header>
   )

@@ -7,17 +7,18 @@ import './HeaderEvent.css'
 
 export default function HeaderEvent(props) {
   const idEvent = props.id
+  const active = props.active
   return (
     <header className='event-header '>
       <div className='event-btn'>
         <div>
-          <Link className="event-detail text-dark" to={`/events/${idEvent}/`}>DETALLE</Link>
+          <Link className={`event-detail text-dark ${active == "detalle" ? "active" : ""}`} to={`/events/${idEvent}/`}>DETALLE</Link>
         </div>
         <div>
-          <Link className="event-detail text-dark" to={`/events/${idEvent}/guests`}>INVITADOS</Link>
+          <Link className={`event-detail text-dark ${active == "invitados" ? "active" : ""}`} to={`/events/${idEvent}/guests`}>INVITADOS</Link>
         </div>
         <div>
-          <Link className="event-detail text-dark" to={`/events/${idEvent}/expenses`}>CONTROL DE GASTOS</Link>
+          <Link className={`event-detail text-dark ${active == "gastos" ? "active" : ""}`} to={`/events/${idEvent}/expenses`}>CONTROL DE GASTOS</Link>
         </div>        
       </div>
     </header>

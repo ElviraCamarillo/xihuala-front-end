@@ -94,67 +94,69 @@ export default class Signin extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="ctn__signup">
           <HeaderPreLogin />
-          <section className='row'>
-            <div className='col-12 col-md-6'>
-              <h2>¡Comienza ya!</h2>
-              <form 
-                className='signin-form d-flex flex-column' 
-                onSubmit={this.onSubmit.bind(this)} 
-                action=''>
-                <label className='text-dark' for="name-signin">Nombre:</label>
-                <input 
-                  type="text" 
-                  id="name-signin" 
-                  name="name"
-                  onChange={this.handleInput.bind(this)}
-                  autoComplete="off" 
-                />
-                <label className='text-dark' for="lastname-signin">Apellidos:</label>
-                <input 
-                  type="text" 
-                  id="lastname-signin" 
-                  name="lastname"
-                  onChange={this.handleInput.bind(this)}
-                  autoComplete="off" 
-                />
+          <div className="wrap__inner">
+            <section className='row'>
+              <div className='col-12 col-md-6'>
+                <h2 className="title__section">¡Comienza ya!</h2>
+                <form 
+                  className='signin-form d-flex flex-column card__app p-5 rounded' 
+                  onSubmit={this.onSubmit.bind(this)} 
+                  action=''>
+                  <label className='' for="name-signin">Nombre:</label>
+                  <input 
+                    type="text" 
+                    id="name-signin" 
+                    name="name"
+                    onChange={this.handleInput.bind(this)}
+                    autoComplete="off" 
+                  />
+                  <label className='' for="lastname-signin">Apellidos:</label>
+                  <input 
+                    type="text" 
+                    id="lastname-signin" 
+                    name="lastname"
+                    onChange={this.handleInput.bind(this)}
+                    autoComplete="off" 
+                  />
 
-                <label className='text-dark' for="email-signin">Correo electrónico:</label>
-                <input 
-                  type="email" 
-                  id="email-signin" 
-                  name="email"
-                  onChange={this.handleInput.bind(this)}
-                  autoComplete="off"
-                />
-                <label className='text-dark' for="password-signin">Contraseña:</label>
-                <input 
-                  type="password" 
-                  id="password-signin" 
-                  name="password"
-                  onChange={this.handleInput.bind(this)}
-                  autoComplete="off" 
-                />
-                <label className='text-dark' for="verifyPass-signin">Verifica tu contraseña:</label>
-                <input 
-                  type="password" 
-                  id="verifyPass-signin" 
-                  name="verifyPass"
-                  onChange={this.handleInput.bind(this)}
-                  autoComplete="off"
-                />
-                <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
-                
-                <div className='d-flex flex-column justify-content-center align-items-start'>
-                  <PrimaryButton name={"REGÍSTRATE"}/>
-                </div>                                         
-              </form>
-            </div>
-            <div className='image-container col-12 col-md-6 d-flex justify-content-center'>
-              <ImgContainer imageUrl={novios} />
-            </div>          
-          </section>
+                  <label className='' for="email-signin">Correo electrónico:</label>
+                  <input 
+                    type="email" 
+                    id="email-signin" 
+                    name="email"
+                    onChange={this.handleInput.bind(this)}
+                    autoComplete="off"
+                  />
+                  <label className='' for="password-signin">Contraseña:</label>
+                  <input 
+                    type="password" 
+                    id="password-signin" 
+                    name="password"
+                    onChange={this.handleInput.bind(this)}
+                    autoComplete="off" 
+                  />
+                  <label className='' for="verifyPass-signin">Verifica tu contraseña:</label>
+                  <input 
+                    type="password" 
+                    id="verifyPass-signin" 
+                    name="verifyPass"
+                    onChange={this.handleInput.bind(this)}
+                    autoComplete="off"
+                  />
+                  <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
+                  
+                  <div className='d-flex flex-column justify-content-center align-items-start'>
+                    <button className="btn__app btn__dark large" type="submit">REGÍSTRATE</button>
+                  </div>                                         
+                </form>
+              </div>
+              <div className='image-container col-12 col-md-6 d-flex justify-content-center'>
+                <ImgContainer imageUrl={novios} />
+              </div>          
+            </section>
+          </div>
 
         <Footer/>
       </div>

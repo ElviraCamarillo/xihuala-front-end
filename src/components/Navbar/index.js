@@ -33,58 +33,20 @@ export default class Navbar extends Component {
     return (
     <div className='navbar-container'>
       <div className="desktop__header">
-        <div className="nav">
-          <img src={logo} className="logo"  alt=''/> 
-          <ul>
-              <li>
-                <Link to="/profile">Perfil</Link>
-                </li>
+        <div className="wrap__inner">
+
+          <div className="nav">
+            <img src={logo} className="logo"  alt=''/> 
+            <ul>
                 <li>
-                <Link to="/event">Crear evento</Link>
-              </li>
-              <li>
-                <Link to="/logout">Salir</Link>
-              </li>
-            {/* <li>
-              {
-                isUserLogedIn ? (
-                  <li>
-                    <Link to="/Perfil" onClick={this.toggleMenu}>Perfil</Link>
+                  <Link to="/profile">Perfil</Link>
                   </li>
-                ) : null
-              }
-              </li>
-              <li>
-              {
-                isUserLogedIn ? (
                   <li>
-                    <Link to="/Evento" onClick={this.toggleMenu}>Evento</Link>
-                  </li>
-                ) : null
-              }
-            </li> */}
-          </ul>
-        </div>
-      </div>
-      <div className="movil__header">
-        <div className="nav">
-          <img src={logo} className="logo"  alt=''/> 
-          <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}  alt=''/></button>
-        </div>
-        <div className={`Menu ${menuClass}`}>
-          <h2>Hola user</h2>
-          <nav>
-            <div>
-              <ul>
-                <li>
-                <Link to="/Perfil">Perfil</Link>
+                  <Link to="/event">Crear evento</Link>
                 </li>
                 <li>
-                <Link to="/Evento">Evento</Link>
+                  <Link to="/logout">Salir</Link>
                 </li>
-                <li>
-                <Link to="/logout">Salir</Link>
-              </li>
               {/* <li>
                 {
                   isUserLogedIn ? (
@@ -102,7 +64,30 @@ export default class Navbar extends Component {
                     </li>
                   ) : null
                 }
-                </li> */}
+              </li> */}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="movil__header">
+        <div className="nav">
+          <img src={logo} className="logo"  alt=''/> 
+          <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}  alt=''/></button>
+        </div>
+        <div className={`Menu ${menuClass}`}>
+          <h2>Hola user</h2>
+          <nav>
+            <div>
+              <ul>
+                <li>
+                  <Link to="/Perfil" className="nav__link">Perfil</Link>
+                </li>
+                <li>
+                  <Link to="/Evento" className="nav__link">Evento</Link>
+                </li>
+                <li>
+                  <Link to="/logout" className="nav__link">Salir</Link>
+                </li>
               </ul>
             </div>
           </nav>

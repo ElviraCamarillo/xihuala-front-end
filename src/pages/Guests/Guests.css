@@ -3,6 +3,9 @@
 }
 .container-table{
     padding: auto;
+    width: 100%;
+    margin-left: 2rem;
+    max-width: 500px;
 }
 .table-total{
     background-color: rgba(0,0,0,0.8);
@@ -11,10 +14,12 @@
     font-size: 30px;
 }
 .ctn-eventGuests{
-    margin-top: 4.25rem;
+    margin-top: 64px;
 }
 .container-form-guests{
-    min-width: auto;
+    min-width:420px;
+    margin-bottom: 3rem;
+    
 }
 .container-guests{
     padding-left: 1rem;
@@ -22,15 +27,10 @@
     justify-content: center;
     width: 100%;
 }
-.ctn-eventGuests .container-title{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .container-form-guests label{
     font-size: 1rem;
+    display: block;
 }
 .container-form-guests .row{
     padding-left: 0;
@@ -40,14 +40,19 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }
-.container-form-guests{
-    margin-bottom: 3rem;
-}
+
 .row-inputform {
     justify-content: center;
 }
 .row-inputform button{
     display: inline-block;
+}
+.wrap__totalguests{
+    background-color: #7342BF;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -57,12 +62,8 @@
         justify-content: space-between;
         padding-right: 2rem;
         padding-left: 2rem;
-        max-width: 1024px;
         margin-left: auto;
         margin-right: auto;
-    }
-    .container-form-guests{
-        min-width: 500px;
     }
     .ctn-eventGuests .container-title{
         padding-left: 2rem;

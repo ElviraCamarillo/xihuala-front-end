@@ -14,19 +14,20 @@
 }
 
 .card-title img{
-  padding-right: 30px;
+  padding-right: 1rem;
+  max-width: 100px;
+  height: auto;
 }
 
 .card-title h2{
-  color: #B8860B;
+  color: #7342BF;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 1.125rem;
   text-align: left;
-  width: 60%;
 }
 
 .card-text p{
   color: black;
-  font-size: 18px;
+  font-size: 1rem;
   text-align: left;
 }

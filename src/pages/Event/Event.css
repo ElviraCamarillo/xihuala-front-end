@@ -8,14 +8,8 @@
   width: 100%;
 }
 .ctn--newEvent{
-  margin-top: 4.25rem;
-}
-
-h2{
-  color: #B8860B;
-  font-weight: bold;
-  font-size: 40px;
-  text-align: left;
+  margin-top: 64px;
+  background-color: #f8f5fd;
 }
 
 .icon-container{
@@ -26,6 +20,12 @@ h2{
 
 .icon-container img {
   margin-right: 10px;
+}
+.ctn--newEvent{
+  margin-top: 70px;
+  background-color: #f8f5fd;
+  padding-top: 2rem;
+  min-height: 95vh;
 }
 
 .ctn--newEvent .event-form label{
@@ -57,11 +57,6 @@ h2{
 }
 
 @media only screen and (min-width: 768px ){
-  .row{
-    padding: 20px 0;
-    padding-left: 70px;
-    padding-right: 70px;
-  }
 
   .image-container{
     padding: 30px;

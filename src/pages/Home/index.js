@@ -62,26 +62,28 @@ export default class Home extends Component {
     
           <div className="wrap__home">
             <Navbar/>
-            <h1 className='home-title'>Mis Eventos</h1>
-            <div className="row mt-5">
-              <div className='container-home col-12 col-md-6 d-flex justify-content-start flex-column'>
+            <div className="wrap__inner pt-5">
+              <h1 className='title__section'>Mis Eventos</h1>
+              <div className="row mt-5">
+                <div className='container-home col-12 col-md-6 d-flex justify-content-start flex-column'>
+                  
+                  {this.state.events.map((value, index) => {
+                    return <CardEvent key={index} obj={value} />
+                  })}
+                  {this.state.events.length === 0 ?
+                  <div>
+                  <p className="emptyEvents">No existen enventos aún</p>
+                  <div className='d-md-flex pb-3'>
+                    <Link to={`/event`} className="btn btn-info">Crear evento</Link>
+                  </div>
+                  </div>
+                  : ''}
                 
-                {this.state.events.map((value, index) => {
-                  return <CardEvent key={index} obj={value} />
-                })}
-                {this.state.events.length === 0 ?
-                <div>
-                <p className="emptyEvents">No existen enventos aún</p>
-                <div className='d-md-flex pb-3'>
-                  <Link to={`/event`} className="btn btn-info">Crear evento</Link>
                 </div>
-                </div>
-                : ''}
-              
+                <div className='image-container col-12 col-md-6 d-flex justify-content-center'>
+                  <ImgContainer imageUrl={novios5} />
+                </div> 
               </div>
-              <div className='image-container col-12 col-md-6 d-flex justify-content-center'>
-                <ImgContainer imageUrl={novios5} />
-              </div> 
             </div>
             <Footer/>
           </div>

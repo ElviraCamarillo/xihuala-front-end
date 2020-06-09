@@ -106,13 +106,50 @@ async function login (email, password) {
       }
     }
   }
+  async function getEventGuests (token, id_event) {
+    try {
+      console.log(id_event)
+      const response = await window.fetch(`${API_URL}/events/${id_event}`, {
+        headers: { authorization: token }
+      })
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('error', error)
+      return {
+        data: {
+          event: []
+        }
+      }
+    }
+  }
+
+  async function addGuestEvent (token, id_event) {
+    try {
+      console.log(id_event)
+      const response = await window.fetch(`${API_URL}/events/${id_event}/addguest`, {
+        headers: { authorization: token }
+      })
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('error', error)
+      return {
+        data: {
+          event: []
+        }
+      }
+    }
+  }
 
 const api = {
   login,
   newUser,
   getUserSession,
   getEventsByUserId,
-  getEvent
+  getEvent,
+  getEventGuests,
+  addGuestEvent
 }
 
 export default api

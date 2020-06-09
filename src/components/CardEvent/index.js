@@ -1,9 +1,9 @@
 import React from 'react'
 
 // Import icons
-import calendarIcon from '../../img/event-color-icon.svg'
-import invitacionIcon from '../../img/invite-color-icon.svg'
-import expenseIcon from '../../img/expense-color-icon.svg'
+import calendarIcon from '../../img/icons__wedding/icon__day.png'
+import invitacionIcon from '../../img/icons__wedding/user__invitado.png'
+import expenseIcon from '../../img/icons__wedding/icon__cash.png'
 import './CardEvent.css'
 
 import {
@@ -15,7 +15,7 @@ export default function Card(props) {
   console.log(props)
   const card = props.obj
   return (
-    <div className='ctn__card'>
+    <div className='ctn__card card__app'>
       <div className='card-title-event'>
         <img src={calendarIcon} alt=''/>
         <p>Faltan <strong>N</strong> días para <strong>{card.nameEvent}</strong></p>
@@ -28,7 +28,7 @@ export default function Card(props) {
         <img src={expenseIcon} alt=''/>
         <p>Tu gasto actual es de <strong>expenseAcutal</strong> de <strong>{card.buget}</strong></p>
       </div>
-      <Link to={`/events/${card._id}`} className="btn btn-info">Ver detalle del evento</Link>
+      <Link to={`/events/${card._id}`} className="align-self-start btn__app btn__dark small ml-5">Ver detalle del evento</Link>
 
     </div>
   )

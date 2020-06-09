@@ -1,86 +1,72 @@
 .index-header{
   display: flex;
-  flex-direction: column-reverse;
-  box-shadow: 0px 1px 3px lightgray;
+  flex-direction: row;
+  padding-bottom: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #fff;
+  padding: .5rem 0;
+  z-index: 2;
+  box-shadow: 0 10px 10px rgba(68, 31, 125, .1);
+}
+.link__menu{
+  font-size: 1rem;
+  line-height: 60px;
+  margin-left: 1rem;
+  transition: all linear .25s;
+  color: #441f7d;
+  font-weight: 400;
+}
+.link__menu:hover,
+.link__menu.active{
+  color: #7342BF;
+}
+.logo-index{
+  max-width: 150px;
+}
+.wrap__text{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
-.row{
-  padding: 20px 0;
-  padding-left: 30px;
-  padding-right: 30px;
-  background-color: white;
-}
 
-.index-logo{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.index-logo .logo-index{
-  height: 80px;
-}
-
-.index-btn {
-  display: flex;
-  align-items: center;  
-  justify-content: space-evenly;
-  padding: 20px 0;
-}
-
-.index-btn .register{
-  margin: 0;
-  color: black;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.index-btn .login{
-  margin: 0;
-  color: #B8860B;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-@media only screen and (min-width: 520px ){
-  .index-header{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
+@media screen and (max-width: 640px){
+  .wrap__inner{
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
-
-  .row{
-    padding: 20px 0;
-    padding-left: 70px;
-    padding-right: 70px;
+  .logo-index{
+    max-width: 100px;
   }
-
-  .index-logo{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  .index-header .link__menu{
+    font-size: .875rem;
+    line-height: 2.5rem;
   }
-  
-  .index-logo .logo-index{
-    height: 60px;
+  .index-header .link__menu:first-child{
+    margin-left: 0;
   }
-  
-  .index-btn {
-    display: flex;
-    align-items: center;  
-    justify-content: space-evenly;
-    padding: 20px 0;
+  .ctn__index{
+    margin-top: 3rem;
   }
-  
-  .index-btn .register{
-    margin: 0;
-    font-weight: bold;
-    font-size: 24px;
+  .heroimage{
+    height: 320px;
   }
-  .index-btn .login{
-    margin: 0;
-    color: #B8860B;
-    font-weight: bold;
-    font-size: 24px;
+  .wrap__text{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .index-title{
+    font-size: 1.5rem;
+  }
+  .index-text{
+    font-size: 1rem;
+  }
+  .cards-section .card-title img{
+    max-width: 60px;
+  }
+  .cards-section .card-text p{
+    margin-top: .5rem;
   }
 }
