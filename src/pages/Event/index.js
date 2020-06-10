@@ -95,7 +95,7 @@ export default class Event extends Component {
         });
         setTimeout(() => {
           window.location.href = '/home'
-        }, 5000)
+        }, 3000)
       }else{
         this.setState({
           response: payload.error,
