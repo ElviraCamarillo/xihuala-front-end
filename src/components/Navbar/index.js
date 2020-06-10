@@ -36,7 +36,9 @@ export default class Navbar extends Component {
         <div className="wrap__inner">
 
           <div className="nav">
+            <Link to="/home" className="d-flex">
             <img src={logo} className="logo"  alt=''/> 
+            </Link>
             <ul>
                 <li>
                   <Link to="/profile">Perfil</Link>

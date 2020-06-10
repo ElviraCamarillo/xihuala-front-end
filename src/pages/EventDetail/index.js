@@ -41,12 +41,11 @@ export default class EventDetail extends Component {
     if(token === null) {
       this.props.history.push(`/login`)
     }else{
-      async function getEvent (token, idEvent){
-        console.log(token)
-        const sessionObj = await Api.getEvent(token, idEvent)
+      async function getEvent (idEvent){
+        const sessionObj = await Api.getEvent(idEvent)
         return sessionObj
       }
-      const payload = getEvent(token, idEvent)
+      const payload = getEvent(idEvent)
       payload.then( (resultEvent) => {
         console.log(resultEvent)
         this.setState({

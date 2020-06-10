@@ -7,12 +7,9 @@
 .image-container img{
   width: 100%;
 }
-.ctn--newEvent{
-  margin-top: 64px;
-  background-color: #f8f5fd;
-}
 
-.icon-container{
+
+.ctn--newEvent .icon-container{
   width: 15%;
   display: flex;
   justify-content: center;
@@ -22,12 +19,15 @@
   margin-right: 10px;
 }
 .ctn--newEvent{
-  margin-top: 70px;
+  margin-top: 64px;
   background-color: #f8f5fd;
   padding-top: 2rem;
   min-height: 95vh;
 }
 
+.ctn--newEvent .event-form{
+  max-width: 450px;
+}
 .ctn--newEvent .event-form label{
   font-size: 1rem;
   margin-bottom: 0px;

@@ -13,7 +13,9 @@ export default function HeaderPreLogin() {
       <div className="wrap__inner">
         <div className="row">
           <div className='col-4 col-md-6'>
-            <img className='logo-index' src={logo} alt="" />
+            <Link className="" to="/">
+              <img className='logo-index' src={logo} alt="" />
+            </Link>
           </div>
           <div className='col-8 col-md-6 text-right'>
             <Link to='/signup' className="link__menu">Regístrate</Link>

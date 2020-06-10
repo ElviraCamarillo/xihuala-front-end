@@ -1,4 +1,5 @@
-const API_URL = 'http://xihuala-app-api.mybluemix.net'
+// const API_URL = 'http://xihuala-app-api.mybluemix.net'
+const API_URL = 'http://localhost:8080'
 
 async function login (email, password) {
     try {
@@ -31,116 +32,165 @@ async function login (email, password) {
     }
   }
 
-  async function newUser (dataNewUSer) {
-    try {
-      console.log(dataNewUSer)
-      const response = await window.fetch(`${API_URL}/users/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ ...dataNewUSer })
-      })
-      console.log(response)
-      const payload = await response.json()
-      return payload
-    } catch (error) {
-      console.log('Error al crear nuevo usuario')
-      console.log(error)
-      return {
-        data: {
-          newPost: ''
-        }
+async function newUser (dataNewUSer) {
+  try {
+    console.log(dataNewUSer)
+    const response = await window.fetch(`${API_URL}/users/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...dataNewUSer })
+    })
+    console.log(response)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al crear nuevo usuario')
+    console.log(error)
+    return {
+      data: {
+        newPost: ''
       }
     }
   }
+}
 
-  async function getUserSession (token) {
-    try {
-      const response = await window.fetch(`${API_URL}/users/getsession`, {
-        headers: { authorization: token }
-      })
-      const payload = await response.json()
-      return payload
-    } catch (error) {
-      console.log('error', error)
-      return {
-        data: {
-          session: []
-        }
+async function getUserSession (token) {
+  try {
+    const response = await window.fetch(`${API_URL}/users/getsession`, {
+      headers: { authorization: token }
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        session: []
       }
     }
   }
+}
 
-  async function getEventsByUserId (token, id_user) {
-    try {
-      console.log(id_user)
-      const response = await window.fetch(`${API_URL}/events/user/${id_user}`, {
-        headers: { authorization: token }
-      })
-      const payload = await response.json()
-      return payload
-    } catch (error) {
-      console.log('error', error)
-      return {
-        data: {
-          session: []
-        }
+async function getEventsByUserId (token, id_user) {
+  try {
+    console.log(id_user)
+    const response = await window.fetch(`${API_URL}/events/user/${id_user}`, {
+      headers: { authorization: token }
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        session: []
       }
     }
   }
-  async function getEvent (token, id_event) {
-    try {
-      console.log(id_event)
-      const response = await window.fetch(`${API_URL}/events/${id_event}`, {
-        headers: { authorization: token }
-      })
-      const payload = await response.json()
-      return payload
-    } catch (error) {
-      console.log('error', error)
-      return {
-        data: {
-          event: []
-        }
-      }
-    }
-  }
-  async function getEventGuests (token, id_event) {
-    try {
-      console.log(id_event)
-      const response = await window.fetch(`${API_URL}/events/${id_event}`, {
-        headers: { authorization: token }
-      })
-      const payload = await response.json()
-      return payload
-    } catch (error) {
-      console.log('error', error)
-      return {
-        data: {
-          event: []
-        }
-      }
-    }
-  }
+}
 
-  async function addGuestEvent (token, id_event) {
-    try {
-      console.log(id_event)
-      const response = await window.fetch(`${API_URL}/events/${id_event}/addguest`, {
-        headers: { authorization: token }
-      })
-      const payload = await response.json()
-      return payload
-    } catch (error) {
-      console.log('error', error)
-      return {
-        data: {
-          event: []
-        }
+async function newEvent (dataNewUSer) {
+  try {
+    console.log(dataNewUSer)
+    const response = await window.fetch(`${API_URL}/events`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...dataNewUSer })
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al crear el evento')
+    console.log(error)
+    return {
+      data: {
+        event: ''
       }
     }
   }
+}
+
+async function getEvent (id_event) {
+  try {
+    console.log(id_event)
+    const response = await window.fetch(`${API_URL}/events/${id_event}`)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
+
+async function getEventGuests (id_event) {
+  try {
+    console.log(id_event)
+    const response = await window.fetch(`${API_URL}/events/${id_event}`)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
+
+async function addGuestEvent (id_event, dataNewEvent ) {
+  try {
+    console.log(id_event)
+    console.log(dataNewEvent)
+    const response = await window.fetch(`${API_URL}/events/${id_event}/addguest`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataNewEvent)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
+
+async function confirmGuestEvent (id_event, dataNewEvent ) {
+  try {
+    console.log(id_event)
+    console.log(dataNewEvent)
+    const response = await window.fetch(`${API_URL}/events/${id_event}/confirmguest`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataNewEvent)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
 
 const api = {
   login,
@@ -149,7 +199,9 @@ const api = {
   getEventsByUserId,
   getEvent,
   getEventGuests,
-  addGuestEvent
+  addGuestEvent,
+  confirmGuestEvent,
+  newEvent
 }
 
 export default api

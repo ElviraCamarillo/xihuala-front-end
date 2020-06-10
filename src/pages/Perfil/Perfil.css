@@ -33,15 +33,6 @@
     padding: auto;
     display: none;
 }
-.ctn-profile{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5.25rem;
-    margin-bottom: 4rem;
-}
 
 input{
     height: 40px;
@@ -51,20 +42,20 @@ input{
     border-color: rgba(0,0,0,0.4);
     border-radius: 5px;
 }
-label{
-    font-size: 20px;
-    margin-bottom: 0px;
-    width: 100%;
-    text-align: left;
+.container-form-profile{
+    display: flex;
+    max-width: 450px;
+    width: 100%;    
 }
-@media only screen and (min-device-width: 768px) {
-    
-    .container-image{
-        display: block;
-    }
-    .row-input{
-        display: flex;
-        justify-content: space-around;
-        text-align: left;
-    }
+.container-form-profile form{
+    width: 100%;
+}
+
+.container-body{
+    display: flex;
+    justify-content: space-between;
+}
+.ctn-profile  form label{
+    font-size: 1rem;
+    margin-bottom: .25rem;
 }
