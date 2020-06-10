@@ -31,7 +31,8 @@ export default class Event extends Component {
       contactPhone: '',
       response:'',
       statusresponse: '',
-      idUser: ''
+      idUser: '',
+      buget: ''
     }
   }
 
@@ -71,9 +72,9 @@ export default class Event extends Component {
     if(token === false) this.props.history.push(`/login`)
     
     event.preventDefault()
-    const { nameEvent, location, eventDate, eventTime, contactPhone, idUser} = this.state
+    const { nameEvent, location, eventDate, eventTime, contactPhone, idUser, buget} = this.state
     console.log(this.props)
-    if (nameEvent === '' || location === '' || eventDate === '' || eventTime === '' || contactPhone === ''){
+    if (nameEvent === '' || location === '' || eventDate === '' || eventTime === '' || contactPhone === '' || buget === ''){
       console.log('Datos incompletos')
       this.setState({
         response: 'Favor de llenar todos los datos',
@@ -86,7 +87,7 @@ export default class Event extends Component {
         });
       }, 4000)
     } else {
-      const payload = await Api.newEvent(token, {nameEvent, location, eventDate, eventTime, contactPhone, idUser})
+      const payload = await Api.newEvent(token, {nameEvent, location, eventDate, eventTime, contactPhone, idUser, buget})
       console.log(payload)
       if(payload.success === true){
         this.setState({
@@ -180,7 +181,18 @@ export default class Event extends Component {
                       type="text" 
                       id="contactPhone" 
                       name="contactPhone"
-                      onChange={this.handleInput.bind(this)} />
+                      onChange={this.handleInput.bind(this)} />                   
+                  </div>
+                  <div className='d-md-flex pb-3'>
+                    <div className='icon-container'>
+                      <img src={phoneIcon}  alt='' />
+                    </div>                  
+                    <label className='text-dark' for="buget">Presupuesto:</label>
+                    <input 
+                      type="text" 
+                      id="buget" 
+                      name="buget"
+                      onChange={this.handleInput.bind(this)} />                   
                   </div>
                   <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
                   <div className='button d-flex flex-column justify-content-center align-items-start'>

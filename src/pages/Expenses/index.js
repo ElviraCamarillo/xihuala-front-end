@@ -19,11 +19,31 @@ export default class Event extends Component {
   constructor(props){
     super(props)
     this.state = {
-      budget: '',
-      expenseDescription: '',
-      expenseAmount: '',
-      response:'',
-      statusresponse: ''
+      event: []
+    }
+  }
+
+  componentDidMount(){
+    // get token
+    const token = window.localStorage.getItem('tokenapp')
+    var path = this.props.location.pathname
+    const idEvent = path.substring(8, 32)
+    console.log(`id del evento ${idEvent}`)
+    if(token === null) {
+      this.props.history.push(`/login`)
+    }else{
+      async function getEvent (token, idEvent){
+        console.log(token)
+        const sessionObj = await Api.getEvent(token, idEvent)
+        return sessionObj
+      }
+      const payload = getEvent(token, idEvent)
+      payload.then( (resultEvent) => {
+        console.log(resultEvent)
+        this.setState({
+          event: resultEvent.data.event
+        });
+      })
     }
   }
 
@@ -40,11 +60,12 @@ export default class Event extends Component {
   async onSubmit (event) {
     const token = window.localStorage.getItem('tokenapp')
     if(token === false) this.props.history.push(`/login`)
-    
+    var path = this.props.location.pathname
+    const idEvent = path.substring(8, 32)
     event.preventDefault()
-    const { budget, expenseDescription, expenseAmount} = this.state
+    const { expenseDescription, expenseAmount} = this.state
     console.log(this.props)
-    if (budget === '' || expenseDescription === '' || expenseAmount === ''){
+    if (expenseDescription === '' || expenseAmount === ''){
       console.log('Datos incompletos')
       this.setState({
         response: 'Favor de llenar los datos requeridos',
@@ -57,7 +78,7 @@ export default class Event extends Component {
         });
       }, 4000)
     } else {
-      const payload = await Api.newEvent(token, {budget, expenseDescription, expenseAmount})
+      const payload = await Api.newExpense(token, idEvent, {expenseDescription, expenseAmount})
       console.log(payload)
       if(payload.success === true){
         this.setState({
@@ -86,6 +107,8 @@ export default class Event extends Component {
 
 
   render() {
+    const {event} = this.state
+    console.log(event.buget)
     return (
       <div className="wrap__home">
         <Navbar/>
@@ -98,25 +121,10 @@ export default class Event extends Component {
                 <img className='pr-3' src={titleIcon} alt='' />
                 <h1 className='title__section'>Control de Gastos</h1>
               </div>
-
-              <form className='expenses-form d-flex flex-column'>
-                <div className='d-md-flex pb-3 d-flex flex-column'>
-                  <div>
-                    <label className='text-dark' for="buget">Presupuesto inicial:</label>
-                    <input 
-                      type="text" 
-                      id="budget" 
-                      name="budget" />
-                  </div>                  
-                  <div className='d-flex justify-content-end'>                    
-                  <button className="btn__app btn__dark large" type="submit">Agregar presupuesto</button>
-                  </div>                  
-                </div>
-              </form>
-              
-                <br/>
-                <br/>
-              <form>
+              <form 
+                className='event-form d-flex flex-column'
+                onSubmit={this.onSubmit.bind(this)} 
+                action=''>
                 <div className='d-md-flex pb-3'>  
                     <label className='text-dark' for="expenseDescription">Concepto:</label>
                     <input 
@@ -147,14 +155,16 @@ export default class Event extends Component {
                   Presupuesto restante
                 </div>
                 <div className="col-6 text-right">
-                  $25,520.30
+                
                 </div>
               </div>              
             </div>
 
               <div className='initial-budget d-flex justify-content-around'>
                 <div>Presupuesto inicial</div>
-                <div>$50,000.00</div>
+                <div className="col-6 text-right">
+                {event.buget}
+                </div>
               </div>
 
               <Table className="table mb-5 table-striped table-bordered">
