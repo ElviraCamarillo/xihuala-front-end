@@ -24,9 +24,16 @@ export default class Navbar extends Component {
     });
   }
   logOut() {
-    this.props.logOut()
-    this.toggleMenu()
+    localStorage.removeItem('tokenapp');
+    console.log(`localStorage: ${localStorage}`)
+    window.location.href = '/';
   }
+  componentDidMount(){
+    // get token
+    const token = window.localStorage.getItem('tokenapp')
+    if(token === false) this.props.history.push(`/login`)
+  }
+
   render() {
     const { isMenuActive } = this.state;
     const menuClass = isMenuActive ? "Menu-active" : "";
@@ -45,26 +52,8 @@ export default class Navbar extends Component {
                   <Link to="/event">Crear evento</Link>
                 </li>
                 <li>
-                  <Link to="/logout">Salir</Link>
+                  <button onClick={this.logOut} className="btn__app btn__dark large"><i className="cis-account-logout">Salir</i></button>
                 </li>
-              {/* <li>
-                {
-                  isUserLogedIn ? (
-                    <li>
-                      <Link to="/Perfil" onClick={this.toggleMenu}>Perfil</Link>
-                    </li>
-                  ) : null
-                }
-                </li>
-                <li>
-                {
-                  isUserLogedIn ? (
-                    <li>
-                      <Link to="/Evento" onClick={this.toggleMenu}>Evento</Link>
-                    </li>
-                  ) : null
-                }
-              </li> */}
             </ul>
           </div>
         </div>
