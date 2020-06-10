@@ -58,12 +58,10 @@ export default class Perfil extends Component {
   }
 
   render() {
-   
     return (
     <div>
         <div className="ctn-profile">
         <Navbar/>
-             
             <div className="wrap__inner">
             <h2 className="title__section">Perfil</h2>
 
@@ -113,7 +111,7 @@ export default class Perfil extends Component {
                 </div>
             </div>
             </div>
-       <Footer/>
+      <Footer/>
     </div>
     );
   }
