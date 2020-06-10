@@ -142,6 +142,40 @@ async function login (email, password) {
     }
   }
 
+  async function newEvent (token, dataNewEvent) {
+    try {
+      console.log(dataNewEvent)
+      const response = await window.fetch(`${API_URL}/events/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: token
+        },
+        body: JSON.stringify({ ...dataNewEvent })
+      })
+      console.log(response)
+      const payload = await response.json()
+      if (payload.success === false) {
+        return payload
+      } else {
+        window.sessionStorage.setItem(
+          'authorization', payload.data.token
+        )
+        return payload
+      }
+    } catch (error) {
+      console.log('Error al crear nuevo evento')
+      console.log(error)
+      return {
+        data: {
+          newEvent: ''
+        }
+      }
+    }
+  }
+
+  
+
 const api = {
   login,
   newUser,
@@ -149,7 +183,8 @@ const api = {
   getEventsByUserId,
   getEvent,
   getEventGuests,
-  addGuestEvent
+  addGuestEvent,
+  newEvent
 }
 
 export default api
