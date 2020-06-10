@@ -86,11 +86,19 @@ export default class Event extends Component {
 
 
   render() {
+    const path = this.props.location.pathname
+    let id_event = path.substring(8)
+    id_event = id_event.split('/')[0]
+    console.log(id_event)
     return (
       <div className="wrap__home">
         <Navbar/>
         <div className="ctn-eventExpenses">        
-        <HeaderEvent/>
+        <HeaderEvent
+          id={id_event}
+          active="gastos"
+          location={this.props}
+        />
         <div className="wrap__inner pt-5">
           <section className='row'>
             <div className='col-12 col-md-6'>

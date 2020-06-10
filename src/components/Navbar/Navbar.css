@@ -88,9 +88,13 @@
     line-height: 60px;
     margin-left: 1rem;
     transition: all linear .25s;
-    color: #441f7d;
-    font-weight: 400;
+    color: #7342BF;
+    font-weight: 600;
     }
+    .nav li a:hover{
+        color: #441f7d;
+    }
+
 .nav li{
       list-style-type: none;
       margin: 2px;

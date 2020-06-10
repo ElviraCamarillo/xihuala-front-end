@@ -17,7 +17,8 @@
   margin-top: 64px;
 }
 .container-form-guests{
-  min-width:420px;
+  max-width:420px;
+  width: 100%;
   margin-bottom: 3rem;
 }
 .container-guests{
@@ -38,6 +39,8 @@
 .container-form-guests input{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  width: 100%;
+  
 }
 .container-form-guests textarea{
   margin-bottom: 10px;

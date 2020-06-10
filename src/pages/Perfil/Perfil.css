@@ -2,9 +2,7 @@
 .container-title{
     display: flex;
     justify-content: flex-start;
-    padding: auto;
-    margin-top: 4%;
-    
+    padding: auto;    
 }
 .container-body{
     display: flex;
@@ -34,12 +32,21 @@
     display: none;
 }
 
-input{
+.ctn-profile{
+    margin-top: 64px;
+}
+.ctn-profile input{
     height: 40px;
-    width: 80%;
     margin-bottom: 10px;
     width: 100%;
-    border-color: rgba(0,0,0,0.4);
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    outline: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+.ctn-profile input:focus{
+    border: 2px solid #441f7d;
     border-radius: 5px;
 }
 .container-form-profile{

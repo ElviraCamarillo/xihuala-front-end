@@ -15,47 +15,27 @@
   font-size: 1rem;
   margin-bottom: .25rem;
 }
-.response-message{
-  width: 100%;
-  border-radius: 1rem;
-  padding: 1rem;
-  text-align: center;
-  background-color: #fff;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-  transition: all linear .25s;
-}
-.response-message:empty{
-  padding: 0;
-  bottom: -2rem;
-}
-.response-message.success{
-  background-color: #29c7ac;
-}
-.response-message.error{
-  background-color: #84142d;
-}
 
-.login-form input{
-  line-height: 40px;
-  width: 100%;
-  margin-bottom: 15px;
-  padding-left: .5rem;
-  padding-right: .5rem;
-}
-.login-form input:focus{
-  border-color: #441f7d;
-  outline: none;
-}
+
+
+
+
 .noAccount{
   font-weight: 400 !important;
   font-size: 1rem !important;
   color: rgba(0,0,0,0.87) !important;
 }
 
+.ctn__login  form input {
+    height: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    outline: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+.ctn__login  form input:focus{
+  border: 2px solid #441f7d;
+}

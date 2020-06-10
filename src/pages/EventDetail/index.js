@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {
-  Link
-} from "react-router-dom";
+
+import Moment from 'react-moment'
+import 'moment-timezone'
+
+import { Link } from "react-router-dom";
 
 import Api from '../../lib/api'
-import Moment from 'react-moment'
 
 // Import icon
 import novios from '../../img/novios8.svg'
@@ -57,8 +58,9 @@ export default class EventDetail extends Component {
   
   render() {
     const path = this.props.location.pathname
-    const id_event = path.substring(8)
+    let id_event = path.substring(8)
     const {event} = this.state
+    id_event = id_event.split('/')[0]
 
     return (
       <div className="wrap-event-detail">
@@ -67,6 +69,7 @@ export default class EventDetail extends Component {
           id={id_event}
           active="detalle"
         />
+      
         <div className="wrap__inner pt-3">
 
         <section className='row'>
@@ -85,7 +88,15 @@ export default class EventDetail extends Component {
                 <div className='icon-container'>
                   <img src={dateIcon}  alt=''/>
                 </div>                 
-                <label className='text-dark' for="event-date">{event.eventDate}</label>
+                <label className='text-dark' for="event-date">
+                  <Moment locale="es" format="D">
+                    {event.eventDate}
+                  </Moment> de <Moment locale="es" format="MMM">
+                    {event.eventDate}
+                  </Moment> de <Moment locale="es" format="YYYY">
+                    {event.eventDate}
+                  </Moment>
+                </label>
               </div>
               <div className='d-md-flex pb-3'>
                 <div className='icon-container'>

@@ -141,7 +141,8 @@ export default class Guests extends Component {
 
   render() {
     const path = this.props.location.pathname
-    const id_event = path.substring(8)
+    let id_event = path.substring(8)
+    id_event = id_event.split('/')[0]
     return (
       <div>
         <Navbar/>
@@ -195,19 +196,6 @@ export default class Guests extends Component {
                         </div>
                         
                     </div>
-                    {/* <div className="row">
-                        <div className='col-12'>
-                            <label>Notas</label>
-                            <textarea 
-                              name="note" 
-                              cols="30" 
-                              rows="5" 
-                              onChange={this.handleInput.bind(this)}
-                              autoComplete="off"
-                            />
-                        </div>
-                        
-                    </div> */}
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
                     <div className="row row-inputform mt-4">
                       <div className='col-12'>
