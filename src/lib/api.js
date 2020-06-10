@@ -55,6 +55,30 @@ async function login (email, password) {
     }
   }
 
+  async function updateAUser (token,id_user,dataUSer) {
+    try {
+      const response = await window.fetch(`${API_URL}/users/${id_user}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: token
+        },
+        body: JSON.stringify({ ...dataUSer })
+      })
+      console.log(response)
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('Error al modificar usuario')
+      console.log(error)
+      return {
+        data: {
+          userUpdated: ''
+        }
+      }
+    }
+  }
+
   async function getUserSession (token) {
     try {
       const response = await window.fetch(`${API_URL}/users/getsession`, {
@@ -184,7 +208,8 @@ const api = {
   getEvent,
   getEventGuests,
   addGuestEvent,
-  newEvent
+  newEvent,
+  updateAUser
 }
 
 export default api
