@@ -106,15 +106,12 @@ export default class Event extends Component {
 
 
   render() {
-<<<<<<< HEAD
     const {event} = this.state
     console.log(event.buget)
-=======
     const path = this.props.location.pathname
     let id_event = path.substring(8)
     id_event = id_event.split('/')[0]
     console.log(id_event)
->>>>>>> develop
     return (
       <div className="wrap__home">
         <Navbar/>

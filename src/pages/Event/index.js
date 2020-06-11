@@ -24,19 +24,12 @@ export default class Event extends Component {
       eventDate: '',
       eventTime: '',
       contactPhone: '',
-<<<<<<< HEAD
-      response:'',
-      statusresponse: '',
-      idUser: '',
-      buget: ''
-=======
       guests: [],
       buget: 0,
       expenses:[],
       idUser: '',
       response: '',
       statusresponse:''
->>>>>>> develop
     }
   }
 
@@ -74,12 +67,6 @@ export default class Event extends Component {
 
   async onSubmit (event) {
     event.preventDefault()
-<<<<<<< HEAD
-    const { nameEvent, location, eventDate, eventTime, contactPhone, idUser, buget} = this.state
-    console.log(this.props)
-    if (nameEvent === '' || location === '' || eventDate === '' || eventTime === '' || contactPhone === '' || buget === ''){
-      console.log('Datos incompletos')
-=======
 
     const location = this.state.location
     const nameEvent = this.state.nameEvent
@@ -95,7 +82,6 @@ export default class Event extends Component {
     console.log(this.props)
     if(this.state.nameEvent === '') {
       // si no hay nombre del evento
->>>>>>> develop
       this.setState({
         response: 'Faltan datos obligatorios',
         statusresponse: 'error'
@@ -107,11 +93,6 @@ export default class Event extends Component {
           statusresponse: ''
         });
       }, 4000)
-<<<<<<< HEAD
-    } else {
-      const payload = await Api.newEvent(token, {nameEvent, location, eventDate, eventTime, contactPhone, idUser, buget})
-      console.log(payload)
-=======
 
     }else{
       // si todo ok
@@ -127,7 +108,6 @@ export default class Event extends Component {
         idUser
       })
 
->>>>>>> develop
       if(payload.success === true){
         
         this.setState({
@@ -172,7 +152,6 @@ export default class Event extends Component {
     return (
       <div className="wrap__home">
           <Navbar/>
-<<<<<<< HEAD
           <div className="wrap__inner pt-5">
             <section className='row'>
               <div className='col-12 col-md-6'>
@@ -254,14 +233,12 @@ export default class Event extends Component {
                   <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
                   <div className='button d-flex flex-column justify-content-center align-items-start'>
                     <button className="btn__app btn__dark large" type="submit">Guardar Evento</button>
-=======
           <div className="ctn--newEvent">
             <div className="wrap__inner pb-5">
               <section className='row'>
                 <div className='col-12 col-md-6'>
                   <div className='d-flex pb-5'>
                     <h2 className="title__section">Nuevo Evento</h2>
->>>>>>> develop
                   </div>              
                   <form 
                     className='event-form d-flex flex-column card__app px-3 py-3 px-md-5 rounded mt-1'
