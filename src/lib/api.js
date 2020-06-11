@@ -218,41 +218,6 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
 }
  
 
-<<<<<<< HEAD
-  async function newExpense (token, id_event, dataNewExpense) {
-    try {
-      console.log(dataNewExpense)
-      const response = await window.fetch(`${API_URL}/${id_event}/addexpense`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: token
-        },
-        body: JSON.stringify({ ...dataNewExpense })
-      })
-      console.log(response)
-      const payload = await response.json()
-      if (payload.success === false) {
-        return payload
-      } else {
-        window.sessionStorage.setItem(
-          'authorization', payload.data.token
-        )
-        return payload
-      }
-    } catch (error) {
-      console.log('Error al crear nuevo GASTO')
-      console.log(error)
-      return {
-        data: {
-          newExpense: ''
-        }
-      }
-    }
-  }
-
-  
-=======
 async function updateProfile (token, idUser, userUpdated) {
   try {
     console.log(userUpdated)
@@ -277,7 +242,6 @@ async function updateProfile (token, idUser, userUpdated) {
     }
   }
 }
->>>>>>> develop
 
 const api = {
   login,
@@ -289,12 +253,8 @@ const api = {
   addGuestEvent,
   newEvent,
   updateAUser,
-<<<<<<< HEAD
-  newExpense
-=======
   confirmGuestEvent,
   updateProfile
->>>>>>> develop
 }
 
 export default api
