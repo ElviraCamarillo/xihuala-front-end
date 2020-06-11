@@ -7,6 +7,7 @@ import './App.css';
 
 import Index from './pages/Index'
 import Login from './pages/Login'
+import Logout from './pages/Logout'
 import Signin from './pages/Signin'
 import Perfil from './pages/Perfil'
 import ForgotPassword from './pages/ForgotPassword'
@@ -15,6 +16,7 @@ import EventDetail from './pages/EventDetail'
 import Home from './pages/Home'
 import Guests from './pages/Guests'
 import Expenses from './pages/Expenses'
+import ConfirmGuest from './pages/ConfirmGuest'
 
 export default class App extends Component {
   constructor(props){
@@ -41,32 +43,53 @@ export default class App extends Component {
             path="/login" 
             component={Login}
           />
-          <Route exact path="/signup" component={Signin} />
-          <Route exact path="/forgot-password">
+          <Route 
+            exact 
+            path="/logout" 
+            component={Logout}
+          />
+          <Route 
+            exact 
+            path="/signup" 
+            component={Signin} 
+          />
+          <Route 
+          exact path="/forgot-password">
             <ForgotPassword/>
           </Route>
-          <Route exact path="/event">
-            <Event/>
-          </Route>
+          
+          <Route 
+            exact 
+            path="/event" 
+            component={Event} 
+          />
+
           <Route 
             exact 
             path="/events/:id" 
             component={EventDetail} 
           />
-          <Route exact path="/profile">
-            <Perfil/>
-          </Route>
+
+          <Route 
+            exact 
+            path="/profile"
+            component={Perfil}
+          />
 
           <Route 
             exact 
             path="/events/:id/guests"
             component={Guests}
           />
-
           <Route 
             exact
             path="/events/:id/expenses"
             component={Expenses}
+          />
+          <Route 
+            exact 
+            path="/event/:id/confirm"
+            component={ConfirmGuest}
           />
 
         </Switch> 
