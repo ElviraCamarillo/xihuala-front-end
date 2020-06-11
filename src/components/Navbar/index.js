@@ -54,12 +54,7 @@ export default class Navbar extends Component {
                   <Link to="/event">Crear evento</Link>
                 </li>
                 <li>
-<<<<<<< HEAD
-                <Link to="/logOut">Salir</Link>
-                  {/* <button onClick={this.logOut} className="btn__app btn__dark large"><i className="cis-account-logout">Salir</i></button> */}
-=======
                   <Link to="/logout" className="active">Salir</Link>
->>>>>>> feature_branch_elvira
                 </li>
             </ul>
           </div>
