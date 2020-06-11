@@ -26,7 +26,11 @@ export default class Home extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    if(token === false) this.props.history.push(`/login`)
+    console.log(token)
+    if(token == null){
+      this.props.history.push(`/login`)
+      return
+    }
 
     // buscar los eventos con este id user
     async function getSession (token){
@@ -55,9 +59,6 @@ export default class Home extends Component {
   }
   
   render() {
-    console.log(this.state.events)
-
-
         return (
     
           <div className="wrap__home">
@@ -70,6 +71,7 @@ export default class Home extends Component {
                   {this.state.events.map((value, index) => {
                     return <CardEvent key={index} obj={value} />
                   })}
+                  
                   {this.state.events.length === 0 ?
                   <div>
                   <p className="emptyEvents">No existen enventos aún</p>

@@ -3,8 +3,6 @@ import React, { Component } from "react";
 // Import components
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
-import PrimaryButton from './../../components/PrimaryButton'
-import SecondaryButton from './../../components/SecondaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 
 import Api from '../../lib/api'
@@ -23,26 +21,33 @@ export default class Guests extends Component {
       nameFamily: '',
       numberGuests: '',
       emailFamily: '',
-      notes: ''
+      note: '',
+      statusresponse:''
     }
   }
 
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
+    console.log(token)
+    if(token == null){
+      this.props.history.push(`/login`)
+      return
+    }
+
     var path = this.props.location.pathname
     const largeEvent = path.substring(8)
     const idEvent= largeEvent.substring(0,24)
     if(token === null) {
       this.props.history.push(`/login`)
     }else{
-      async function getEvent (token, idEvent){
-        console.log(token)
-        const sessionObj = await Api.getEvent(token, idEvent)
+      async function getEvent (idEvent){
+        const sessionObj = await Api.getEvent(idEvent)
         return sessionObj
       }
-      const payload = getEvent(token, idEvent)
+      const payload = getEvent(idEvent)
       payload.then( (resultEvent) => {
+        console.log(resultEvent)
         let totalguests = 0
         let guests = []
         for(let item in resultEvent.data.event.guests){
@@ -65,14 +70,20 @@ export default class Guests extends Component {
   }
   async onSubmit (event) {
     event.preventDefault()
-    const name= this.state.nameFamily
-    const number= this.state.numberGuests
-    const email = this.state.emailFamily
-    const notes = this.state.notes
+
+    const nameFamily= this.state.nameFamily
+    const numberGuests= parseInt(this.state.numberGuests)
+    const emailFamily = this.state.emailFamily
+    const note = this.state.note
+    const status = 'pendiente'
 
     console.log(this.props)
+    const token = window.localStorage.getItem('tokenapp')
+    var path = this.props.location.pathname
+    const largeEvent = path.substring(8)
+    const idEvent= largeEvent.substring(0,24)
 
-    if(name !== '') {
+    if(nameFamily == '') {
       // si pass no coinciden
       console.log('Faltan datos')
       // this.setState({
@@ -90,16 +101,23 @@ export default class Guests extends Component {
 
     }else{
       // si todo ok
-      const payload = await Api.addGuestEvent({name, number, email, notes})
+      const payload = await Api.addGuestEvent(idEvent, {nameFamily, numberGuests, emailFamily, note, status})
       console.log(payload)
       if(payload.success === true){
+
         this.setState({
-          response: 'Usuario registrado correctamente',
-          statusresponse: 'success'
+          response: 'Invitado registrado correctamente',
+          statusresponse: 'success',
+          guests: [...this.state.guests, {nameFamily, numberGuests, emailFamily, note, status}]
         });
+
         setTimeout(() => {
-          this.props.history.push(`/login`)
-        }, 5000)
+          this.setState({
+            response: '',
+            statusresponse: ''
+          });
+        }, 4000)
+        
       }else{
         this.setState({
           response: payload.error,
@@ -120,12 +138,17 @@ export default class Guests extends Component {
   
 
   render() {
-
+    const path = this.props.location.pathname
+    let id_event = path.substring(8)
+    id_event = id_event.split('/')[0]
     return (
       <div>
         <Navbar/>
         <div className="ctn-eventGuests">
-          <HeaderEvent/>
+          <HeaderEvent
+            id={id_event}
+            active="invitados"
+          />
           <div className="wrap__inner pt-3">
             <div className="container-title">
               <h2 className="title__section">Invitados</h2>
@@ -171,19 +194,7 @@ export default class Guests extends Component {
                         </div>
                         
                     </div>
-                    <div className="row">
-                        <div className='col-12'>
-                            <label>Notas</label>
-                            <textarea 
-                              name="notes" 
-                              cols="30" 
-                              rows="5" 
-                              onChange={this.handleInput.bind(this)}
-                              autoComplete="off"
-                            />
-                        </div>
-                        
-                    </div>
+                    <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
                     <div className="row row-inputform mt-4">
                       <div className='col-12'>
                         <button type="submit" className="btn__app btn__dark large">Agregar familia</button>
@@ -203,26 +214,28 @@ export default class Guests extends Component {
                 </div>
                 
               </div>
-              <Table className="table mb-5 table-striped table-bordered">
-                <thead className="thead-dark">
-                    <tr>
-                    <th>Familia</th>
-                    <th>No. invitados</th>
-                    <th>Estatus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {this.state.guests.map((guest, index) => 
-                    <tr>
-                      <td key={`guest_family${index}`}>{guest.nameFamily}</td>
-                      <td key={`guest_family${index}`}>{guest.numberGuests}</td>
-                      <td key={`guest_family${index}`}>{guest.status}</td>
-                    </tr>
-                  )}
-                    
-                </tbody>
-              </Table>
-              <button type="button" className="btn__app btn__dark">Enviar invitaciones</button>
+              <div className="table-responsive">
+                <Table className="table mb-5 table-striped table-bordered">
+                  <thead className="thead-dark">
+                      <tr>
+                      <th>Familia</th>
+                      <th>No. invitados</th>
+                      <th>Estatus</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.guests.map((guest, index) => 
+                      <tr>
+                        <td key={`guest_family${index}`}>{guest.nameFamily}</td>
+                        <td key={`guest_family${index}`}>{guest.numberGuests}</td>
+                        <td key={`guest_family${index}`}>{guest.status}</td>
+                      </tr>
+                    )}
+                      
+                  </tbody>
+                </Table>
+              </div>
+              {/* <button type="button" className="btn__app btn__dark">Enviar invitaciones</button> */}
 
             </div>        
           </div>

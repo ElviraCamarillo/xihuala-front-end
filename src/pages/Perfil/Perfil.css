@@ -2,9 +2,7 @@
 .container-title{
     display: flex;
     justify-content: flex-start;
-    padding: auto;
-    margin-top: 4%;
-    
+    padding: auto;    
 }
 .container-body{
     display: flex;
@@ -33,38 +31,38 @@
     padding: auto;
     display: none;
 }
-.ctn-profile{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5.25rem;
-    margin-bottom: 4rem;
-}
 
-input{
+.ctn-profile{
+    margin-top: 64px;
+}
+.ctn-profile input{
     height: 40px;
-    width: 80%;
     margin-bottom: 10px;
     width: 100%;
-    border-color: rgba(0,0,0,0.4);
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    outline: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+.ctn-profile input:focus{
+    border: 2px solid #441f7d;
     border-radius: 5px;
 }
-label{
-    font-size: 20px;
-    margin-bottom: 0px;
-    width: 100%;
-    text-align: left;
+.container-form-profile{
+    display: flex;
+    max-width: 450px;
+    width: 100%;    
 }
-@media only screen and (min-device-width: 768px) {
-    
-    .container-image{
-        display: block;
-    }
-    .row-input{
-        display: flex;
-        justify-content: space-around;
-        text-align: left;
-    }
+.container-form-profile form{
+    width: 100%;
+}
+
+.container-body{
+    display: flex;
+    justify-content: space-between;
+}
+.ctn-profile  form label{
+    font-size: 1rem;
+    margin-bottom: .25rem;
 }

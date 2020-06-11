@@ -1,44 +1,52 @@
 .container-guests{
-    display: inline-block;
+  display: inline-block;
 }
 .container-table{
-    padding: auto;
-    width: 100%;
-    margin-left: 2rem;
-    max-width: 500px;
+  padding: auto;
+  width: 100%;
+  margin-left: 0;
+  max-width: 500px;
 }
 .table-total{
-    background-color: rgba(0,0,0,0.8);
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 30px;
+  background-color: rgba(0,0,0,0.8);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 30px;
 }
 .ctn-eventGuests{
-    margin-top: 64px;
+  margin-top: 64px;
 }
 .container-form-guests{
-    min-width:420px;
-    margin-bottom: 3rem;
-    
+  max-width:420px;
+  width: 100%;
+  margin-bottom: 3rem;
 }
 .container-guests{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    justify-content: center;
-    width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .container-form-guests label{
-    font-size: 1rem;
-    display: block;
+  font-size: 1rem;
+  display: block;
 }
 .container-form-guests .row{
-    padding-left: 0;
-    padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 .container-form-guests input{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 100%;
+  
+}
+.container-form-guests textarea{
+  margin-bottom: 10px;
+  width: 100%;
+  border: 2px solid rgba(0,0,0,0.4);
+  border-radius: 5px;
 }
 
 .row-inputform {
@@ -48,29 +56,55 @@
     display: inline-block;
 }
 .wrap__totalguests{
-    background-color: #7342BF;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.5rem;
-    padding: 1rem;
+  background-color: #7342BF;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.container-form-guests {
+  padding-right: 2rem;
+}
+.container-form-guests form input{
+  height: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    outline: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+.container-form-guests form input:focus{
+  border: 2px solid #441f7d;
 }
 
 @media only screen and (min-width: 768px) {
     
-    .container-guests{ 
-        display: flex;
-        justify-content: space-between;
-        padding-right: 2rem;
-        padding-left: 2rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .ctn-eventGuests .container-title{
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    .row-inputform {
-        justify-content: flex-end;
-    }
-   
+  .container-guests{ 
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ctn-eventGuests .container-title{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .row-inputform {
+    justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 640px){
+  .container-guests{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container-form-guests form{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }

@@ -4,8 +4,6 @@ import novios from '../../img/novios2.svg'
 
 import ImgContainer from '../../components/ImgContainer'
 import HeaderPreLogin from '../../components/HeaderPreLogin'
-import PrimaryButton from '../../components/PrimaryButton'
-import SecondaryButton from '../../components/SecondaryButton'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
 
@@ -36,7 +34,7 @@ export default class Login extends Component {
     console.log(this.props)
     const email = this.state.email
     const password = this.state.password
-    if(email == "" || password == ""){
+    if(email === "" || password === ""){
       this.setState({
         response: 'Faltan datos obligatorios',
         statusresponse: 'error'
@@ -72,7 +70,7 @@ export default class Login extends Component {
     return (
       <div className="ctn__login">
         <HeaderPreLogin />
-        <div className="wrap__inner pt-5">
+        <div className="wrap__inner ">
           <section className='row d-flex'>
             <div className='col-12 col-md-6'>
               <h2 className="title__section">Inicia sesión</h2>

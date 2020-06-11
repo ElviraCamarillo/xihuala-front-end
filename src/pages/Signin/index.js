@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect, withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 
 //Import icons
@@ -9,7 +7,6 @@ import novios from '../../img/novios3.svg'
 // Import components
 import ImgContainer from '../../components/ImgContainer'
 import HeaderPreLogin from '../../components/HeaderPreLogin'
-import PrimaryButton from '../../components/PrimaryButton'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
 
@@ -30,9 +27,7 @@ export default class Signin extends Component {
       statusresponse: ''
     }
   }
-  static contextTypes = {
-    router: PropTypes.object
-  } 
+
   handleInput({ target:{ name, value }}){
     this.setState({
       [name]: value
@@ -147,7 +142,7 @@ export default class Signin extends Component {
                   />
                   <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
                   
-                  <div className='d-flex flex-column justify-content-center align-items-start'>
+                  <div className='d-flex flex-column justify-content-center align-items-start mt-4'>
                     <button className="btn__app btn__dark large" type="submit">REGÍSTRATE</button>
                   </div>                                         
                 </form>

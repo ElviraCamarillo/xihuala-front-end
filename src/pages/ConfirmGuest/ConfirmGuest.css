@@ -1,37 +1,57 @@
-.ctn__signup{
-  margin-top: 70px;
+.ctn__confirm{
+  margin-top: 64px;
   background-color: #f8f5fd;
-  padding-top: 2rem;
   min-height: 95vh;
+  margin-bottom: 1rem;
 }
 .image-container{
   padding: 30px;
 }
-.signin-form {
+.confirm-form {
   max-width: 420px;
 }
-.signin-form  h2{
+.confirm-form  h2{
   color: #7342BF;
   font-weight: bold;
   font-size: 2.5rem;
   text-align: left;
+  
 }
-.signin-form label{
+.confirm-form label{
   font-size: 1rem;
   margin-bottom: .25rem;
 }
 
-.signin-form input{
+.confirm-form input{
   line-height: 40px;
   width: 100%;
   margin-bottom: 15px;
   padding-left: .5rem;
   padding-right: .5rem;
 }
-.signin-form input:focus{
+.confirm-form input:focus{
   border-color: #441f7d;
   outline: none;
 }
+.confirm-form textarea{
+  margin-bottom: 10px;
+  width: 100%;
+  border: 2px solid rgba(0,0,0,0.4);
+  border-radius: 5px;
+  padding: .25rem;
+}
+.confirm-form textarea:focus{
+  border-color: #441f7d;
+  outline: none;
+}
+.ctn__confirm .confirm-form {
+  margin-top: 3rem;
+}
+.btn-confirm{
+  background-color: #441f7d ;
+  color:white;
+}
+
 .response-message{
   width: 100%;
   border-radius: 1rem;
@@ -57,29 +77,4 @@
 }
 .response-message.error{
   background-color: #84142d;
-}
-.ctn__signup .signin-form {
-  margin-top: 3rem;
-}
-
-.ctn__signup input:focus {
-  border: 2px solid #441f7d;
-  border-radius: 5px;
-}
-
-.ctn__signup input {
-  height: 40px;
-  margin-bottom: 10px;
-  width: 100%;
-  border: 2px solid rgba(0,0,0,0.4);
-  border-radius: 5px;
-  outline: none;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-@media only screen and (max-width: 640px ){
-  .ctn__signup{
-    margin-top: 56px;
-  }
 }
