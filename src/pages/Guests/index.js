@@ -3,8 +3,6 @@ import React, { Component } from "react";
 // Import components
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
-import PrimaryButton from './../../components/PrimaryButton'
-import SecondaryButton from './../../components/SecondaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 
 import Api from '../../lib/api'
@@ -141,7 +139,8 @@ export default class Guests extends Component {
 
   render() {
     const path = this.props.location.pathname
-    const id_event = path.substring(8)
+    let id_event = path.substring(8)
+    id_event = id_event.split('/')[0]
     return (
       <div>
         <Navbar/>
@@ -195,19 +194,6 @@ export default class Guests extends Component {
                         </div>
                         
                     </div>
-                    {/* <div className="row">
-                        <div className='col-12'>
-                            <label>Notas</label>
-                            <textarea 
-                              name="note" 
-                              cols="30" 
-                              rows="5" 
-                              onChange={this.handleInput.bind(this)}
-                              autoComplete="off"
-                            />
-                        </div>
-                        
-                    </div> */}
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
                     <div className="row row-inputform mt-4">
                       <div className='col-12'>
@@ -228,26 +214,28 @@ export default class Guests extends Component {
                 </div>
                 
               </div>
-              <Table className="table mb-5 table-striped table-bordered">
-                <thead className="thead-dark">
-                    <tr>
-                    <th>Familia</th>
-                    <th>No. invitados</th>
-                    <th>Estatus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {this.state.guests.map((guest, index) => 
-                    <tr>
-                      <td key={`guest_family${index}`}>{guest.nameFamily}</td>
-                      <td key={`guest_family${index}`}>{guest.numberGuests}</td>
-                      <td key={`guest_family${index}`}>{guest.status}</td>
-                    </tr>
-                  )}
-                    
-                </tbody>
-              </Table>
-              <button type="button" className="btn__app btn__dark">Enviar invitaciones</button>
+              <div className="table-responsive">
+                <Table className="table mb-5 table-striped table-bordered">
+                  <thead className="thead-dark">
+                      <tr>
+                      <th>Familia</th>
+                      <th>No. invitados</th>
+                      <th>Estatus</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.guests.map((guest, index) => 
+                      <tr>
+                        <td key={`guest_family${index}`}>{guest.nameFamily}</td>
+                        <td key={`guest_family${index}`}>{guest.numberGuests}</td>
+                        <td key={`guest_family${index}`}>{guest.status}</td>
+                      </tr>
+                    )}
+                      
+                  </tbody>
+                </Table>
+              </div>
+              {/* <button type="button" className="btn__app btn__dark">Enviar invitaciones</button> */}
 
             </div>        
           </div>

@@ -12,7 +12,6 @@ import novios from '../../img/novios3.svg'
 // Import components
 import ImgContainer from '../../components/ImgContainer'
 import Footer from '../../components/Footer'
-import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 
 // Import CSS
