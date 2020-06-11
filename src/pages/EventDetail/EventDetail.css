@@ -68,6 +68,11 @@
     margin-bottom: 0px;
     width: 80%;
   }
-  
 
+}
+@media only screen and (max-width: 640px ){
+  .event-form {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
 }

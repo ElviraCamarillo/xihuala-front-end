@@ -4,8 +4,6 @@ import novios from '../../img/novios2.svg'
 
 import ImgContainer from '../../components/ImgContainer'
 import HeaderPreLogin from '../../components/HeaderPreLogin'
-import PrimaryButton from '../../components/PrimaryButton'
-import SecondaryButton from '../../components/SecondaryButton'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
 

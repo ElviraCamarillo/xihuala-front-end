@@ -3,16 +3,10 @@ import PropTypes from 'prop-types'
 
 // Import icons
 import novios from '../../img/novios7.svg'
-import titleIcon from '../../img/event-color-icon.svg'
-import coupleIcon from '../../img/pople-icon.svg'
-import locationIcon from '../../img/location-icon.svg'
-import dateIcon from '../../img/date-icon.svg'
-import timeIcon from '../../img/hour-icon.svg'
-import phoneIcon from '../../img/phone-icon.svg'
+
 
 // Import components
 import ImgContainer from '../../components/ImgContainer'
-import PrimaryButton from '../../components/PrimaryButton'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
@@ -87,17 +81,14 @@ export default class Event extends Component {
 
     console.log(this.props)
     if(this.state.nameEvent === '') {
-      // si pass no coinciden
-      console.log('password no coinciden')
+      // si no hay nombre del evento
       this.setState({
-        ispassok: false,
-        response: 'Las contraseñas no coinciden',
+        response: 'Faltan datos obligatorios',
         statusresponse: 'error'
       });
       // en 4 segundos quitamos el mensaje 
       setTimeout(() => {
         this.setState({
-          ispassok: true,
           response: '',
           statusresponse: ''
         });
@@ -116,13 +107,14 @@ export default class Event extends Component {
         expenses,
         idUser
       })
-      console.log(payload)
+
       if(payload.success === true){
         
         this.setState({
           response: 'Evento registrado correctamente',
           statusresponse: 'success'
         });
+        
         setTimeout(() => {
           this.setState({
             location: '',
@@ -140,10 +132,12 @@ export default class Event extends Component {
         }, 4000)
         
       }else{
+
         this.setState({
           response: payload.error,
-          statusresponse: 'Ocurrio algun error al crear el evento'
+          statusresponse: 'Error'
         });
+
         setTimeout(() => {
           this.setState({
             response: '',
@@ -151,10 +145,7 @@ export default class Event extends Component {
           });
         }, 4000)
       }
-      
-
     }
-
   }
 
   render() {
@@ -169,13 +160,11 @@ export default class Event extends Component {
                     <h2 className="title__section">Nuevo Evento</h2>
                   </div>              
                   <form 
-                    className='event-form d-flex flex-column card__app px-5 py-3 rounded mt-1'
+                    className='event-form d-flex flex-column card__app px-3 py-3 px-md-5 rounded mt-1'
                     onSubmit={this.onSubmit.bind(this)}
                   >
                     <div className=' pb-3'>
-                      <div className='icon-container'>
-                        <img src={coupleIcon}  alt='' />
-                      </div>                  
+                  
                       <label className='text-dark' for="couple-names">Novios:</label>
                       <input 
                         type="text" 
@@ -186,10 +175,7 @@ export default class Event extends Component {
                         autoComplete="off" 
                       />
                     </div>
-                    <div className=' pb-3'>
-                      <div className='icon-container'>
-                        <img src={locationIcon}  alt='' />
-                      </div>                  
+                    <div className=' pb-3'>                
                       <label className='text-dark' for="location">Ubicación:</label>
                       <input 
                         type="text" 
@@ -200,10 +186,7 @@ export default class Event extends Component {
                         value={this.state.location}
                       />
                     </div>                
-                    <div className=' pb-3'>
-                      <div className='icon-container'>
-                        <img src={dateIcon}  alt='' />
-                      </div>                  
+                    <div className=' pb-3'>               
                       <label className='text-dark' for="event-date">Fecha del evento:</label>
                       <input 
                         type="date" 
@@ -214,10 +197,7 @@ export default class Event extends Component {
                         autoComplete="off" 
                       />
                     </div>
-                    <div className=' pb-3'>
-                      <div className='icon-container'>
-                        <img src={timeIcon}  alt='' />
-                      </div>                  
+                    <div className=' pb-3'>                
                       <label className='text-dark' for="event-time">Hora del evento:</label>
                       <input 
                         type="text" 
@@ -229,10 +209,7 @@ export default class Event extends Component {
                         autoComplete="off" 
                       />
                     </div>
-                    <div className=' pb-3'>
-                      <div className='icon-container'>
-                        <img src={phoneIcon}  alt='' />
-                      </div>                  
+                    <div className=' pb-3'>                 
                       <label className='text-dark' for="contact-phone">Tel. de contacto:</label>
                       <input 
                         type="text" 

@@ -1,5 +1,5 @@
-const API_URL = 'http://xihuala-app-api.mybluemix.net'
-// const API_URL = 'http://localhost:8080'
+// const API_URL = 'http://xihuala-app-api.mybluemix.net'
+const API_URL = 'http://localhost:8080'
 
 async function login (email, password) {
     try {
@@ -218,6 +218,31 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
 }
  
 
+async function updateProfile (token, idUser, userUpdated) {
+  try {
+    console.log(userUpdated)
+    const response = await window.fetch(`${API_URL}/users/${idUser}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': token
+      },
+      body: JSON.stringify(userUpdated)
+    })
+    console.log(response)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al actualizar el usuario')
+    console.log(error)
+    return {
+      data: {
+        user: ''
+      }
+    }
+  }
+}
+
 const api = {
   login,
   newUser,
@@ -229,6 +254,7 @@ const api = {
   newEvent,
   updateAUser,
   confirmGuestEvent,
+  updateProfile
 }
 
 export default api

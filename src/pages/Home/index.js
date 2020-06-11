@@ -71,6 +71,7 @@ export default class Home extends Component {
                   {this.state.events.map((value, index) => {
                     return <CardEvent key={index} obj={value} />
                   })}
+                  
                   {this.state.events.length === 0 ?
                   <div>
                   <p className="emptyEvents">No existen enventos aún</p>
