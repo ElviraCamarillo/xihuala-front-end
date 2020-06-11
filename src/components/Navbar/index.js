@@ -43,7 +43,9 @@ export default class Navbar extends Component {
         <div className="wrap__inner">
 
           <div className="nav">
+            <Link to="/home" className="d-flex">
             <img src={logo} className="logo"  alt=''/> 
+            </Link>
             <ul>
                 <li>
                   <Link to="/profile">Perfil</Link>
@@ -52,7 +54,16 @@ export default class Navbar extends Component {
                   <Link to="/event">Crear evento</Link>
                 </li>
                 <li>
+<<<<<<< HEAD
                   <button onClick={this.logOut} className="btn__app btn__dark large"><i className="cis-account-logout">Salir</i></button>
+=======
+<<<<<<< HEAD
+                <Link to="/logOut">Salir</Link>
+                  {/* <button onClick={this.logOut} className="btn__app btn__dark large"><i className="cis-account-logout">Salir</i></button> */}
+=======
+                  <Link to="/logout" className="active">Salir</Link>
+>>>>>>> feature_branch_elvira
+>>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
                 </li>
             </ul>
           </div>
@@ -60,19 +71,20 @@ export default class Navbar extends Component {
       </div>
       <div className="movil__header">
         <div className="nav">
-          <img src={logo} className="logo"  alt=''/> 
+          <Link to="/home" className="">
+            <img src={logo} className="logo"  alt=''/> 
+          </Link>
           <button onClick={this.toggleMenu} className="Menu-button"><img src={hamburger}  alt=''/></button>
         </div>
         <div className={`Menu ${menuClass}`}>
-          <h2>Hola user</h2>
           <nav>
             <div>
               <ul>
                 <li>
-                  <Link to="/Perfil" className="nav__link">Perfil</Link>
+                  <Link to="/profile" className="nav__link">Perfil</Link>
                 </li>
                 <li>
-                  <Link to="/Evento" className="nav__link">Evento</Link>
+                  <Link to="/event" className="nav__link">Evento</Link>
                 </li>
                 <li>
                   <Link to="/logout" className="nav__link">Salir</Link>
