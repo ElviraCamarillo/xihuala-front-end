@@ -1,5 +1,4 @@
 import React from 'react'
-import Carousel from 'react-bootstrap/Carousel'
 
 import './Index.css'
 
@@ -7,10 +6,6 @@ import novios from '../../img/novios1.svg'
 import eventIcon from '../../img/icons__wedding/icon__register.png'
 import guestIcon from '../../img/icons__wedding/user__invitado.png'
 import inviteIcon from '../../img/icons__wedding/icon__invitation.png'
-import carousel1 from '../../img/carousel1.jpg'
-import carousel2 from '../../img/carousel2.jpg'
-import carousel3 from '../../img/carousel3.jpg'
-import slide_one from '../../img/slide_1.jpg'
 
 import HeaderPreLogin from '../../components/HeaderPreLogin'
 import ImgContainer from '../../components/ImgContainer'

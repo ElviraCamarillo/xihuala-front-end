@@ -3,7 +3,7 @@ import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
 import Image  from './../../components/ImgContainer'
 import novios from './../../img/novios6.svg'
-import PrimaryButton from './../../components/PrimaryButton'
+
 import './Perfil.css'
 import Api from '../../lib/api'
 
@@ -43,6 +43,7 @@ export default class Perfil extends Component {
     //extract user info
     payload.then((result)=>{
       const idUser = result.data.session.user._id
+      console.log(idUser)
       console.log(result.data.session.user)
       this.setState({
         email: result.data.session.user.email,
@@ -121,8 +122,8 @@ export default class Perfil extends Component {
             <div className="wrap__inner">
             <h2 className="title__section">Perfil</h2>
 
-            <div className="container-body">
-                <div className="container-form-profile">
+            <div className="container-body row">
+                <div className="container-form-profile col-12 col-md-6">
                     <form 
                       action="" 
                       className="d-flex flex-column card__app p-5 rounded mt-5"

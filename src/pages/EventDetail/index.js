@@ -9,7 +9,6 @@ import Api from '../../lib/api'
 
 // Import icon
 import novios from '../../img/novios8.svg'
-import titleIcon from '../../img/event-color-icon.svg'
 import locationIcon from '../../img/icons__wedding/icon__location.png'
 import dateIcon from '../../img/icons__wedding/icon__day.png'
 import timeIcon from '../../img/icons__wedding/time__icon.png'
@@ -78,13 +77,13 @@ export default class EventDetail extends Component {
               <div className='d-flex pb-md-5 pb-2'>
                 <h2 className="title__section">{event.nameEvent}</h2>
               </div>              
-              <div className='d-md-flex pb-3'>
+              <div className='d-flex pb-3'>
                 <div className='icon-container'>
                   <img src={locationIcon}  alt=''/>
                 </div>                  
                 <label className='text-dark' for="location">{event.location}</label>
               </div>                
-              <div className='d-md-flex pb-3'>
+              <div className='d-flex pb-3'>
                 <div className='icon-container'>
                   <img src={dateIcon}  alt=''/>
                 </div>                 
@@ -98,20 +97,20 @@ export default class EventDetail extends Component {
                   </Moment>
                 </label>
               </div>
-              <div className='d-md-flex pb-3'>
+              <div className='d-flex pb-3'>
                 <div className='icon-container'>
                   <img src={timeIcon}  alt=''/>
                 </div>                  
                 <label className='text-dark' for="event-time">{event.eventTime} hrs</label>
               </div>
-              <div className='d-md-flex pb-3'>
+              <div className='d-flex pb-3'>
                 <div className='icon-container'>
                   <img src={phoneIcon}  alt=''/>
                 </div>                  
                 <label className='text-dark' for="contact-phone">+{event.contactPhone}</label>
               </div>
 
-              <div className='d-md-flex pb-3 mt-5'>
+              <div className='d-flex pb-3 mt-5'>
                 <Link to={`/home`} className="btn__app btn__dark ">Ver más eventos</Link>
               </div>                
             </form>                                    

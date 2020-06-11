@@ -108,5 +108,8 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .title__section{
+    font-size: 2rem;
+  }
 }
 

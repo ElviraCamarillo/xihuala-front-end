@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Link,
-  useLocation
+  // useLocation
 } from "react-router-dom";
 
 
@@ -13,7 +13,7 @@ export default function HeaderEvent(props) {
   console.log(props)
   const idEvent = props.id
   const active = props.active
-  const url = props.location
+  // const url = props.location
 
   let urlsDetalle = {
     detalle: `./`,

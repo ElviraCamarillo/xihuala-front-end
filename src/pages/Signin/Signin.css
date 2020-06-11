@@ -78,11 +78,8 @@
   padding-right: 0.25rem;
 }
 
-@media only screen and (min-width: 520px ){
-  .image-container{
-    padding: 30px;
-  }
-  .signin-form label{
-    font-size: 1rem;
+@media only screen and (max-width: 640px ){
+  .ctn__signup{
+    margin-top: 56px;
   }
 }

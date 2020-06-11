@@ -48,9 +48,9 @@
   position: fixed;
   top: 0;
   left: -400px;
-  box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+  box-shadow:  10px 0 10px rgba(68, 31, 125, .1);
   padding: 20px 20px;
-  transition: all linear .25s;
+  transition: all ease-in .25s;
 }
 .Menu-button {
   width: 40px;
@@ -117,6 +117,20 @@
 .desktop__header .nav{
     padding-left: 0;
     padding-right: 0;
+}
+.Menu ul{
+    padding-left: 0;
+}
+.Menu li{
+    list-style: none;
+}
+.Menu li a{
+    font-size: 1rem;
+    line-height: 60px;
+    margin-left: 1rem;
+    transition: all linear .25s;
+    color: #7342BF;
+    font-weight: 600;
 }
 @media only screen and (min-width: 768px) {
     .desktop__header {

@@ -4,7 +4,7 @@
 .container-table{
   padding: auto;
   width: 100%;
-  margin-left: 2rem;
+  margin-left: 0;
   max-width: 500px;
 }
 .table-total{
@@ -62,6 +62,22 @@
   font-size: 1.5rem;
   padding: 1rem;
 }
+.container-form-guests {
+  padding-right: 2rem;
+}
+.container-form-guests form input{
+  height: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    outline: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+.container-form-guests form input:focus{
+  border: 2px solid #441f7d;
+}
 
 @media only screen and (min-width: 768px) {
     
@@ -79,5 +95,16 @@
   }
   .row-inputform {
     justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 640px){
+  .container-guests{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container-form-guests form{
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }

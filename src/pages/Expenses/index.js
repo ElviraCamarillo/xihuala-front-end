@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import titleIcon from '../../img/expense-color-icon.svg'
 
 // Import components
-import PrimaryButton from '../../components/PrimaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'

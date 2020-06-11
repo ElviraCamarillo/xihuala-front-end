@@ -39,3 +39,9 @@
 .ctn__login  form input:focus{
   border: 2px solid #441f7d;
 }
+
+@media screen and (max-width: 640px){
+  .ctn__login{
+    margin-top: 56px;
+  }
+}

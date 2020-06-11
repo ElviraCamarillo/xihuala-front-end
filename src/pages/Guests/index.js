@@ -3,8 +3,6 @@ import React, { Component } from "react";
 // Import components
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
-import PrimaryButton from './../../components/PrimaryButton'
-import SecondaryButton from './../../components/SecondaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 
 import Api from '../../lib/api'
@@ -216,26 +214,28 @@ export default class Guests extends Component {
                 </div>
                 
               </div>
-              <Table className="table mb-5 table-striped table-bordered">
-                <thead className="thead-dark">
-                    <tr>
-                    <th>Familia</th>
-                    <th>No. invitados</th>
-                    <th>Estatus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {this.state.guests.map((guest, index) => 
-                    <tr>
-                      <td key={`guest_family${index}`}>{guest.nameFamily}</td>
-                      <td key={`guest_family${index}`}>{guest.numberGuests}</td>
-                      <td key={`guest_family${index}`}>{guest.status}</td>
-                    </tr>
-                  )}
-                    
-                </tbody>
-              </Table>
-              <button type="button" className="btn__app btn__dark">Enviar invitaciones</button>
+              <div className="table-responsive">
+                <Table className="table mb-5 table-striped table-bordered">
+                  <thead className="thead-dark">
+                      <tr>
+                      <th>Familia</th>
+                      <th>No. invitados</th>
+                      <th>Estatus</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.guests.map((guest, index) => 
+                      <tr>
+                        <td key={`guest_family${index}`}>{guest.nameFamily}</td>
+                        <td key={`guest_family${index}`}>{guest.numberGuests}</td>
+                        <td key={`guest_family${index}`}>{guest.status}</td>
+                      </tr>
+                    )}
+                      
+                  </tbody>
+                </Table>
+              </div>
+              {/* <button type="button" className="btn__app btn__dark">Enviar invitaciones</button> */}
 
             </div>        
           </div>

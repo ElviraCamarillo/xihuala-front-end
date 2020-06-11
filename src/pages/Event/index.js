@@ -2,16 +2,10 @@ import React, { Component } from 'react'
 
 // Import icons
 import novios from '../../img/novios7.svg'
-import titleIcon from '../../img/event-color-icon.svg'
-import coupleIcon from '../../img/pople-icon.svg'
-import locationIcon from '../../img/location-icon.svg'
-import dateIcon from '../../img/date-icon.svg'
-import timeIcon from '../../img/hour-icon.svg'
-import phoneIcon from '../../img/phone-icon.svg'
+
 
 // Import components
 import ImgContainer from '../../components/ImgContainer'
-import PrimaryButton from '../../components/PrimaryButton'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
