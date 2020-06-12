@@ -71,56 +71,50 @@
 .delete-expense:hover{
   cursor: pointer;
 }
+.warn__header{
+  background-color: #84142d;
+}
+.expense-form{
+  max-width: 420px;
+  width: 100%;
+}
+
+.expense-form input{
+  height: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+    outline: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+.expense-form input:focus{
+  border: 2px solid #441f7d;
+}
+.delete-expense{
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.delete-expense:hover{
+  cursor: pointer;
+}
 
 @media only screen and (min-width: 768px ){
 
   .table-container{
     padding: 30px;
   }
+
+
   
-  h2{
-    color: #B8860B;
-    font-weight: bold;
-    font-size: 40px;
-    text-align: left;
-  }
-  
-  .expenses-form label{
-    font-size: 20px;
-    margin-bottom: 0px;
-    width: 50%;
-  }
-  
-  .expenses-form input{
-    height: 40px;
-    width: 80%;
-    margin-bottom: 10px;
-    width: 50%;
-  }
-
-  .expenses-form button{
-    width: 50%;
-  }
-
-  .label-container{
-    width: 50%;
-  }
-
-  .delete-expense{
-    background-color: red;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    color: white;
-    font-weight: bold;
-  }
-
-  .delete-expense:hover{
-    cursor: pointer;
-  }
 
   .left-budget{
     background-color: black;

@@ -8,39 +8,10 @@ import {
 import './HeaderEvent.css'
 
 export default function HeaderEvent(props) {
-  
-  
+
   console.log(props)
   const idEvent = props.id
   const active = props.active
-  // const url = props.location
-
-  let urlsDetalle = {
-    detalle: `./`,
-    invitados: `./guests`,
-    expenses: `./expenses`
-  }
-  let urlsInvitados = {
-    detalle: `./`,
-    invitados: `./guests`,
-    expenses: `./expenses`
-  }
-  let urlsExpenses = {
-    detalle: `./`,
-    invitados: `./guests`,
-    expenses: `./expenses`
-  }
-
-  let finalURL = {}
-  if(active === "detalle"){
-    finalURL = urlsDetalle
-  }else if(active === "invitados"){
-    finalURL = urlsInvitados
-  }else if(active === 'gastos'){
-    finalURL = urlsExpenses
-  }
-
-  console.log(finalURL)
 
   return (
     <header className='event-header '>

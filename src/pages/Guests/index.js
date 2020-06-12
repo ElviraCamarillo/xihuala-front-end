@@ -108,7 +108,8 @@ export default class Guests extends Component {
         this.setState({
           response: 'Invitado registrado correctamente',
           statusresponse: 'success',
-          guests: [...this.state.guests, {nameFamily, numberGuests, emailFamily, note, status}]
+          guests: [...this.state.guests, {nameFamily, numberGuests, emailFamily, note, status}],
+          totalguests: this.state.totalguests + parseInt(numberGuests)
         });
 
         setTimeout(() => {
@@ -130,13 +131,9 @@ export default class Guests extends Component {
           });
         }, 4000)
       }
-      
-
     }
-
   }
   
-
   render() {
     const path = this.props.location.pathname
     let id_event = path.substring(8)

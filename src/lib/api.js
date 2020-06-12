@@ -216,7 +216,29 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
     }
   }
 }
- 
+
+async function deleteExpense (id_event, dataExpense ) {
+  try {
+    console.log(dataExpense)
+    
+    const response = await window.fetch(`${API_URL}/events/${id_event}/deleteExpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        expense: []
+      }
+    }
+  }
+}
 
 async function updateProfile (token, idUser, userUpdated) {
   try {
@@ -266,26 +288,6 @@ async function newExpense (id_event, dataNewExpense ) {
   }
 }
 
-async function deleteExpense (id_expense) {
-  try {
-    console.log(id_expense)
-    const response = await window.fetch(`${API_URL}/events/${id_expense}/deleteExpense`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-    const payload = await response.json()
-    return payload
-  } catch (error) {
-    console.log('error', error)
-    return {
-      data: {
-        event: []
-      }
-    }
-  }
-}
 
 const api = {
   login,
