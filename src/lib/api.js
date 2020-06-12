@@ -1,6 +1,5 @@
-// const API_URL = 'http://xihuala-app-api.mybluemix.net'
-const API_URL = 'http://localhost:8080'
-
+const API_URL = 'http://xihuala-app-api.mybluemix.net'
+// const API_URL = 'http://localhost:8080'
 async function login (email, password) {
     try {
       const response = await window.fetch(`${API_URL}/auth/login`, {
@@ -31,7 +30,6 @@ async function login (email, password) {
       }
     }
   }
-
 async function newUser (dataNewUSer) {
   try {
     console.log(dataNewUSer)
@@ -55,8 +53,6 @@ async function newUser (dataNewUSer) {
     }
   }
 }
-
-<<<<<<< HEAD
   async function updateAUser (token,id_user,dataUSer) {
     try {
       const response = await window.fetch(`${API_URL}/users/${id_user}`, {
@@ -80,7 +76,6 @@ async function newUser (dataNewUSer) {
       }
     }
   }
-
   async function getUserSession (token) {
     try {
       const response = await window.fetch(`${API_URL}/users/getsession`, {
@@ -94,25 +89,9 @@ async function newUser (dataNewUSer) {
         data: {
           session: []
         }
-=======
-async function getUserSession (token) {
-  try {
-    const response = await window.fetch(`${API_URL}/users/getsession`, {
-      headers: { authorization: token }
-    })
-    const payload = await response.json()
-    return payload
-  } catch (error) {
-    console.log('error', error)
-    return {
-      data: {
-        session: []
->>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
-      }
     }
   }
 }
-
 async function getEventsByUserId (token, id_user) {
   try {
     console.log(id_user)
@@ -130,11 +109,10 @@ async function getEventsByUserId (token, id_user) {
     }
   }
 }
-
 async function newEvent (dataNewUSer) {
   try {
     console.log(dataNewUSer)
-    const response = await window.fetch(`${API_URL}/events`, {
+    const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -153,7 +131,6 @@ async function newEvent (dataNewUSer) {
     }
   }
 }
-
 async function getEvent (id_event) {
   try {
     console.log(id_event)
@@ -169,7 +146,6 @@ async function getEvent (id_event) {
     }
   }
 }
-
 async function getEventGuests (id_event) {
   try {
     console.log(id_event)
@@ -185,7 +161,6 @@ async function getEventGuests (id_event) {
     }
   }
 }
-
 async function addGuestEvent (id_event, dataNewEvent ) {
   try {
     console.log(id_event)
@@ -208,7 +183,6 @@ async function addGuestEvent (id_event, dataNewEvent ) {
     }
   }
 }
-
 async function confirmGuestEvent (id_event, dataNewEvent ) {
   try {
     console.log(id_event)
@@ -231,7 +205,6 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
     }
   }
 }
-
 async function updateProfile (token, idUser, userUpdated) {
   try {
     console.log(userUpdated)
@@ -256,41 +229,48 @@ async function updateProfile (token, idUser, userUpdated) {
     }
   }
 }
-
-  async function newEvent (token, dataNewEvent) {
-    try {
-      console.log(dataNewEvent)
-      const response = await window.fetch(`${API_URL}/events/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: token
-        },
-        body: JSON.stringify({ ...dataNewEvent })
-      })
-      console.log(response)
-      const payload = await response.json()
-      if (payload.success === false) {
-        return payload
-      } else {
-        window.sessionStorage.setItem(
-          'authorization', payload.data.token
-        )
-        return payload
-      }
-    } catch (error) {
-      console.log('Error al crear nuevo evento')
-      console.log(error)
-      return {
-        data: {
-          newEvent: ''
-        }
+async function newExpense (id_event, dataNewExpense ) {
+  try {
+    console.log(id_event)
+    console.log(dataNewExpense)
+    const response = await window.fetch(`${API_URL}/events/${id_event}/addexpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataNewExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
       }
     }
   }
-
-  
-
+}
+async function deleteExpense (id_expense) {
+  try {
+    console.log(id_expense)
+    const response = await window.fetch(`${API_URL}/events/${id_expense}/deleteExpense`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
 const api = {
   login,
   newUser,
@@ -299,14 +279,11 @@ const api = {
   getEvent,
   getEventGuests,
   addGuestEvent,
-<<<<<<< HEAD
   newEvent,
-  updateAUser
-=======
+  updateAUser,
   confirmGuestEvent,
-  newEvent,
-  updateProfile
->>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
+  updateProfile,
+  newExpense,
+  deleteExpense
 }
-
 export default api

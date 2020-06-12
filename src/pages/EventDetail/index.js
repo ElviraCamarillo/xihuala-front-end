@@ -38,6 +38,7 @@ export default class EventDetail extends Component {
     var path = this.props.location.pathname
     const idEvent = path.substring(8)
     console.log(token)
+    console.log(`aquí esta el path ${path}`)
     if(token === null) {
       this.props.history.push(`/login`)
     }else{

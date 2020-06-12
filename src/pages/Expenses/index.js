@@ -1,49 +1,81 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
 //  Import icons
 import titleIcon from '../../img/expense-color-icon.svg'
-
 // Import components
+import PrimaryButton from '../../components/PrimaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { Table } from 'reactstrap';
 import Api from '../../lib/api'
-
 // ImportCss
 import './Expenses.css'
-
-export default class Event extends Component {
+export default class Expenses extends Component {
   constructor(props){
     super(props)
     this.state = {
-      budget: '',
-      expenseDescription: '',
-      expenseAmount: '',
-      response:'',
-      statusresponse: ''
+      event: [],
+      expenseDescription: "",
+      expenseAmount: 0,
+      expenses: [],
+      totalExpenses: 0,
+      statusresponse: "",
+      buget: 0
     }
   }
-
-  static contextTypes = {
-    router: PropTypes.object
+  componentDidMount(){
+    // get token
+    const token = window.localStorage.getItem('tokenapp')
+    console.log(token)
+    if(token == null){
+      this.props.history.push(`/login`)
+      return
+    }
+    var path = this.props.location.pathname
+    const idEvent = path.substring(8, 32)
+    if(token === null) {
+      this.props.history.push(`/login`)
+    }else{
+      async function getEvent (idEvent){
+        const sessionObj = await Api.getEvent(idEvent)
+        return sessionObj
+      }
+      const payload = getEvent(idEvent)
+      payload.then( (resultEvent) => {
+        console.log(resultEvent)
+        let expenses = []
+        let totalExpenses = 0
+        for(let item in resultEvent.data.event.expenses){
+          expenses.push(resultEvent.data.event.expenses[item])
+          totalExpenses = totalExpenses + resultEvent.data.event.expenses[item].expenseAmount
+        }
+        this.setState({
+          event: [resultEvent.data.event],
+          expenses: expenses,
+          totalExpenses: totalExpenses,
+          buget: resultEvent.data.event.buget
+        });
+      })
+    }
   }
-
   handleInput({ target:{ name, value }}){
     this.setState({
       [name]: value
     })
   }
-
   async onSubmit (event) {
-    const token = window.localStorage.getItem('tokenapp')
-    if(token === false) this.props.history.push(`/login`)
-    
+    const expenseDescription= this.state.expenseDescription
+    const totalExpenses= parseInt(this.state.totalExpenses)
+    const expenseAmount = parseInt(this.state.expenseAmount)
+    const dataExpenses = {expenseDescription, expenseAmount}
+    console.log(dataExpenses)
+    const token = window.localStorage.getItem('tokenapp')    
+    var path = this.props.location.pathname
+    const idEvent = path.substring(8, 32)
     event.preventDefault()
-    const { budget, expenseDescription, expenseAmount} = this.state
     console.log(this.props)
-    if (budget === '' || expenseDescription === '' || expenseAmount === ''){
+    if (expenseDescription === '' || expenseAmount === ''){
       console.log('Datos incompletos')
       this.setState({
         response: 'Favor de llenar los datos requeridos',
@@ -56,16 +88,22 @@ export default class Event extends Component {
         });
       }, 4000)
     } else {
-      const payload = await Api.newEvent(token, {budget, expenseDescription, expenseAmount})
+      const payload = await Api.newExpense(idEvent, dataExpenses)
       console.log(payload)
       if(payload.success === true){
         this.setState({
           response: 'Gasto registrado correctamente',
-          statusresponse: 'success'
+          statusresponse: 'success',
+          expenses: [...this.state.expenses, {expenseDescription, expenseAmount}]
         });
         setTimeout(() => {
-          this.props.history.push(`/home`)
-        }, 5000)
+          this.setState({
+            response: '',
+            statusresponse: '',
+            expenseDescription: '',
+            expenseAmount: 0
+          });
+        }, 4000)
       }else{
         this.setState({
           response: payload.error,
@@ -80,28 +118,18 @@ export default class Event extends Component {
       }
     }
   }
-
-
-
-
   render() {
-    const path = this.props.location.pathname
-    let id_event = path.substring(8)
-    id_event = id_event.split('/')[0]
-    console.log(id_event)
+    const {event} = this.state
+    const { expenseDescription, expenseAmount, totalExpenses, buget } = this.state
+    console.log(expenseDescription, expenseAmount)
+    console.log(event.buget)
+    let finalBudget = 0
+    finalBudget = buget - totalExpenses
     return (
       <div className="wrap__home">
         <Navbar/>
         <div className="ctn-eventExpenses">        
-<<<<<<< HEAD
         <HeaderEvent/>
-=======
-        <HeaderEvent
-          id={id_event}
-          active="gastos"
-          location={this.props}
-        />
->>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
         <div className="wrap__inner pt-5">
           <section className='row'>
             <div className='col-12 col-md-6'>
@@ -109,30 +137,16 @@ export default class Event extends Component {
                 <img className='pr-3' src={titleIcon} alt='' />
                 <h1 className='title__section'>Control de Gastos</h1>
               </div>
-
-              <form className='expenses-form d-flex flex-column'>
-                <div className='d-md-flex pb-3 d-flex flex-column'>
-                  <div>
-                    <label className='text-dark' for="buget">Presupuesto inicial:</label>
-                    <input 
-                      type="text" 
-                      id="budget" 
-                      name="budget" />
-                  </div>                  
-                  <div className='d-flex justify-content-end'>                    
-                  <button className="btn__app btn__dark large" type="submit">Agregar presupuesto</button>
-                  </div>                  
-                </div>
-              </form>
-              
-                <br/>
-                <br/>
-              <form>
+              <form 
+                className='event-form d-flex flex-column'
+                onSubmit={this.onSubmit.bind(this)} 
+                action=''>
                 <div className='d-md-flex pb-3'>  
                     <label className='text-dark' for="expenseDescription">Concepto:</label>
                     <input 
                       type="text" 
-                      id="expenseDescription" 
+                      id="expenseDescription"
+                      onChange={this.handleInput.bind(this)}
                       name="expenseDescription" />                                 
                 </div>                
                 <div className='d-md-flex pb-3 d-flex flex-column'>
@@ -141,6 +155,7 @@ export default class Event extends Component {
                     <input 
                       type="number" 
                       id="expenseAmount" 
+                      onChange={this.handleInput.bind(this)}
                       name="expenseAmount" />
                   </div>                  
                   <div className='d-flex justify-content-end'>                    
@@ -149,25 +164,23 @@ export default class Event extends Component {
                 </div>             
               </form>                                    
             </div>
-
             <div className='container-table'>
-
             <div className="wrap__totalguests mb-3 rounded">
               <div className="row">
                 <div className="col-6">
                   Presupuesto restante
                 </div>
                 <div className="col-6 text-right">
-                  $25,520.30
+                {finalBudget}
                 </div>
               </div>              
             </div>
-
               <div className='initial-budget d-flex justify-content-around'>
                 <div>Presupuesto inicial</div>
-                <div>$50,000.00</div>
+                <div className="col-6 text-right">
+                {buget}
+                </div>
               </div>
-
               <Table className="table mb-5 table-striped table-bordered">
                 <thead className="thead-dark">
                     <tr>
@@ -177,34 +190,22 @@ export default class Event extends Component {
                     </tr>
                 </thead>
                 <tbody>
+                  {this.state.expenses.map((expense, index) => 
                     <tr>
-                      <td>Gasto1</td>
-                      <td>$1,200.00</td>
+                      <td key={`expense_data${index}`}>{expense.expenseDescription}</td>
+                      <td key={`expense_data${index}`}>{expense.expenseAmount}</td>
                       <td><div className='delete-expense'>X</div></td>
                     </tr>
-                    <tr>
-                      <td>Gasto</td>
-                      <td>$1,200.00</td>
-                      <td><div className='delete-expense'>X</div></td>
-                    </tr>
-                    <tr>
-                      <td>Gasto3</td>
-                      <td>$1,200.00</td>
-                      <td><div className='delete-expense'>X</div></td>
-                    </tr> 
+                  )}
                 </tbody>
               </Table>
-
               <div className='total-expense d-flex justify-content-around'>
                 <div>Gasto Total</div>
-                <div>$20,040.00</div>
+                <div>{totalExpenses}</div>
               </div>              
             </div>          
           </section>
-
         </div>
-
-          
           </div>
         <Footer/>
       </div>

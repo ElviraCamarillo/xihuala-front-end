@@ -1,0 +1,28 @@
+.ctn-dashboard{
+    margin-top: 64px;
+}
+.container-title{
+    display: flex;
+    justify-content: flex-start;
+    padding: auto;    
+}
+.container-body{
+    display: flex;
+    align-items: center;
+}
+.card{
+    border: 2px solid #441f7d;
+    padding: 0;
+}
+.card-title{
+    background-color: #9e74dd;
+    color: #ffffff;
+    font-weight: bold;
+}
+.container-title label{
+    margin: auto;
+}
+.card-body{
+    text-align: center;
+    font-size: 30px;
+}
