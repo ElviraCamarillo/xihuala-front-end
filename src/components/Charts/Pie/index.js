@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
 
-class Chart extends Component{
+class ChartPie extends Component{
   constructor(props){
     super(props);
     this.state = {
-      chartData:props.chartData
+      chartDataGastos:props.chartDataGastos
     }
   }
 
@@ -19,42 +19,12 @@ class Chart extends Component{
   render(){
     return (
       <div className="chart">
-        <Bar
-          data={this.state.chartData}
-          options={{
-            title:{
-              display:this.props.displayTitle,
-              text:'Bodas planeadas con Xihuala App '+this.props.location,
-              fontSize:25
-            },
-            legend:{
-              display:this.props.displayLegend,
-              position:this.props.legendPosition
-            }
-          }}
-        />
-
-        <Line
-          data={this.state.chartData}
-          options={{
-            title:{
-              display:this.props.displayTitle,
-              text:'Largest Cities In '+this.props.location,
-              fontSize:25
-            },
-            legend:{
-              display:this.props.displayLegend,
-              position:this.props.legendPosition
-            }
-          }}
-        />
-
         <Pie
-          data={this.state.chartData}
+          data={this.state.chartDataGastos}
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'Largest Cities In '+this.props.location,
+              text:'Gastos ',
               fontSize:25
             },
             legend:{
@@ -68,4 +38,4 @@ class Chart extends Component{
   }
 }
 
-export default Chart;
+export default ChartPie;

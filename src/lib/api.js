@@ -109,9 +109,8 @@ async function getEventsByUserId (token, id_user) {
     }
   }
 }
-async function newEvent (dataNewUSer) {
+async function newEvent (dataNewEvent,token) {
   try {
-    console.log(dataNewUSer)
     const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
