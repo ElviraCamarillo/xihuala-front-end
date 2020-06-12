@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
 // Import icons
 import novios from '../../img/novios7.svg'
-
-
 // Import components
 import ImgContainer from '../../components/ImgContainer'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
-
 // Import CSS
 import './Event.css'
-
 export default class Event extends Component {
   constructor(props){
     super(props)
@@ -31,7 +26,6 @@ export default class Event extends Component {
       statusresponse:''
     }
   }
-
   handleInput({ target:{ name, value }}){
     this.setState({
       [name]: value
@@ -45,28 +39,22 @@ export default class Event extends Component {
       this.props.history.push(`/login`)
       return
     }
-
     // buscar los eventos con este id user
     async function getSession (token){
       console.log(token)
       const sessionObj = await Api.getUserSession(token)
       return sessionObj
     }
-
     const payload = getSession(token)
-
     payload.then((result)=>{
       const idUSer = result.data.session.user._id
       this.setState({
         idUser: idUSer
       });
     })
-
   }
-
   async onSubmit (event) {
     event.preventDefault()
-
     const location = this.state.location
     const nameEvent = this.state.nameEvent
     const eventDate = this.state.eventDate
@@ -76,8 +64,6 @@ export default class Event extends Component {
     const buget = this.state.buget
     const expenses = this.state.expenses
     const idUser = this.state.idUser
-
-
     console.log(this.props)
     if(this.state.nameEvent === '') {
       // si no hay nombre del evento
@@ -92,7 +78,6 @@ export default class Event extends Component {
           statusresponse: ''
         });
       }, 4000)
-
     }else{
       // si todo ok
       const payload = await Api.newEvent({
@@ -106,14 +91,11 @@ export default class Event extends Component {
         expenses,
         idUser
       })
-
       if(payload.success === true){
-        
         this.setState({
           response: 'Evento registrado correctamente',
           statusresponse: 'success'
         });
-        
         setTimeout(() => {
           this.setState({
             location: '',
@@ -129,14 +111,11 @@ export default class Event extends Component {
             statusresponse:''
           });
         }, 4000)
-        
       }else{
-
         this.setState({
           response: payload.error,
           statusresponse: 'Error'
         });
-
         setTimeout(() => {
           this.setState({
             response: '',
@@ -146,7 +125,6 @@ export default class Event extends Component {
       }
     }
   }
-
   render() {
     return (
       <div className="wrap__home">
@@ -163,7 +141,6 @@ export default class Event extends Component {
                     onSubmit={this.onSubmit.bind(this)}
                   >
                     <div className=' pb-3'>
-                  
                       <label className='text-dark' for="couple-names">Novios:</label>
                       <input 
                         type="text" 
@@ -219,7 +196,19 @@ export default class Event extends Component {
                         autoComplete="off"
                         maxLength="10" 
                       />
-                    </div>     
+                    </div>
+                    <div className=' pb-3'>                 
+                      <label className='text-dark' for="contact-phone">Presupuesto inicial:</label>
+                      <input 
+                        type="text" 
+                        id="buget" 
+                        name="buget"
+                        onChange={this.handleInput.bind(this)}
+                        value={this.state.buget}
+                        autoComplete="off"
+                        maxLength="10" 
+                      />
+                    </div>
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>           
                     <div className='button d-flex flex-column justify-content-center align-items-start'>
                       <button type="submit" className="btn__app btn__dark large">Guardar evento</button>

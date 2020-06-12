@@ -1,6 +1,5 @@
 const API_URL = 'http://xihuala-app-api.mybluemix.net'
-
-
+// const API_URL = 'http://localhost:8080'
 async function login (email, password) {
     try {
       const response = await window.fetch(`${API_URL}/auth/login`, {
@@ -31,7 +30,6 @@ async function login (email, password) {
       }
     }
   }
-
 async function newUser (dataNewUSer) {
   try {
     console.log(dataNewUSer)
@@ -55,8 +53,7 @@ async function newUser (dataNewUSer) {
     }
   }
 }
-
-async function updateAUser (token,id_user,dataUSer) {
+  async function updateAUser (token,id_user,dataUSer) {
     try {
       const response = await window.fetch(`${API_URL}/users/${id_user}`, {
         method: 'PUT',
@@ -79,7 +76,6 @@ async function updateAUser (token,id_user,dataUSer) {
       }
     }
   }
-
   async function getUserSession (token) {
     try {
       const response = await window.fetch(`${API_URL}/users/getsession`, {
@@ -93,11 +89,9 @@ async function updateAUser (token,id_user,dataUSer) {
         data: {
           session: []
         }
-      }
     }
   }
-
-
+}
 async function getEventsByUserId (token, id_user) {
   try {
     console.log(id_user)
@@ -115,10 +109,9 @@ async function getEventsByUserId (token, id_user) {
     }
   }
 }
-
-async function newEvent (token, dataNewEvent) {
+async function newEvent (dataNewUSer) {
   try {
-    console.log(dataNewEvent)
+    console.log(dataNewUSer)
     const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
@@ -162,7 +155,6 @@ async function getEvent (id_event) {
     }
   }
 }
-
 async function getEventGuests (id_event) {
   try {
     console.log(id_event)
@@ -178,7 +170,6 @@ async function getEventGuests (id_event) {
     }
   }
 }
-
 async function addGuestEvent (id_event, dataNewEvent ) {
   try {
     console.log(id_event)
@@ -201,7 +192,6 @@ async function addGuestEvent (id_event, dataNewEvent ) {
     }
   }
 }
-
 async function confirmGuestEvent (id_event, dataNewEvent ) {
   try {
     console.log(id_event)
@@ -220,6 +210,29 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
     return {
       data: {
         event: []
+      }
+    }
+  }
+}
+
+async function deleteExpense (id_event, dataExpense ) {
+  try {
+    console.log(dataExpense)
+    
+    const response = await window.fetch(`${API_URL}/events/${id_event}/deleteExpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        expense: []
       }
     }
   }
@@ -249,10 +262,29 @@ async function updateProfile (token, idUser, userUpdated) {
     }
   }
 }
+async function newExpense (id_event, dataNewExpense ) {
+  try {
+    console.log(id_event)
+    console.log(dataNewExpense)
+    const response = await window.fetch(`${API_URL}/events/${id_event}/addexpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataNewExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
 
-  
-
-  
 
 const api = {
   login,
@@ -262,10 +294,11 @@ const api = {
   getEvent,
   getEventGuests,
   addGuestEvent,
-  confirmGuestEvent,
   newEvent,
+  updateAUser,
+  confirmGuestEvent,
   updateProfile,
-  updateAUser
+  newExpense,
+  deleteExpense
 }
-
 export default api

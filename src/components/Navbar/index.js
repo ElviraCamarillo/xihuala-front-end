@@ -49,12 +49,15 @@ export default class Navbar extends Component {
             <ul>
                 <li>
                   <Link to="/profile">Perfil</Link>
-                  </li>
-                  <li>
+                </li>
+                <li>
                   <Link to="/event">Crear evento</Link>
                 </li>
                 <li>
-                <Link to="/logOut" className="active">Salir</Link>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <Link to="/logout" className="active">Salir</Link>
                 </li>
             </ul>
           </div>
@@ -76,6 +79,9 @@ export default class Navbar extends Component {
                 </li>
                 <li>
                   <Link to="/event" className="nav__link">Evento</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
                   <Link to="/logout" className="nav__link">Salir</Link>
