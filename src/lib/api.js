@@ -119,7 +119,7 @@ async function getEventsByUserId (token, id_user) {
 async function newEvent (dataNewUSer) {
   try {
     console.log(dataNewUSer)
-    const response = await window.fetch(`${API_URL}/events`, {
+    const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -243,6 +243,50 @@ async function updateProfile (token, idUser, userUpdated) {
   }
 }
 
+async function newExpense (id_event, dataNewExpense ) {
+  try {
+    console.log(id_event)
+    console.log(dataNewExpense)
+    const response = await window.fetch(`${API_URL}/events/${id_event}/addexpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataNewExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
+
+async function deleteExpense (id_expense) {
+  try {
+    console.log(id_expense)
+    const response = await window.fetch(`${API_URL}/events/${id_expense}/deleteExpense`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
+
 const api = {
   login,
   newUser,
@@ -254,7 +298,9 @@ const api = {
   newEvent,
   updateAUser,
   confirmGuestEvent,
-  updateProfile
+  updateProfile,
+  newExpense,
+  deleteExpense
 }
 
 export default api

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import titleIcon from '../../img/expense-color-icon.svg'
 
 // Import components
+import PrimaryButton from '../../components/PrimaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
@@ -14,40 +15,55 @@ import Api from '../../lib/api'
 // ImportCss
 import './Expenses.css'
 
-export default class Event extends Component {
+export default class Expenses extends Component {
   constructor(props){
     super(props)
     this.state = {
-      event: []
+      event: [],
+      expenseDescription: "",
+      expenseAmount: 0,
+      expenses: [],
+      totalExpenses: 0,
+      statusresponse: "",
+      buget: 0
     }
   }
 
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
+    console.log(token)
+    if(token == null){
+      this.props.history.push(`/login`)
+      return
+    }
+
     var path = this.props.location.pathname
     const idEvent = path.substring(8, 32)
-    console.log(`id del evento ${idEvent}`)
     if(token === null) {
       this.props.history.push(`/login`)
     }else{
-      async function getEvent (token, idEvent){
-        console.log(token)
-        const sessionObj = await Api.getEvent(token, idEvent)
+      async function getEvent (idEvent){
+        const sessionObj = await Api.getEvent(idEvent)
         return sessionObj
       }
-      const payload = getEvent(token, idEvent)
+      const payload = getEvent(idEvent)
       payload.then( (resultEvent) => {
         console.log(resultEvent)
+        let expenses = []
+        let totalExpenses = 0
+        for(let item in resultEvent.data.event.expenses){
+          expenses.push(resultEvent.data.event.expenses[item])
+          totalExpenses = totalExpenses + resultEvent.data.event.expenses[item].expenseAmount
+        }
         this.setState({
-          event: resultEvent.data.event
+          event: [resultEvent.data.event],
+          expenses: expenses,
+          totalExpenses: totalExpenses,
+          buget: resultEvent.data.event.buget
         });
       })
     }
-  }
-
-  static contextTypes = {
-    router: PropTypes.object
   }
 
   handleInput({ target:{ name, value }}){
@@ -57,13 +73,18 @@ export default class Event extends Component {
   }
 
   async onSubmit (event) {
-    const token = window.localStorage.getItem('tokenapp')
-    if(token === false) this.props.history.push(`/login`)
+    const expenseDescription= this.state.expenseDescription
+    const totalExpenses= parseInt(this.state.totalExpenses)
+    const expenseAmount = parseInt(this.state.expenseAmount)
+    const dataExpenses = {expenseDescription, expenseAmount}
+    console.log(dataExpenses)
+
+    const token = window.localStorage.getItem('tokenapp')    
     var path = this.props.location.pathname
     const idEvent = path.substring(8, 32)
     event.preventDefault()
-    const { expenseDescription, expenseAmount} = this.state
     console.log(this.props)
+
     if (expenseDescription === '' || expenseAmount === ''){
       console.log('Datos incompletos')
       this.setState({
@@ -77,16 +98,22 @@ export default class Event extends Component {
         });
       }, 4000)
     } else {
-      const payload = await Api.newExpense(token, idEvent, {expenseDescription, expenseAmount})
+      const payload = await Api.newExpense(idEvent, dataExpenses)
       console.log(payload)
       if(payload.success === true){
         this.setState({
           response: 'Gasto registrado correctamente',
-          statusresponse: 'success'
+          statusresponse: 'success',
+          expenses: [...this.state.expenses, {expenseDescription, expenseAmount}]
         });
         setTimeout(() => {
-          this.props.history.push(`/home`)
-        }, 5000)
+          this.setState({
+            response: '',
+            statusresponse: '',
+            expenseDescription: '',
+            expenseAmount: 0
+          });
+        }, 4000)
       }else{
         this.setState({
           response: payload.error,
@@ -107,20 +134,17 @@ export default class Event extends Component {
 
   render() {
     const {event} = this.state
+    const { expenseDescription, expenseAmount, totalExpenses, buget } = this.state
+    console.log(expenseDescription, expenseAmount)
     console.log(event.buget)
-    const path = this.props.location.pathname
-    let id_event = path.substring(8)
-    id_event = id_event.split('/')[0]
-    console.log(id_event)
+    let finalBudget = 0
+    finalBudget = buget - totalExpenses
+
     return (
       <div className="wrap__home">
         <Navbar/>
         <div className="ctn-eventExpenses">        
-        <HeaderEvent
-          id={id_event}
-          active="gastos"
-          location={this.props}
-        />
+        <HeaderEvent/>
         <div className="wrap__inner pt-5">
           <section className='row'>
             <div className='col-12 col-md-6'>
@@ -136,7 +160,8 @@ export default class Event extends Component {
                     <label className='text-dark' for="expenseDescription">Concepto:</label>
                     <input 
                       type="text" 
-                      id="expenseDescription" 
+                      id="expenseDescription"
+                      onChange={this.handleInput.bind(this)}
                       name="expenseDescription" />                                 
                 </div>                
                 <div className='d-md-flex pb-3 d-flex flex-column'>
@@ -145,6 +170,7 @@ export default class Event extends Component {
                     <input 
                       type="number" 
                       id="expenseAmount" 
+                      onChange={this.handleInput.bind(this)}
                       name="expenseAmount" />
                   </div>                  
                   <div className='d-flex justify-content-end'>                    
@@ -162,7 +188,7 @@ export default class Event extends Component {
                   Presupuesto restante
                 </div>
                 <div className="col-6 text-right">
-                
+                {finalBudget}
                 </div>
               </div>              
             </div>
@@ -170,7 +196,7 @@ export default class Event extends Component {
               <div className='initial-budget d-flex justify-content-around'>
                 <div>Presupuesto inicial</div>
                 <div className="col-6 text-right">
-                {event.buget}
+                {buget}
                 </div>
               </div>
 
@@ -183,27 +209,20 @@ export default class Event extends Component {
                     </tr>
                 </thead>
                 <tbody>
+                  {this.state.expenses.map((expense, index) => 
                     <tr>
-                      <td>Gasto1</td>
-                      <td>$1,200.00</td>
+                      <td key={`expense_data${index}`}>{expense.expenseDescription}</td>
+                      <td key={`expense_data${index}`}>{expense.expenseAmount}</td>
                       <td><div className='delete-expense'>X</div></td>
                     </tr>
-                    <tr>
-                      <td>Gasto</td>
-                      <td>$1,200.00</td>
-                      <td><div className='delete-expense'>X</div></td>
-                    </tr>
-                    <tr>
-                      <td>Gasto3</td>
-                      <td>$1,200.00</td>
-                      <td><div className='delete-expense'>X</div></td>
-                    </tr> 
+                  )}
+                  
                 </tbody>
               </Table>
 
               <div className='total-expense d-flex justify-content-around'>
                 <div>Gasto Total</div>
-                <div>$20,040.00</div>
+                <div>{totalExpenses}</div>
               </div>              
             </div>          
           </section>

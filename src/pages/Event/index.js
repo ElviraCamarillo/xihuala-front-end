@@ -220,7 +220,21 @@ export default class Event extends Component {
                         autoComplete="off"
                         maxLength="10" 
                       />
-                    </div>     
+                    </div>
+
+                    <div className=' pb-3'>                 
+                      <label className='text-dark' for="contact-phone">Presupuesto inicial:</label>
+                      <input 
+                        type="text" 
+                        id="buget" 
+                        name="buget"
+                        onChange={this.handleInput.bind(this)}
+                        value={this.state.buget}
+                        autoComplete="off"
+                        maxLength="10" 
+                      />
+                    </div>
+
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>           
                     <div className='button d-flex flex-column justify-content-center align-items-start'>
                       <button type="submit" className="btn__app btn__dark large">Guardar evento</button>
