@@ -1,6 +1,5 @@
 const API_URL = 'http://xihuala-app-api.mybluemix.net'
 // const API_URL = 'http://localhost:8080'
-
 async function login (email, password) {
     try {
       const response = await window.fetch(`${API_URL}/auth/login`, {
@@ -31,7 +30,6 @@ async function login (email, password) {
       }
     }
   }
-
 async function newUser (dataNewUSer) {
   try {
     console.log(dataNewUSer)
@@ -55,7 +53,6 @@ async function newUser (dataNewUSer) {
     }
   }
 }
-
   async function updateAUser (token,id_user,dataUSer) {
     try {
       const response = await window.fetch(`${API_URL}/users/${id_user}`, {
@@ -79,7 +76,6 @@ async function newUser (dataNewUSer) {
       }
     }
   }
-
   async function getUserSession (token) {
     try {
       const response = await window.fetch(`${API_URL}/users/getsession`, {
@@ -93,11 +89,9 @@ async function newUser (dataNewUSer) {
         data: {
           session: []
         }
-
     }
   }
 }
-
 async function getEventsByUserId (token, id_user) {
   try {
     console.log(id_user)
@@ -115,30 +109,36 @@ async function getEventsByUserId (token, id_user) {
     }
   }
 }
-
-async function newEvent (dataNewUSer) {
+async function newEvent (dataNewEvent,token) {
   try {
-    console.log(dataNewUSer)
     const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization: token
       },
-      body: JSON.stringify({ ...dataNewUSer })
+      body: JSON.stringify({ ...dataNewEvent })
     })
+    console.log(response)
     const payload = await response.json()
-    return payload
+    if (payload.success === false) {
+      return payload
+    } else {
+      window.sessionStorage.setItem(
+        'authorization', payload.data.token
+      )
+      return payload
+    }
   } catch (error) {
-    console.log('Error al crear el evento')
+    console.log('Error al crear nuevo evento')
     console.log(error)
     return {
       data: {
-        event: ''
+        newEvent: ''
       }
     }
   }
 }
-
 async function getEvent (id_event) {
   try {
     console.log(id_event)
@@ -154,7 +154,6 @@ async function getEvent (id_event) {
     }
   }
 }
-
 async function getEventGuests (id_event) {
   try {
     console.log(id_event)
@@ -170,7 +169,6 @@ async function getEventGuests (id_event) {
     }
   }
 }
-
 async function addGuestEvent (id_event, dataNewEvent ) {
   try {
     console.log(id_event)
@@ -193,7 +191,6 @@ async function addGuestEvent (id_event, dataNewEvent ) {
     }
   }
 }
-
 async function confirmGuestEvent (id_event, dataNewEvent ) {
   try {
     console.log(id_event)
@@ -264,7 +261,6 @@ async function updateProfile (token, idUser, userUpdated) {
     }
   }
 }
-
 async function newExpense (id_event, dataNewExpense ) {
   try {
     console.log(id_event)
@@ -304,5 +300,4 @@ const api = {
   newExpense,
   deleteExpense
 }
-
 export default api
