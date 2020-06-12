@@ -67,8 +67,7 @@ export default class App extends Component {
           <Route 
             exact 
             path="/events/:id" 
-            component={EventDetail} 
-            
+            component={EventDetail}
           />
 
           <Route 
