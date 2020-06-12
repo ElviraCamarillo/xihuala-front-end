@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+// Import components
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
 import Image  from './../../components/ImgContainer'
 import novios from './../../img/novios6.svg'
 
-import './Perfil.css'
 import Api from '../../lib/api'
+
+// Import CSS
+import './Perfil.css'
 
 export default class Perfil extends Component {
   constructor(props) {

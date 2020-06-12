@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 // Import icons
 import novios from '../../img/novios7.svg'
@@ -149,7 +150,7 @@ export default class Event extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrap__home">
           <Navbar/>
           <div className="ctn--newEvent">
             <div className="wrap__inner pb-5">
@@ -219,7 +220,21 @@ export default class Event extends Component {
                         autoComplete="off"
                         maxLength="10" 
                       />
-                    </div>     
+                    </div>
+
+                    <div className=' pb-3'>                 
+                      <label className='text-dark' for="contact-phone">Presupuesto inicial:</label>
+                      <input 
+                        type="text" 
+                        id="buget" 
+                        name="buget"
+                        onChange={this.handleInput.bind(this)}
+                        value={this.state.buget}
+                        autoComplete="off"
+                        maxLength="10" 
+                      />
+                    </div>
+
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>           
                     <div className='button d-flex flex-column justify-content-center align-items-start'>
                       <button type="submit" className="btn__app btn__dark large">Guardar evento</button>

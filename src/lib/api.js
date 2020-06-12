@@ -56,19 +56,44 @@ async function newUser (dataNewUSer) {
   }
 }
 
-async function getUserSession (token) {
-  try {
-    const response = await window.fetch(`${API_URL}/users/getsession`, {
-      headers: { authorization: token }
-    })
-    const payload = await response.json()
-    return payload
-  } catch (error) {
-    console.log('error', error)
-    return {
-      data: {
-        session: []
+  async function updateAUser (token,id_user,dataUSer) {
+    try {
+      const response = await window.fetch(`${API_URL}/users/${id_user}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: token
+        },
+        body: JSON.stringify({ ...dataUSer })
+      })
+      console.log(response)
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('Error al modificar usuario')
+      console.log(error)
+      return {
+        data: {
+          userUpdated: ''
+        }
       }
+    }
+  }
+
+  async function getUserSession (token) {
+    try {
+      const response = await window.fetch(`${API_URL}/users/getsession`, {
+        headers: { authorization: token }
+      })
+      const payload = await response.json()
+      return payload
+    } catch (error) {
+      console.log('error', error)
+      return {
+        data: {
+          session: []
+        }
+
     }
   }
 }
@@ -94,7 +119,7 @@ async function getEventsByUserId (token, id_user) {
 async function newEvent (dataNewUSer) {
   try {
     console.log(dataNewUSer)
-    const response = await window.fetch(`${API_URL}/events`, {
+    const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -192,6 +217,29 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
   }
 }
 
+async function deleteExpense (id_event, dataExpense ) {
+  try {
+    console.log(dataExpense)
+    
+    const response = await window.fetch(`${API_URL}/events/${id_event}/deleteExpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        expense: []
+      }
+    }
+  }
+}
+
 async function updateProfile (token, idUser, userUpdated) {
   try {
     console.log(userUpdated)
@@ -217,6 +265,30 @@ async function updateProfile (token, idUser, userUpdated) {
   }
 }
 
+async function newExpense (id_event, dataNewExpense ) {
+  try {
+    console.log(id_event)
+    console.log(dataNewExpense)
+    const response = await window.fetch(`${API_URL}/events/${id_event}/addexpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataNewExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        event: []
+      }
+    }
+  }
+}
+
+
 const api = {
   login,
   newUser,
@@ -225,9 +297,12 @@ const api = {
   getEvent,
   getEventGuests,
   addGuestEvent,
-  confirmGuestEvent,
   newEvent,
-  updateProfile
+  updateAUser,
+  confirmGuestEvent,
+  updateProfile,
+  newExpense,
+  deleteExpense
 }
 
 export default api
