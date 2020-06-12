@@ -101,12 +101,6 @@ export default class Perfil extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <ChartBar chartData={this.state.chartData} location="Estado de México" legendPosition="bottom"/>
-                </div>
-                <div className="row">
-                    <ChartLine chartData={this.state.chartData} location="Estado de México" legendPosition="bottom"/>
-                </div>
-                <div className="row">
                     <Chart chartData={this.state.chartData} location="Estado de México" legendPosition="bottom"/>
                 </div>
             </div>
