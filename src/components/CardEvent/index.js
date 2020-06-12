@@ -33,7 +33,7 @@ export default function Card(props) {
   }
   for(let expense in card.expenses){
     console.log(card.expenses[expense])
-    totalExpense = totalExpense + parseInt(card.expenses[expense].amount)
+    totalExpense = totalExpense + parseInt(card.expenses[expense].expenseAmount)
   }
 
 
