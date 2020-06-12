@@ -93,15 +93,11 @@ export default class Event extends Component {
       <div className="wrap__home">
         <Navbar/>
         <div className="ctn-eventExpenses">        
-<<<<<<< HEAD
-        <HeaderEvent/>
-=======
         <HeaderEvent
           id={id_event}
           active="gastos"
           location={this.props}
         />
->>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
         <div className="wrap__inner pt-5">
           <section className='row'>
             <div className='col-12 col-md-6'>

@@ -1,5 +1,5 @@
-// const API_URL = 'http://xihuala-app-api.mybluemix.net'
-const API_URL = 'http://localhost:8080'
+const API_URL = 'http://xihuala-app-api.mybluemix.net'
+
 
 async function login (email, password) {
     try {
@@ -56,8 +56,7 @@ async function newUser (dataNewUSer) {
   }
 }
 
-<<<<<<< HEAD
-  async function updateAUser (token,id_user,dataUSer) {
+async function updateAUser (token,id_user,dataUSer) {
     try {
       const response = await window.fetch(`${API_URL}/users/${id_user}`, {
         method: 'PUT',
@@ -94,24 +93,10 @@ async function newUser (dataNewUSer) {
         data: {
           session: []
         }
-=======
-async function getUserSession (token) {
-  try {
-    const response = await window.fetch(`${API_URL}/users/getsession`, {
-      headers: { authorization: token }
-    })
-    const payload = await response.json()
-    return payload
-  } catch (error) {
-    console.log('error', error)
-    return {
-      data: {
-        session: []
->>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
       }
     }
   }
-}
+
 
 async function getEventsByUserId (token, id_user) {
   try {
@@ -131,29 +116,37 @@ async function getEventsByUserId (token, id_user) {
   }
 }
 
-async function newEvent (dataNewUSer) {
+async function newEvent (token, dataNewEvent) {
   try {
-    console.log(dataNewUSer)
-    const response = await window.fetch(`${API_URL}/events`, {
+    console.log(dataNewEvent)
+    const response = await window.fetch(`${API_URL}/events/`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization: token
       },
-      body: JSON.stringify({ ...dataNewUSer })
+      body: JSON.stringify({ ...dataNewEvent })
     })
+    console.log(response)
     const payload = await response.json()
-    return payload
+    if (payload.success === false) {
+      return payload
+    } else {
+      window.sessionStorage.setItem(
+        'authorization', payload.data.token
+      )
+      return payload
+    }
   } catch (error) {
-    console.log('Error al crear el evento')
+    console.log('Error al crear nuevo evento')
     console.log(error)
     return {
       data: {
-        event: ''
+        newEvent: ''
       }
     }
   }
 }
-
 async function getEvent (id_event) {
   try {
     console.log(id_event)
@@ -257,37 +250,7 @@ async function updateProfile (token, idUser, userUpdated) {
   }
 }
 
-  async function newEvent (token, dataNewEvent) {
-    try {
-      console.log(dataNewEvent)
-      const response = await window.fetch(`${API_URL}/events/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: token
-        },
-        body: JSON.stringify({ ...dataNewEvent })
-      })
-      console.log(response)
-      const payload = await response.json()
-      if (payload.success === false) {
-        return payload
-      } else {
-        window.sessionStorage.setItem(
-          'authorization', payload.data.token
-        )
-        return payload
-      }
-    } catch (error) {
-      console.log('Error al crear nuevo evento')
-      console.log(error)
-      return {
-        data: {
-          newEvent: ''
-        }
-      }
-    }
-  }
+  
 
   
 
@@ -299,14 +262,10 @@ const api = {
   getEvent,
   getEventGuests,
   addGuestEvent,
-<<<<<<< HEAD
-  newEvent,
-  updateAUser
-=======
   confirmGuestEvent,
   newEvent,
-  updateProfile
->>>>>>> d6db0fd9e3539ba3a762ddd9c79bc2bb867a573f
+  updateProfile,
+  updateAUser
 }
 
 export default api
