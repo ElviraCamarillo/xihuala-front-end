@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-//  Import icons
-import titleIcon from '../../img/expense-color-icon.svg'
 // Import components
-import PrimaryButton from '../../components/PrimaryButton'
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
@@ -21,6 +17,7 @@ export default class Expenses extends Component {
       expenses: [],
       totalExpenses: 0,
       statusresponse: "",
+      response: "",
       buget: 0
     }
   }
@@ -28,7 +25,7 @@ export default class Expenses extends Component {
     // get token
     const token = window.localStorage.getItem('tokenapp')
     console.log(token)
-    if(token == null){
+    if(token == null) {
       this.props.history.push(`/login`)
       return
     }
@@ -42,20 +39,25 @@ export default class Expenses extends Component {
         return sessionObj
       }
       const payload = getEvent(idEvent)
+
       payload.then( (resultEvent) => {
         console.log(resultEvent)
         let expenses = []
         let totalExpenses = 0
+
+        console.log(resultEvent.data.event.expenses)
         for(let item in resultEvent.data.event.expenses){
           expenses.push(resultEvent.data.event.expenses[item])
-          totalExpenses = totalExpenses + resultEvent.data.event.expenses[item].expenseAmount
+          totalExpenses = totalExpenses + parseInt(resultEvent.data.event.expenses[item].expenseAmount)
         }
+
         this.setState({
           event: [resultEvent.data.event],
           expenses: expenses,
           totalExpenses: totalExpenses,
           buget: resultEvent.data.event.buget
         });
+
       })
     }
   }
@@ -91,19 +93,14 @@ export default class Expenses extends Component {
       const payload = await Api.newExpense(idEvent, dataExpenses)
       console.log(payload)
       if(payload.success === true){
+
         this.setState({
           response: 'Gasto registrado correctamente',
           statusresponse: 'success',
-          expenses: [...this.state.expenses, {expenseDescription, expenseAmount}]
+          expenses: [...this.state.expenses, {expenseDescription, expenseAmount}],
+          totalExpenses: this.state.totalExpenses + expenseAmount,
+          buget: this.state.buget
         });
-        setTimeout(() => {
-          this.setState({
-            response: '',
-            statusresponse: '',
-            expenseDescription: '',
-            expenseAmount: 0
-          });
-        }, 4000)
       }else{
         this.setState({
           response: payload.error,
@@ -118,6 +115,57 @@ export default class Expenses extends Component {
       }
     }
   }
+
+  async deleteExpense(event) {
+    event.preventDefault()
+    
+    console.log(event.target.dataset)
+    const expenseDescription = event.target.dataset.expensedescription
+    const expenseAmount = event.target.dataset.expenseamount
+    // API delete expense
+    var path = this.props.location.pathname
+    const idEvent = path.substring(8, 32)
+    console.log(idEvent, expenseDescription, expenseAmount)
+    
+    const payload = await Api.deleteExpense(idEvent, {expenseDescription, expenseAmount})
+
+    console.log(payload)
+
+    if(payload.success) {
+        async function getEvent (idEvent){
+          const sessionObj = await Api.getEvent(idEvent)
+          return sessionObj
+        }
+        const payload = getEvent(idEvent)
+        payload.then( (resultEvent) => {
+          console.log(resultEvent)
+          let expenses = []
+          let totalExpenses = 0
+    
+          console.log(resultEvent.data.event.expenses)
+          for(let item in resultEvent.data.event.expenses){
+            expenses.push(resultEvent.data.event.expenses[item])
+            totalExpenses = totalExpenses + parseInt(resultEvent.data.event.expenses[item].expenseAmount)
+          }
+    
+          this.setState({
+            event: [resultEvent.data.event],
+            expenses: expenses,
+            totalExpenses: totalExpenses,
+            buget: resultEvent.data.event.buget,
+            response: 'Gasto eliminado exitosamente',
+            statusresponse: 'success'
+          });
+    
+        })
+    
+    }
+
+
+  }
+
+
+
   render() {
     const {event} = this.state
     const { expenseDescription, expenseAmount, totalExpenses, buget } = this.state
@@ -125,23 +173,33 @@ export default class Expenses extends Component {
     console.log(event.buget)
     let finalBudget = 0
     finalBudget = buget - totalExpenses
+
+    const path = this.props.location.pathname
+    let id_event = path.substring(8)
+    id_event = id_event.split('/')[0]
+    console.log(this.props)
+
     return (
       <div className="wrap__home">
         <Navbar/>
-        <div className="ctn-eventExpenses">        
-        <HeaderEvent/>
+        <div className="ctn-eventExpenses">  
+        {/*  pasar  id del evento y seccion activa el header event */}
+        <HeaderEvent 
+          id={id_event}
+          active="gastos" 
+        />
         <div className="wrap__inner pt-5">
+          <div className='d-flex pb-5'>
+            <h1 className='title__section'>Control de Gastos</h1>
+          </div>
           <section className='row'>
             <div className='col-12 col-md-6'>
-              <div className='d-flex pb-5'>
-                <img className='pr-3' src={titleIcon} alt='' />
-                <h1 className='title__section'>Control de Gastos</h1>
-              </div>
+              
               <form 
-                className='event-form d-flex flex-column'
+                className='expense-form d-flex flex-column card__app p-5 rounded'
                 onSubmit={this.onSubmit.bind(this)} 
                 action=''>
-                <div className='d-md-flex pb-3'>  
+                <div className='d-flex pb-3 flex-column'>  
                     <label className='text-dark' for="expenseDescription">Concepto:</label>
                     <input 
                       type="text" 
@@ -149,33 +207,34 @@ export default class Expenses extends Component {
                       onChange={this.handleInput.bind(this)}
                       name="expenseDescription" />                                 
                 </div>                
-                <div className='d-md-flex pb-3 d-flex flex-column'>
-                  <div className='d-md-flex pb-3'>
+                <div className='d-flex pb-3 flex-column'>
                     <label className='text-dark' for="expenseAmount">Gasto:</label>
                     <input 
                       type="number" 
                       id="expenseAmount" 
                       onChange={this.handleInput.bind(this)}
                       name="expenseAmount" />
-                  </div>                  
-                  <div className='d-flex justify-content-end'>                    
+                </div>    
+                <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>
+                <div className='d-flex justify-content-end'>                    
                   <button className="btn__app btn__dark large" type="submit">Agregar Gasto</button>
-                  </div>                  
-                </div>             
+                </div>                  
               </form>                                    
             </div>
             <div className='container-table'>
-            <div className="wrap__totalguests mb-3 rounded">
+
+            <div className={`wrap__totalguests mb-3 rounded ${finalBudget <= 0 ? "warn__header" : ""}`}>
               <div className="row">
                 <div className="col-6">
                   Presupuesto restante
                 </div>
                 <div className="col-6 text-right">
-                {finalBudget}
+                  {finalBudget}
                 </div>
               </div>              
             </div>
-              <div className='initial-budget d-flex justify-content-around'>
+
+              <div className='initial-budget d-flex justify-content-between align-items-center pt-4 pb-4 mb-3 pl-3 pr-3'>
                 <div>Presupuesto inicial</div>
                 <div className="col-6 text-right">
                 {buget}
@@ -194,12 +253,18 @@ export default class Expenses extends Component {
                     <tr>
                       <td key={`expense_data${index}`}>{expense.expenseDescription}</td>
                       <td key={`expense_data${index}`}>{expense.expenseAmount}</td>
-                      <td><div className='delete-expense'>X</div></td>
+                      <td className="text-center">
+                        <div className='delete-expense' 
+                              data-expensedescription={expense.expenseDescription}
+                              data-expenseamount={expense.expenseAmount} 
+                              onClick={this.deleteExpense.bind(this)}>X</div>
+                      </td>
                     </tr>
                   )}
                 </tbody>
               </Table>
-              <div className='total-expense d-flex justify-content-around'>
+
+              <div className='total-expense d-flex justify-content-between align-items-center pt-4 pb-4 mb-3 pl-3 pr-3'>
                 <div>Gasto Total</div>
                 <div>{totalExpenses}</div>
               </div>              

@@ -205,6 +205,33 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+async function deleteExpense (id_event, dataExpense ) {
+  try {
+    console.log(dataExpense)
+    
+    const response = await window.fetch(`${API_URL}/events/${id_event}/deleteExpense`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataExpense)
+    })
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        expense: []
+      }
+    }
+  }
+}
+
+>>>>>>> 17c18eff560e99d444307af9e4512aea30d73e00
 async function updateProfile (token, idUser, userUpdated) {
   try {
     console.log(userUpdated)
@@ -251,6 +278,7 @@ async function newExpense (id_event, dataNewExpense ) {
     }
   }
 }
+<<<<<<< HEAD
 async function deleteExpense (id_expense) {
   try {
     console.log(id_expense)
@@ -271,6 +299,10 @@ async function deleteExpense (id_expense) {
     }
   }
 }
+=======
+
+
+>>>>>>> 17c18eff560e99d444307af9e4512aea30d73e00
 const api = {
   login,
   newUser,
