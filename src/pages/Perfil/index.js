@@ -4,12 +4,9 @@ import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
 import Image  from './../../components/ImgContainer'
 import novios from './../../img/novios6.svg'
-
 import Api from '../../lib/api'
-
 // Import CSS
 import './Perfil.css'
-
 export default class Perfil extends Component {
   constructor(props) {
     super(props);
@@ -19,13 +16,11 @@ export default class Perfil extends Component {
       email: ''
     }
   }
-
   handleInput({ target: { name, value } }) {
     this.setState({
         [name]: value
     })        
   }
-
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
@@ -34,7 +29,6 @@ export default class Perfil extends Component {
       this.props.history.push(`/login`)
       return
     }
-
     // buscar session
     async function getSession (token){
       console.log(token)
@@ -42,7 +36,6 @@ export default class Perfil extends Component {
       return sessionObj
     }
     const payload = getSession(token)
-    
     //extract user info
     payload.then((result)=>{
       const idUser = result.data.session.user._id
@@ -55,10 +48,8 @@ export default class Perfil extends Component {
       });
     })
   }
-
   async onSubmit (event) {
     event.preventDefault()
-
     const name = this.state.name
     const lastName = this.state.lastName
     const dataUser = {
@@ -66,7 +57,6 @@ export default class Perfil extends Component {
       lastName
     }
     console.log(dataUser)
-
     if(name === '' || lastName === '' ) {
       // empty vals
       console.log('Por favor, llena los datos obligatorios')
@@ -81,13 +71,11 @@ export default class Perfil extends Component {
           statusresponse: ''
         });
       }, 4000)
-
     }else{
       // si todo ok
       const token = window.localStorage.getItem('tokenapp')
       async function getSession (token){
         console.log(token)
-
         const sessionObj = await Api.getUserSession(token)
         return sessionObj
       }
@@ -96,7 +84,6 @@ export default class Perfil extends Component {
         return userObj
       }
       const payload = getSession(token)
-      
       payload.then((result)=>{
         const idUser = result.data.session.user._id
         const user = updateUser(token, idUser, {name,lastName} )
@@ -116,7 +103,6 @@ export default class Perfil extends Component {
       })
     }
   }
-
   render() {
     return (
     <div>
@@ -124,7 +110,6 @@ export default class Perfil extends Component {
         <Navbar/>
             <div className="wrap__inner">
             <h2 className="title__section">Perfil</h2>
-
             <div className="container-body row">
                 <div className="container-form-profile col-12 col-md-6">
                     <form 
@@ -132,17 +117,16 @@ export default class Perfil extends Component {
                       className="d-flex flex-column card__app p-5 rounded mt-5"
                       onSubmit={this.onSubmit.bind(this)} 
                     >
-
-                        <div className="row-input flex-column mb-5">
+                        <div className="row-input flex-column">
                             <div className='col-12'>
                                 <label>Correo electrónico</label>
                             </div>
                             <div className='col-12'>
-                              <strong>{this.state.email}</strong>
+                             
                                 <input 
                                     placeholder="mail@mail.com" 
                                     disabled 
-                                    type="hidden"
+                                    type="text"
                                     value={this.state.email}
                                     onChange={this.handleInput.bind(this)}
                                 />
@@ -181,7 +165,6 @@ export default class Perfil extends Component {
                             </div>
                         </div>
                     </form>
-                        
                 </div>
                 <div className="image-container col-12 col-md-6 d-flex justify-content-center">
                     <Image imageUrl={novios} />

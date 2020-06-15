@@ -17,6 +17,7 @@ import Home from './pages/Home'
 import Guests from './pages/Guests'
 import Expenses from './pages/Expenses'
 import ConfirmGuest from './pages/ConfirmGuest'
+import Dashboard from './pages/Dashboard'
 
 export default class App extends Component {
   constructor(props){
@@ -37,6 +38,11 @@ export default class App extends Component {
             exact 
             path="/home" 
             component={Home} 
+          />
+          <Route 
+            exact 
+            path="/dashboard" 
+            component={Dashboard} 
           />
           <Route 
             exact 

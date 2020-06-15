@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-
 // Import components
 import HeaderEvent from '../../components/HeaderEvent'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { Table } from 'reactstrap';
 import Api from '../../lib/api'
-
 // ImportCss
 import './Expenses.css'
-
 export default class Expenses extends Component {
   constructor(props){
     super(props)
@@ -24,7 +21,6 @@ export default class Expenses extends Component {
       buget: 0
     }
   }
-
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
@@ -33,7 +29,6 @@ export default class Expenses extends Component {
       this.props.history.push(`/login`)
       return
     }
-
     var path = this.props.location.pathname
     const idEvent = path.substring(8, 32)
     if(token === null) {
@@ -66,26 +61,22 @@ export default class Expenses extends Component {
       })
     }
   }
-
   handleInput({ target:{ name, value }}){
     this.setState({
       [name]: value
     })
   }
-
   async onSubmit (event) {
     const expenseDescription= this.state.expenseDescription
     const totalExpenses= parseInt(this.state.totalExpenses)
     const expenseAmount = parseInt(this.state.expenseAmount)
     const dataExpenses = {expenseDescription, expenseAmount}
     console.log(dataExpenses)
-
     const token = window.localStorage.getItem('tokenapp')    
     var path = this.props.location.pathname
     const idEvent = path.substring(8, 32)
     event.preventDefault()
     console.log(this.props)
-
     if (expenseDescription === '' || expenseAmount === ''){
       console.log('Datos incompletos')
       this.setState({
@@ -230,7 +221,6 @@ export default class Expenses extends Component {
                 </div>                  
               </form>                                    
             </div>
-
             <div className='container-table'>
 
             <div className={`wrap__totalguests mb-3 rounded ${finalBudget <= 0 ? "warn__header" : ""}`}>
@@ -250,7 +240,6 @@ export default class Expenses extends Component {
                 {buget}
                 </div>
               </div>
-
               <Table className="table mb-5 table-striped table-bordered">
                 <thead className="thead-dark">
                     <tr>
@@ -272,7 +261,6 @@ export default class Expenses extends Component {
                       </td>
                     </tr>
                   )}
-                  
                 </tbody>
               </Table>
 
@@ -282,10 +270,7 @@ export default class Expenses extends Component {
               </div>              
             </div>          
           </section>
-
         </div>
-
-          
           </div>
         <Footer/>
       </div>
