@@ -31,12 +31,14 @@ export default class Navbar extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
+    //const typeUser = window.localStorage.getItem('typeuser')
     if(token === false) this.props.history.push(`/login`)
   }
 
   render() {
     const { isMenuActive } = this.state;
     const menuClass = isMenuActive ? "Menu-active" : "";
+    const typeUser = window.localStorage.getItem('userapp')
     return (
     <div className='navbar-container'>
       <div className="desktop__header">
@@ -53,9 +55,12 @@ export default class Navbar extends Component {
                 <li>
                   <Link to="/event">Crear evento</Link>
                 </li>
+                {
+                typeUser === 'admin' ?
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                <Link to="/dashboard">Dashboard</Link>
                 </li>
+                :''}
                 <li>
                   <Link to="/logout" className="active">Salir</Link>
                 </li>
@@ -80,9 +85,12 @@ export default class Navbar extends Component {
                 <li>
                   <Link to="/event" className="nav__link">Evento</Link>
                 </li>
+                {
+                typeUser === 'admin' ?
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                <Link to="/dashboard">Dashboard</Link>
                 </li>
+                :''}
                 <li>
                   <Link to="/logout" className="nav__link">Salir</Link>
                 </li>

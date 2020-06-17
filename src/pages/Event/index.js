@@ -26,7 +26,7 @@ export default class Event extends Component {
       nameEvent: '',
       eventDate: '',
       eventTime: '06:00',
-      contactPhone: '',
+      contactPhone: 0,
       guests: [],
       buget: 0,
       expenses:[],
@@ -154,6 +154,27 @@ export default class Event extends Component {
     return current && current < moment().endOf('day');
   }
 
+  // valid number phone
+  onHandleNumberChange = e => {
+    console.log(e.target)
+    if (/^\d+$/.test(e.target.value)) {
+      this.setState({
+          [e.target.name]: parseInt(e.target.value )
+      })
+    }
+  }
+
+  onHandleNumberChange = e => {
+    const { value } = e.target;
+    const reg = /^-?\d*(\.\d*)?$/;
+    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+      //this.props.onChange(value);
+      this.setState({
+        [e.target.name]: parseInt(value)
+      })
+    }
+  };
+
   render() {
     const format = 'HH:mm';
 
@@ -246,25 +267,25 @@ export default class Event extends Component {
                     <div className=' pb-3'>                 
                       <label className='text-dark' for="contact-phone">Tel. de contacto:</label>
                       <input 
-                        type="text" 
+                        type="number" 
                         id="contact-phone" 
                         name="contactPhone"
-                        onChange={this.handleInput.bind(this)}
                         value={this.state.contactPhone}
+                        onChange = {this.onHandleNumberChange.bind(this)}
                         autoComplete="off"
-                        maxLength="10" 
+                        maxLength={10}
                       />
                     </div>
                     <div className=' pb-3'>                 
                       <label className='text-dark' for="contact-phone">Presupuesto inicial:</label>
                       <input 
-                        type="text" 
+                        type="number" 
                         id="buget" 
                         name="buget"
-                        onChange={this.handleInput.bind(this)}
                         value={this.state.buget}
+                        onChange = {this.onHandleNumberChange.bind(this)}
                         autoComplete="off"
-                        maxLength="10" 
+                        maxLength={10}
                       />
                     </div>
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>           

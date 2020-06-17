@@ -81,6 +81,9 @@
 .container-form-guests form input:focus{
   border: 2px solid #441f7d;
 }
+.container-form-guests form input.is-invalid{
+  border-color: #84142d;
+}
 
 @media only screen and (min-width: 768px) {
     

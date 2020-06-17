@@ -18,6 +18,7 @@ import Guests from './pages/Guests'
 import Expenses from './pages/Expenses'
 import ConfirmGuest from './pages/ConfirmGuest'
 import Dashboard from './pages/Dashboard'
+import Confirmation from './pages/ConfirmationEmail'
 
 export default class App extends Component {
   constructor(props){
@@ -97,6 +98,16 @@ export default class App extends Component {
             path="/event/:id/confirm"
             component={ConfirmGuest}
           />
+          <Route 
+            exact 
+            path="/confirmation/:id/confirm"
+            component={ConfirmGuest}
+          />
+          <Route
+              path='/confirmuser/:hash'
+              component={Confirmation}
+              exact
+            />  
 
         </Switch> 
 

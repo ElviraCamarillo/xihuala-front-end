@@ -1,5 +1,5 @@
-const API_URL = 'http://xihuala-app-api.mybluemix.net'
-// const API_URL = 'http://localhost:8080'
+// const API_URL = 'http://xihuala-app-api.mybluemix.net'
+const API_URL = 'http://localhost:8080'
 async function login (email, password) {
     try {
       const response = await window.fetch(`${API_URL}/auth/login`, {
@@ -23,7 +23,7 @@ async function login (email, password) {
     } catch (error) {
       console.log('error hand', error)
       return {
-        message: 'Error login API',
+        message: error,
         data: {
           token: ''
         }
@@ -284,6 +284,21 @@ async function newExpense (id_event, dataNewExpense ) {
   }
 }
 
+async function validateEmail (hash) {
+  try {
+    const response = await window.fetch(`${API_URL}/users/confirmation/${hash}`)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        session: []
+      }
+    }
+  }
+}
+
 
 const api = {
   login,
@@ -298,6 +313,7 @@ const api = {
   confirmGuestEvent,
   updateProfile,
   newExpense,
-  deleteExpense
+  deleteExpense,
+  validateEmail
 }
 export default api
