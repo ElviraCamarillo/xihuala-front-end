@@ -5,6 +5,7 @@ import { Table } from 'reactstrap';
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
 import ChartBar from './../../components/Charts/Bar';
+import ChartPie from './../../components/Charts/Pie'
 import PostIt from '../../components/PostIt'
 import iconRing from './../../img/icons__wedding/018-wedding ring.png'
 import iconUser from './../../img/icons__wedding/022-user avatar.png'
@@ -16,7 +17,8 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData:{},
+      chartDataBar:{},
+      chartDataPie:{},
       users:[],
       totalusers : 0,
       events:[],
@@ -26,12 +28,13 @@ export default class Dashboard extends Component {
   }
 
   componentWillMount(){
-    this.getChartData();
+    this.getChartDataBar();
+    this.getChartDataPie();
   }
 
-  getChartData(){
+  getChartDataBar(){
     this.setState({
-      chartData:{
+      chartDataBar:{
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Noviembre','Diciembre'],
         datasets:[
           {
@@ -41,6 +44,23 @@ export default class Dashboard extends Component {
               '#14bfff','#38feff', '#00ff00', '#b000d5',
               '#ff00ff',  '#ff0011',  '#00e615', '#fffe1c',
               '#0017e9'
+            ]
+          }
+        ]
+      }
+    });
+  }
+
+  getChartDataPie(){
+    this.setState({
+      chartDataPie:{
+        labels: ['Vestido', 'Comida', 'Salón', 'Adorno', 'Recuerdos', 'Flores','Bebidas'],
+        datasets:[
+          {
+            label:'Gastos populares en bodas',
+            data:[18000, 35000, 15500, 33000, 6000, 22650, 26120],
+            backgroundColor:[ '#c32dff', '#ff00ff', '#ffe300',
+              '#14bfff','#38feff', '#00ff00', '#b000d5'
             ]
           }
         ]
@@ -114,8 +134,6 @@ export default class Dashboard extends Component {
     <div>
         <div className="ctn-dashboard pt-4 mb-5">
         <Navbar/>
-            {/* <div className="wrap__inner"> */}
-              
               <div className="container"> 
               <div className="row">
               <h2 className="title__section">Dashboard</h2>
@@ -133,9 +151,8 @@ export default class Dashboard extends Component {
                   <div className="indicator">
                   <PostIt icon={iconCash} title={"Presupuesto"} number={120000}/>
                   </div>
-                  
                 </div>   
-                <div className="col-12 container-tab">
+                <div className="col-12 mt-5 container-tab">
                   <label className="title-section">Usuarios Registrados</label>
                   <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
@@ -156,7 +173,7 @@ export default class Dashboard extends Component {
                     </tbody>
                   </Table>
                 </div>
-                <div className="col-12 container-tab">
+                <div className="col-12 mt-5 container-tab">
                   <label className="title-section">Bodas Registrados</label>
                   <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
@@ -181,42 +198,56 @@ export default class Dashboard extends Component {
                     </tbody>
                   </Table>
                 </div>
+                <div className="col-12 mt-5 container-charts">
+                  <ChartBar chartData={this.state.chartDataBar} className="grafica" legendPosition="bottom"/>
+                </div>
                 <div className="dashboard-body">
                   <div className="col-md-6 container-charts">
-                  <ChartBar chartData={this.state.chartData} className="grafica" legendPosition="bottom"/>
+                   <ChartPie chartData={this.state.chartDataPie}  legendPosition="bottom"/>
                   </div>
                   <div className="col-12 col-md-5 container-tab">
-                  <label className="title-section">Bodas en promedio por mes</label>
+                  <label className="title-section">Gastos populares en bodas</label>
                   <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
                       <tr>
-                        <th>Mes</th>
-                        <th>Bodas promedio</th>
+                        <th>Gasto</th>
+                        <th>Costo promedio</th>
                       </tr>
-                    </thead>
-                    <tbody>
+                    </thead> 
+                    <tbody>  
                       <tr>
-                        <td>Enero</td>
-                        <td>240</td>
-                      </tr>
-                      <tr>
-                        <td>Febrero</td>
-                        <td>150</td>
+                        <td>Vestido</td>
+                        <td>18000</td>
                       </tr>
                       <tr>
-                        <td>Marzo</td>
-                        <td>120</td>
+                        <td>Comida</td>
+                        <td>35000</td>
                       </tr>
                       <tr>
-                        <td>Abril</td>
-                        <td>120</td>
+                        <td>Salón</td>
+                        <td>15500</td>
+                      </tr>
+                      <tr>
+                        <td>Adorno</td>
+                        <td>33000</td>
+                      </tr>
+                      <tr>
+                        <td>Recuerdos</td>
+                        <td>6000</td>
+                      </tr>
+                      <tr>
+                        <td>Flores</td>
+                        <td>22650</td>
+                      </tr>
+                      <tr>
+                        <td>Bebidas</td>
+                        <td>26120</td>
                       </tr>
                     </tbody>
                   </Table>
                   </div>
                 </div>
               </div>
-            {/* </div> */}
         <Footer/>
         </div>
     </div>

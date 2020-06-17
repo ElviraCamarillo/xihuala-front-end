@@ -38,18 +38,13 @@
     border-radius: 15px;
     margin-bottom: 2%;
 }
-
 .tab{
     color: black;
     border-radius: 5px;
-}
-.ctn-dashboard .card-title{
-    background-color: #9e74dd;
-    color: #ffffff;
-
     font-weight: bold;
     text-align:justify;
     width: 100%;
+    vertical-align: -webkit-baseline-middle;
 }
 .tab tr :hover{
     color:#c32dff;
@@ -78,8 +73,7 @@
     }
     .container-tab{
         border: 2px solid #d7b7e4;
-        padding: 3%;
         border-radius: 15px;
-        margin-bottom: 2%;
+        margin-bottom: 0;
     }
 }
