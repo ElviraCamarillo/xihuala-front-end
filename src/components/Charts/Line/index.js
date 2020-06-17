@@ -25,7 +25,7 @@ class Chart extends Component{
             title:{
               display:this.props.displayTitle,
               text:'Bodas planeadas con Xihuala App '+this.props.location,
-              fontSize:25
+              fontSize:18
             },
             legend:{
               display:this.props.displayLegend,

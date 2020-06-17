@@ -283,7 +283,50 @@ async function newExpense (id_event, dataNewExpense ) {
     }
   }
 }
-
+async function getUsers (token) {
+  try {
+    const response = await window.fetch(`${API_URL}/users/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token
+      },
+    })
+    console.log(response)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al encontrar usuarios')
+    console.log(error)
+    return {
+      data: {
+        users: []
+      }
+    }
+  }
+}
+async function getAllEvents (token) {
+  try {
+    const response = await window.fetch(`${API_URL}/events/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token
+      },
+    })
+    console.log(response)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al encontrar eventos')
+    console.log(error)
+    return {
+      data: {
+        events: []
+      }
+    }
+  }
+}
 
 const api = {
   login,
@@ -298,6 +341,8 @@ const api = {
   confirmGuestEvent,
   updateProfile,
   newExpense,
-  deleteExpense
+  deleteExpense,
+  getUsers,
+  getAllEvents
 }
 export default api
