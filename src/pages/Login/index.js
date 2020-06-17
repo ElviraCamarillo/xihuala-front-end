@@ -49,13 +49,18 @@ export default class Login extends Component {
     }
 
     const payload = await Api.login(email, password)
-    if(payload.sucess === true){
+    const sessionObj = await Api.getUserSession(payload.data.token)
+    console.log(sessionObj)
+    
+    console.log(payload)
+    if(payload.success === true){
       console.log('redirect to home')
       localStorage.setItem('tokenapp', payload.data.token);
+      localStorage.setItem('userapp', sessionObj.data.session.user.typeUser);
       this.props.history.push(`/home`)
     }else{
       this.setState({
-        response: 'Datos inválidos',
+        response: payload.error,
         statusresponse: 'error'
       });
       setTimeout(() => {

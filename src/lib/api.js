@@ -23,7 +23,7 @@ async function login (email, password) {
     } catch (error) {
       console.log('error hand', error)
       return {
-        message: 'Error login API',
+        message: error,
         data: {
           token: ''
         }
@@ -284,6 +284,68 @@ async function newExpense (id_event, dataNewExpense ) {
   }
 }
 
+async function validateEmail (hash) {
+  try {
+    const response = await window.fetch(`${API_URL}/users/confirmation/${hash}`)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('error', error)
+    return {
+      data: {
+        session: []
+      }
+    }
+  }
+}
+
+
+async function getUsers (token) {
+  try {
+    const response = await window.fetch(`${API_URL}/users/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token
+      },
+    })
+    console.log(response)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al encontrar usuarios')
+    console.log(error)
+    return {
+      data: {
+        users: []
+      }
+    }
+  }
+}
+
+async function getAllEvents (token) {
+  try {
+    const response = await window.fetch(`${API_URL}/events/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token
+      },
+    })
+    console.log(response)
+    const payload = await response.json()
+    return payload
+  } catch (error) {
+    console.log('Error al encontrar eventos')
+    console.log(error)
+    return {
+      data: {
+        events: []
+
+      }
+    }
+  }
+}
 
 const api = {
   login,
@@ -298,6 +360,10 @@ const api = {
   confirmGuestEvent,
   updateProfile,
   newExpense,
-  deleteExpense
+  deleteExpense,
+  validateEmail,
+  getUsers,
+  getAllEvents
+
 }
 export default api

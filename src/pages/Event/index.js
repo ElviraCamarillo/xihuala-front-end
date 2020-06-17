@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import 'antd/dist/antd.css';
+import { DatePicker } from 'antd';
+import { TimePicker } from 'antd';
+import moment from 'moment';
+import { ConfigProvider } from 'antd';
+import esES from 'antd/es/locale/es_ES';
+
 // Import icons
 import novios from '../../img/novios7.svg'
+
 // Import components
 import ImgContainer from '../../components/ImgContainer'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Api from '../../lib/api'
+
 // Import CSS
 import './Event.css'
+
 export default class Event extends Component {
   constructor(props){
     super(props)
@@ -16,14 +25,15 @@ export default class Event extends Component {
       location: '',
       nameEvent: '',
       eventDate: '',
-      eventTime: '',
-      contactPhone: '',
+      eventTime: '06:00',
+      contactPhone: 0,
       guests: [],
       buget: 0,
       expenses:[],
       idUser: '',
       response: '',
-      statusresponse:''
+      statusresponse:'',
+      startDate: new Date()
     }
   }
   handleInput({ target:{ name, value }}){
@@ -39,6 +49,7 @@ export default class Event extends Component {
       this.props.history.push(`/login`)
       return
     }
+
     // buscar los eventos con este id user
     async function getSession (token){
       console.log(token)
@@ -53,6 +64,15 @@ export default class Event extends Component {
       });
     })
   }
+
+
+  onChangeDate(date, dateString) {
+    this.setState({ eventDate: dateString })
+  }
+  onChangeTime(time, timeString) {
+    this.setState({ eventTime: timeString })
+  }
+  
   async onSubmit (event) {
     event.preventDefault()
     const location = this.state.location
@@ -64,7 +84,10 @@ export default class Event extends Component {
     const buget = this.state.buget
     const expenses = this.state.expenses
     const idUser = this.state.idUser
+
     console.log(this.props)
+    const currentDate = new Date().toISOString().split("T")[0]
+
     if(this.state.nameEvent === '') {
       // si no hay nombre del evento
       this.setState({
@@ -95,7 +118,7 @@ export default class Event extends Component {
         this.setState({
           response: 'Evento registrado correctamente',
           statusresponse: 'success'
-        });
+        })
         setTimeout(() => {
           this.setState({
             location: '',
@@ -125,7 +148,51 @@ export default class Event extends Component {
       }
     }
   }
+
+  disabledDate(current) {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day');
+  }
+
+  // valid number phone
+  onHandleNumberChange = e => {
+    console.log(e.target)
+    if (/^\d+$/.test(e.target.value)) {
+      this.setState({
+          [e.target.name]: parseInt(e.target.value )
+      })
+    }
+  }
+
+  onHandleNumberChange = e => {
+    const { value } = e.target;
+    const reg = /^-?\d*(\.\d*)?$/;
+    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+      //this.props.onChange(value);
+      this.setState({
+        [e.target.name]: parseInt(value)
+      })
+    }
+  };
+
   render() {
+    const format = 'HH:mm';
+
+    let today = new Date()
+    today.setDate(today.getDate() + 1)
+    let dd = today.getDate()
+    let mm = today.getMonth()+1
+    let yyyy = today.getFullYear()
+
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    
     return (
       <div className="wrap__home">
           <Navbar/>
@@ -164,49 +231,61 @@ export default class Event extends Component {
                     </div>                
                     <div className=' pb-3'>               
                       <label className='text-dark' for="event-date">Fecha del evento:</label>
-                      <input 
+                      {/* <input 
                         type="date" 
                         id="event-date" 
                         name="eventDate"
                         onChange={this.handleInput.bind(this)}
                         value={this.state.eventDate}
                         autoComplete="off" 
-                      />
+                        min={today}
+                      /> */}
+
+                      <ConfigProvider locale={esES}>
+                        
+                        <DatePicker 
+                        onChange={this.onChangeDate.bind(this)} 
+                        size='large' 
+                        min={today}
+                        disabledDate={this.disabledDate.bind(this)}
+                        />
+
+                      </ConfigProvider>
                     </div>
                     <div className=' pb-3'>                
                       <label className='text-dark' for="event-time">Hora del evento:</label>
-                      <input 
-                        type="text" 
-                        id="event-time" 
-                        name="eventTime"
-                        placeholder="14:00"
-                        onChange={this.handleInput.bind(this)}
-                        value={this.state.eventTime}
-                        autoComplete="off" 
-                      />
+                      <ConfigProvider locale={esES}>
+                      <TimePicker
+                          defaultValue={
+                          moment('06:00', format)}
+                          format={format}
+                          onChange={this.onChangeTime.bind(this)}
+                        />
+                      </ConfigProvider>
+
                     </div>
                     <div className=' pb-3'>                 
                       <label className='text-dark' for="contact-phone">Tel. de contacto:</label>
                       <input 
-                        type="text" 
+                        type="number" 
                         id="contact-phone" 
                         name="contactPhone"
-                        onChange={this.handleInput.bind(this)}
                         value={this.state.contactPhone}
+                        onChange = {this.onHandleNumberChange.bind(this)}
                         autoComplete="off"
-                        maxLength="10" 
+                        maxLength={10}
                       />
                     </div>
                     <div className=' pb-3'>                 
                       <label className='text-dark' for="contact-phone">Presupuesto inicial:</label>
                       <input 
-                        type="text" 
+                        type="number" 
                         id="buget" 
                         name="buget"
-                        onChange={this.handleInput.bind(this)}
                         value={this.state.buget}
+                        onChange = {this.onHandleNumberChange.bind(this)}
                         autoComplete="off"
-                        maxLength="10" 
+                        maxLength={10}
                       />
                     </div>
                     <p className={`response-message ${this.state.statusresponse}`}>{this.state.response}</p>           

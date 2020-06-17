@@ -84,6 +84,7 @@ body {
   margin-right: auto;
   transition: all linear .25s;
   font-weight: 600;
+  z-index: 2;
 }
 .response-message:empty{
   padding: 0;

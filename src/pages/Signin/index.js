@@ -87,6 +87,20 @@ export default class Signin extends Component {
     }
 
   }
+
+  handleEmail = e => {
+    const { value } = e.target;
+    const reg = /^-?\d*(\.\d*)?$/;
+    if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value)) {
+      this.setState({
+        [e.target.name]: value
+      })
+      e.target.classList.remove('is-invalid')
+    }else{
+      e.target.classList.add('is-invalid')
+    }
+  }
+
   render() {
     return (
       <div className="ctn__signup">
@@ -121,7 +135,7 @@ export default class Signin extends Component {
                     type="email" 
                     id="email-signin" 
                     name="email"
-                    onChange={this.handleInput.bind(this)}
+                    onChange={this.handleEmail.bind(this)}
                     autoComplete="off"
                   />
                   <label className='' for="password-signin">Contraseña:</label>

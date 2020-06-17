@@ -75,7 +75,7 @@ export default class Guests extends Component {
     const numberGuests= parseInt(this.state.numberGuests)
     const emailFamily = this.state.emailFamily
     const note = this.state.note
-    const status = 'pendiente'
+    const status = 'Pendiente'
 
     console.log(this.props)
     const token = window.localStorage.getItem('tokenapp')
@@ -133,6 +133,29 @@ export default class Guests extends Component {
       }
     }
   }
+
+  onHandleNumberChange = e => {
+    const { value } = e.target;
+    const reg = /^-?\d*(\.\d*)?$/;
+    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+      //this.props.onChange(value);
+      this.setState({
+        [e.target.name]: parseInt(value)
+      })
+    }
+  };
+  handleEmail = e => {
+    const { value } = e.target;
+    const reg = /^-?\d*(\.\d*)?$/;
+    if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value)) {
+      this.setState({
+        [e.target.name]: value
+      })
+      e.target.classList.remove('is-invalid')
+    }else{
+      e.target.classList.add('is-invalid')
+    }
+  }
   
   render() {
     const path = this.props.location.pathname
@@ -172,10 +195,11 @@ export default class Guests extends Component {
                         <div className='col-12'>
                             <label>Número de invitados</label>
                             <input
+                              type="number"
                               placeholder="Total invitados"
                               name="numberGuests"
-                              onChange={this.handleInput.bind(this)}
                               autoComplete="off"
+                              onChange = {this.onHandleNumberChange.bind(this)}
                             />
                         </div>
                     </div>
@@ -185,7 +209,7 @@ export default class Guests extends Component {
                             <input 
                               placeholder="mail@mail.com"
                               name="emailFamily"
-                              onChange={this.handleInput.bind(this)}
+                              onChange={this.handleEmail.bind(this)}
                               autoComplete="off"
                             />
                         </div>
@@ -202,10 +226,10 @@ export default class Guests extends Component {
               <div className="container-table">
               <div className="wrap__totalguests mb-3 rounded">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-9">
                     Total de invitados
                   </div>
-                  <div className="col-6 text-right">
+                  <div className="col-3 text-center">
                     {this.state.totalguests}
                   </div>
                 </div>
@@ -213,26 +237,27 @@ export default class Guests extends Component {
               </div>
               <div className="table-responsive">
                 <Table className="table mb-5 table-striped table-bordered">
-                  <thead className="thead-dark">
+                  <thead className="thead-dark table-guests">
                       <tr>
                       <th>Familia</th>
-                      <th>No. invitados</th>
+                      <th>No. Invitados</th>
                       <th>Estatus</th>
+                      <th>Comentarios</th>
                       </tr>
                   </thead>
                   <tbody>
                     {this.state.guests.map((guest, index) => 
                       <tr>
                         <td key={`guest_family${index}`}>{guest.nameFamily}</td>
-                        <td key={`guest_family${index}`}>{guest.numberGuests}</td>
-                        <td key={`guest_family${index}`}>{guest.status}</td>
+                        <td className='text-center' key={`guest_family${index}`}>{guest.numberGuests}</td>
+                        <td className='text-center text-capitalize' key={`guest_family${index}`}>{guest.status}</td>
+                        <td key={`guest_family${index}`}>{guest.note}</td>
                       </tr>
                     )}
                       
                   </tbody>
                 </Table>
               </div>
-              {/* <button type="button" className="btn__app btn__dark">Enviar invitaciones</button> */}
 
             </div>        
           </div>

@@ -13,19 +13,19 @@ class ChartBar extends Component{
     displayTitle:true,
     displayLegend: true,
     legendPosition:'right',
-    location:'City'
   }
 
   render(){
     return (
-      <div className="chart">
+      <div>
         <Bar
           data={this.state.chartData}
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'Bodas planeadas con Xihuala App '+this.props.location,
-              fontSize:25
+              text:'Bodas planeadas con Xihuala App ',
+              fontSize:28,
+              fontWeight: 'bold'
             },
             legend:{
               display:this.props.displayLegend,

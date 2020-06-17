@@ -13,6 +13,9 @@
   font-weight: bold;
   font-size: 30px;
 }
+.table-guests tr th{
+  vertical-align: middle;
+}
 .ctn-eventGuests{
   margin-top: 64px;
 }
@@ -77,6 +80,9 @@
 }
 .container-form-guests form input:focus{
   border: 2px solid #441f7d;
+}
+.container-form-guests form input.is-invalid{
+  border-color: #84142d;
 }
 
 @media only screen and (min-width: 768px) {
