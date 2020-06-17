@@ -1,0 +1,43 @@
+.postIt{
+    border: 2px solid #c32dff;
+    padding: 0;
+    width: 180px;
+    border-radius: 5px;
+}
+.post-header{
+    display: flex;
+}
+.post-title{
+    background-color: #c32dff;
+    margin-top: -5px;
+    margin-right:  -20px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+}
+.post-title label{
+    margin: auto;
+    vertical-align: -webkit-baseline-middle;
+}
+.post-body{
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+}
+.post-icon{
+    margin-top: -10px;
+    margin-left: 10px;
+    margin-bottom: -10px;
+    background-color: rgb(162, 125, 219);
+    border-radius: 5px;
+    justify-content: center;
+}
+.post-img{
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
