@@ -75,7 +75,7 @@ export default class Guests extends Component {
     const numberGuests= parseInt(this.state.numberGuests)
     const emailFamily = this.state.emailFamily
     const note = this.state.note
-    const status = 'pendiente'
+    const status = 'Pendiente'
 
     console.log(this.props)
     const token = window.localStorage.getItem('tokenapp')
@@ -202,10 +202,10 @@ export default class Guests extends Component {
               <div className="container-table">
               <div className="wrap__totalguests mb-3 rounded">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-9">
                     Total de invitados
                   </div>
-                  <div className="col-6 text-right">
+                  <div className="col-3 text-center">
                     {this.state.totalguests}
                   </div>
                 </div>
@@ -213,11 +213,12 @@ export default class Guests extends Component {
               </div>
               <div className="table-responsive">
                 <Table className="table mb-5 table-striped table-bordered">
-                  <thead className="thead-dark">
+                  <thead className="thead-dark table-guests">
                       <tr>
                       <th>Familia</th>
-                      <th>No. invitados</th>
+                      <th>No. Invitados</th>
                       <th>Estatus</th>
+                      <th>Comentarios</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -226,13 +227,13 @@ export default class Guests extends Component {
                         <td key={`guest_family${index}`}>{guest.nameFamily}</td>
                         <td key={`guest_family${index}`}>{guest.numberGuests}</td>
                         <td key={`guest_family${index}`}>{guest.status}</td>
+                        <td key={`guest_family${index}`}>{guest.note}</td>
                       </tr>
                     )}
                       
                   </tbody>
                 </Table>
               </div>
-              {/* <button type="button" className="btn__app btn__dark">Enviar invitaciones</button> */}
 
             </div>        
           </div>

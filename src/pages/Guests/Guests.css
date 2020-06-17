@@ -13,6 +13,9 @@
   font-weight: bold;
   font-size: 30px;
 }
+.table-guests tr th{
+  vertical-align: middle;
+}
 .ctn-eventGuests{
   margin-top: 64px;
 }
