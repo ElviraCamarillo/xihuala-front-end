@@ -13,7 +13,6 @@ class ChartPie extends Component{
     displayTitle:true,
     displayLegend: true,
     legendPosition:'right',
-    location:'City'
   }
 
   render(){
@@ -25,7 +24,8 @@ class ChartPie extends Component{
             title:{
               display:this.props.displayTitle,
               text:'Gastos ',
-              fontSize:18
+              fontSize:28,
+              fontWeight: 'bold'
             },
             legend:{
               display:this.props.displayLegend,
