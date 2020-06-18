@@ -64,7 +64,7 @@ export default class Signin extends Component {
       console.log(payload)
       if(payload.success === true){
         this.setState({
-          response: 'Usuario registrado correctamente',
+          response: 'Usuario registrado correctamente, por favor valida tu correo electrónico ',
           statusresponse: 'success'
         });
         setTimeout(() => {

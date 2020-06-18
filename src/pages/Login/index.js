@@ -50,11 +50,10 @@ export default class Login extends Component {
 
     const payload = await Api.login(email, password)
     console.log(payload)
-    const sessionObj = await Api.getUserSession(payload.data.token)
-    console.log(sessionObj)
-    
+
     console.log(payload)
     if(payload.success === true){
+      const sessionObj = await Api.getUserSession(payload.data.token)      
       console.log('redirect to home')
       localStorage.setItem('tokenapp', payload.data.token);
       localStorage.setItem('userapp', sessionObj.data.session.user.typeUser);
