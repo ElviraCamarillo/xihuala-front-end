@@ -5,7 +5,7 @@ class ChartPie extends Component{
   constructor(props){
     super(props);
     this.state = {
-      chartDataGastos:props.chartDataGastos
+      chartData:props.chartData
     }
   }
 
@@ -13,19 +13,19 @@ class ChartPie extends Component{
     displayTitle:true,
     displayLegend: true,
     legendPosition:'right',
-    location:'City'
   }
 
   render(){
     return (
-      <div className="chart">
+      <div >
         <Pie
-          data={this.state.chartDataGastos}
+          data={this.state.chartData}
           options={{
             title:{
               display:this.props.displayTitle,
               text:'Gastos ',
-              fontSize:25
+              fontSize:28,
+              fontWeight: 'bold'
             },
             legend:{
               display:this.props.displayLegend,
