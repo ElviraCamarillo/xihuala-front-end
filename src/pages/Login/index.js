@@ -31,7 +31,7 @@ export default class Login extends Component {
 
   async onSubmit(event){
     event.preventDefault()
-    console.log(this.props)
+    /*console.log(this.props)*/
     const email = this.state.email
     const password = this.state.password
     if(email === "" || password === ""){
@@ -50,11 +50,11 @@ export default class Login extends Component {
 
     const payload = await Api.login(email, password)
     const sessionObj = await Api.getUserSession(payload.data.token)
-    console.log(sessionObj)
+    /*console.log(sessionObj)*/
     
-    console.log(payload)
+    /*console.log(payload)*/
     if(payload.success === true){
-      console.log('redirect to home')
+      /*console.log('redirect to home')*/
       localStorage.setItem('tokenapp', payload.data.token);
       localStorage.setItem('userapp', sessionObj.data.session.user.typeUser);
       this.props.history.push(`/home`)

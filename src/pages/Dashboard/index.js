@@ -23,8 +23,22 @@ export default class Dashboard extends Component {
       totalusers : 0,
       events:[],
       totalevents: 0,
-      averagebuget:0
+      averagebuget:0,
+      dates:[],
+      jan:0,
+      feb:0,
+      mar:0,
+      apr:0,
+      may:0,
+      jun:0,
+      jul:0,
+      aug:0,
+      sep:0,
+      oct:0,
+      nov:0,
+      dec:0
     }
+    this.getChartDataBar = this.getChartDataBar.bind(this)
   }
 
   componentWillMount(){
@@ -35,15 +49,15 @@ export default class Dashboard extends Component {
   getChartDataBar(){
     this.setState({
       chartDataBar:{
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Noviembre','Diciembre'],
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
         datasets:[
           {
-            label:'Bodas en promedio por mes',
-            data:[240,150,120,160,203,89,102,96,126,133,260],
-            backgroundColor:[ '#c32dff', '#ff00ff', '#ffe300',
-              '#14bfff','#38feff', '#00ff00', '#b000d5',
-              '#ff00ff',  '#ff0011',  '#00e615', '#fffe1c',
-              '#0017e9'
+            label:'Bodas en por mes',
+            data:[10,40,50,30,15,10,this.state.jul,7,6,9,10,21],
+            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
+              '#e8e2f1','#c5a2fc', '#7342bf', '#f9e3fc',
+              '#e8e2f1',  '#c5a2fc',  '#7342bf', '#f9e3fc',
+              '#e8e2f1'
             ]
           }
         ]
@@ -59,8 +73,8 @@ export default class Dashboard extends Component {
           {
             label:'Gastos populares en bodas',
             data:[18000, 35000, 15500, 33000, 6000, 22650, 26120],
-            backgroundColor:[ '#c32dff', '#ff00ff', '#ffe300',
-              '#14bfff','#38feff', '#00ff00', '#b000d5'
+            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
+              '#e8e2f1','#c5a2fc', '#7342bf', '#f9e3fc'
             ]
           }
         ]
@@ -109,21 +123,89 @@ export default class Dashboard extends Component {
         console.log(resultEvents)
         let totalevents = 0
         let events = []
+        let dates = []
         let totalbuget
         let averagebuget
+        let jan = 0
+        let feb = 0
+        let mar = 0
+        let apr = 0
+        let may = 0
+        let jun = 0
+        let jul = 0
+        let aug = 0
+        let sep = 0
+        let oct = 0
+        let nov = 0
+        let dec = 0
         for(let item in resultEvents.data.event){
           events.push(resultEvents.data.event[item])
           totalevents = totalevents + 1
+          let date = (resultEvents.data.event[item].eventDate)
+          let month = date.slice(5,7)
+          console.log(date)
+          console.log(month)
+          if (month === "01"){
+            jan = jan + 1
+          }
+          if (month === "02"){
+            feb = feb + 1
+          }
+          if (month === "03"){
+            mar = mar + 1
+          }
+          if (month === "04"){
+            apr = apr + 1
+          }
+          if (month === "05"){
+            may = may + 1
+          }
+          if (month === "06"){
+            jun = jun + 1
+          }
+          if (month === "07"){
+            jul = jul + 1
+          }
+          if (month === "08"){
+            aug = aug + 1
+          }
+          if (month === "09"){
+            sep = sep + 1
+          }
+          if (month === "10"){
+            oct = oct + 1
+          }
+          if (month === "11"){
+            nov = nov + 1
+          }
+          if (month === "12"){
+            dec = dec + 1
+          }
         }
+        console.log(mar)
+        console.log(jul)
         for(let item in resultEvents.data.event.buget){
           totalbuget = totalbuget + 1
         }
         averagebuget= totalbuget/totalevents
+        
         this.setState({
           events: [resultEvents.data.event],
           totalevents: totalevents,
           events: events,
-          averagebuget: averagebuget
+          averagebuget: averagebuget,
+          jan: jan,
+          feb: feb,
+          mar: mar,
+          apr: apr,
+          may: may,
+          jun: jun,
+          jul: jul,
+          aug: aug,
+          sep: sep,
+          oct: oct,
+          nov: nov,
+          dec: dec
         });
       })
     }

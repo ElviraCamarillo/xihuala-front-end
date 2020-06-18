@@ -24,14 +24,14 @@ export default class Perfil extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+    /*console.log(token)*/
     if(token == null){
       this.props.history.push(`/login`)
       return
     }
     // buscar session
     async function getSession (token){
-      console.log(token)
+      /*console.log(token)*/
       const sessionObj = await Api.getUserSession(token)
       return sessionObj
     }
@@ -39,8 +39,8 @@ export default class Perfil extends Component {
     //extract user info
     payload.then((result)=>{
       const idUser = result.data.session.user._id
-      console.log(idUser)
-      console.log(result.data.session.user)
+      /*console.log(idUser)
+      console.log(result.data.session.user)*/
       this.setState({
         email: result.data.session.user.email,
         lastName: result.data.session.user.lastName,
@@ -56,10 +56,10 @@ export default class Perfil extends Component {
       name,
       lastName
     }
-    console.log(dataUser)
+    /*console.log(dataUser)*/
     if(name === '' || lastName === '' ) {
       // empty vals
-      console.log('Por favor, llena los datos obligatorios')
+      /*console.log('Por favor, llena los datos obligatorios')*/
       this.setState({
         response: 'Por favor, llena los datos obligatorios',
         statusresponse: 'error'
@@ -75,7 +75,7 @@ export default class Perfil extends Component {
       // si todo ok
       const token = window.localStorage.getItem('tokenapp')
       async function getSession (token){
-        console.log(token)
+        /*console.log(token)*/
         const sessionObj = await Api.getUserSession(token)
         return sessionObj
       }

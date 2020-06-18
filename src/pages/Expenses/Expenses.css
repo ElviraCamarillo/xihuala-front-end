@@ -113,7 +113,13 @@
     padding: 30px;
   }
 
+  .col-md-6{
+    margin: auto
+  }
 
+  .container-table{
+    margin: auto
+  }
   
 
   .left-budget{
