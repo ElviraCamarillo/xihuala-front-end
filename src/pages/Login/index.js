@@ -49,6 +49,7 @@ export default class Login extends Component {
     }
 
     const payload = await Api.login(email, password)
+    console.log(payload)
     const sessionObj = await Api.getUserSession(payload.data.token)
     /*console.log(sessionObj)*/
     

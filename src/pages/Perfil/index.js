@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-// Import components
 import Navbar from './../../components/Navbar'
 import Footer from './../../components/Footer'
 import Image  from './../../components/ImgContainer'
 import novios from './../../img/novios6.svg'
-import Api from '../../lib/api'
-// Import CSS
+
 import './Perfil.css'
+
+import Api from '../../lib/api'
+
 export default class Perfil extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +72,9 @@ export default class Perfil extends Component {
           statusresponse: ''
         });
       }, 4000)
-    }else{
+
+    } else {
+
       // si todo ok
       const token = window.localStorage.getItem('tokenapp')
       async function getSession (token){
@@ -122,7 +125,6 @@ export default class Perfil extends Component {
                                 <label>Correo electrónico</label>
                             </div>
                             <div className='col-12'>
-                             
                                 <input 
                                     placeholder="mail@mail.com" 
                                     disabled 
