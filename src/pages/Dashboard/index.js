@@ -83,6 +83,7 @@ export default class Dashboard extends Component {
   }
   
   componentDidMount(){
+    
     // get token
     const token = window.localStorage.getItem('tokenapp')
     console.log(token)
@@ -207,6 +208,8 @@ export default class Dashboard extends Component {
           nov: nov,
           dec: dec
         });
+        
+        
       })
     }
   }
