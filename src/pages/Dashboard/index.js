@@ -53,11 +53,11 @@ export default class Dashboard extends Component {
         datasets:[
           {
             label:'Bodas en por mes',
-            data:[10,40,50,30,15,10,this.state.jul,7,6,9,10,21],
+            data:[10,40,50,30,15,10,6,7,6,9,10,21],
             backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
-              '#e8e2f1','#c5a2fc', '#7342bf', '#f9e3fc',
-              '#e8e2f1',  '#c5a2fc',  '#7342bf', '#f9e3fc',
-              '#e8e2f1'
+              '#e8e2f1','#843ef5', '#52367a', '#43144b',
+              '#f36ce8',  '#8118a1',  '#b16dc5', '#755d79',
+              '#ce74ba'
             ]
           }
         ]
