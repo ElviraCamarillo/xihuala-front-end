@@ -11,8 +11,14 @@ import iconRing from './../../img/icons__wedding/018-wedding ring.png'
 import iconUser from './../../img/icons__wedding/022-user avatar.png'
 import iconGest from './../../img/icons__wedding/user__invitado.png'
 import iconCash from './../../img/icons__wedding/icon__cash.png'
+
+import { Chart } from "react-google-charts";
+
+
 // Import CSS
 import './Dashboard.css'
+
+
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -24,46 +30,35 @@ export default class Dashboard extends Component {
       events:[],
       totalevents: 0,
       averagebuget:0,
-      dates:[],
-      jan:0,
-      feb:0,
-      mar:0,
-      apr:0,
-      may:0,
-      jun:0,
-      jul:0,
-      aug:0,
-      sep:0,
-      oct:0,
-      nov:0,
-      dec:0
+      eventPerMonth:[],
+      width: 1024,
+      optionBar: {
+        title: "Bodas 2020",
+        hAxis: { title: "Número de bodas",  minValue: 0 },
+        vAxis: { title: "Mes",},
+      },
+      dataBar: [
+        ["Year", "Bodas", { role: "style" }],
+        ["Enero", 10, "color: gray"],
+        ["Febrero", 14, "color: #76A7FA"],
+        ["Marzo", 16, "color: blue"],
+        ["abril", 16, "color: blue"],
+        ["Mayo", 22, "fill-color: #C5A5CF"],
+        ["Junio", 22, "fill-color: #C5A5CF"],
+        ["Julio", 22, "fill-color: #C5A5CF"],
+        ["Agosto", 22, "fill-color: #C5A5CF"],
+        ["Septiembre", 22, "fill-color: #C5A5CF"],
+        ["Octubre", 22, "fill-color: #C5A5CF"],
+        ["Noviembre", 22, "fill-color: #C5A5CF"],
+        ["Diciembre", 22, "fill-color: #C5A5CF"],
+      ],
+      dataPie: [],
+      dataPieTable: [],
+      maxInvitados: 0,
     }
-    this.getChartDataBar = this.getChartDataBar.bind(this)
+    
   }
 
-  componentWillMount(){
-    this.getChartDataBar();
-    this.getChartDataPie();
-  }
-
-  getChartDataBar(){
-    this.setState({
-      chartDataBar:{
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        datasets:[
-          {
-            label:'Bodas en por mes',
-            data:[10,40,50,30,15,10,6,7,6,9,10,21],
-            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
-              '#e8e2f1','#843ef5', '#52367a', '#43144b',
-              '#f36ce8',  '#8118a1',  '#b16dc5', '#755d79',
-              '#ce74ba'
-            ]
-          }
-        ]
-      }
-    });
-  }
 
   getChartDataPie(){
     this.setState({
@@ -86,7 +81,7 @@ export default class Dashboard extends Component {
     
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+   
     if(token == null){
       this.props.history.push(`/login`)
       return
@@ -101,7 +96,6 @@ export default class Dashboard extends Component {
       }
       const payload = getUsers(token)
       payload.then( (resultUsers) => {
-        console.log(resultUsers)
         let totalusers = 0
         let users = []
         for(let item in resultUsers.data.users){
@@ -121,12 +115,12 @@ export default class Dashboard extends Component {
       }
       const payloadEvent = getAllEvents(token)
       payloadEvent.then( (resultEvents) => {
-        console.log(resultEvents)
         let totalevents = 0
         let events = []
         let dates = []
-        let totalbuget
+        let bugets = []
         let averagebuget
+
         let jan = 0
         let feb = 0
         let mar = 0
@@ -139,13 +133,29 @@ export default class Dashboard extends Component {
         let oct = 0
         let nov = 0
         let dec = 0
+        
+        let eventMonth=[]
+        let expensesArray = []
+        let maxInvitados = 0
+        
         for(let item in resultEvents.data.event){
+
           events.push(resultEvents.data.event[item])
+          bugets.push(resultEvents.data.event[item].buget)
           totalevents = totalevents + 1
+
+          let expense = resultEvents.data.event[item].expenses;
+          let guests = resultEvents.data.event[item].guests;
+          for(let itemExpense in expense){
+            expensesArray.push(expense[itemExpense])
+          }
+          
+          for(let itemGuest in guests){
+            maxInvitados = maxInvitados + guests[itemGuest].numberGuests
+          }
+
           let date = (resultEvents.data.event[item].eventDate)
           let month = date.slice(5,7)
-          console.log(date)
-          console.log(month)
           if (month === "01"){
             jan = jan + 1
           }
@@ -183,41 +193,86 @@ export default class Dashboard extends Component {
             dec = dec + 1
           }
         }
-        console.log(mar)
-        console.log(jul)
-        for(let item in resultEvents.data.event.buget){
-          totalbuget = totalbuget + 1
+        var bug = bugets.reduce((acc, cvalue) =>{
+          console.log(acc, cvalue)
+          return acc + cvalue
+        }, 0)
+        console.log(bug, events.length)
+        this.setState({
+          maxInvitados: maxInvitados,
+          averagebuget: bug / events.length
+        })
+
+        console.log('bugets', bugets)
+
+        let arrayToFilter =  []
+        for(let itemFilter = 0; itemFilter < expensesArray.length; itemFilter++){
+          arrayToFilter.push(expensesArray[itemFilter].expenseDescription.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase())
         }
-        averagebuget= totalbuget/totalevents
+        let uniqueArray = arrayToFilter.filter(function(item, pos, self) {
+          return self.indexOf(item) == pos;
+        })
+
+        let arrayToPie = [['Task', 'Gasto promedio']]
+        let arrayToPieTable = []
+        for(let itemPie = 0; itemPie < uniqueArray.length ; itemPie++ ){
+          let acc = 0;
+          let len = 0;
+          for(let itemPieX = 0; itemPieX < expensesArray.length; itemPieX++){
+            //console.log(expensesArray[itemPieX])
+            if(expensesArray[itemPieX].expenseDescription.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()  === uniqueArray[itemPie] ){
+              acc = acc + expensesArray[itemPieX].expenseAmount
+              len = len + 1
+              console.log(expensesArray[itemPieX])
+            }
+            
+          }
+          console.log('acc', acc, len)
+          arrayToPie.push([uniqueArray[itemPie],acc / len])
+          arrayToPieTable.push([uniqueArray[itemPie],acc / len])
+        }
+        console.log(arrayToPie)
+        this.setState({
+          dataPie: [...arrayToPie],
+          dataPieTable: arrayToPieTable
+        })
+
         
+        // eventMonth.push(jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec)
+        // console.log(eventMonth)
         this.setState({
           events: [resultEvents.data.event],
           totalevents: totalevents,
           events: events,
-          averagebuget: averagebuget,
-          jan: jan,
-          feb: feb,
-          mar: mar,
-          apr: apr,
-          may: may,
-          jun: jun,
-          jul: jul,
-          aug: aug,
-          sep: sep,
-          oct: oct,
-          nov: nov,
-          dec: dec
+          dataBar: [
+            ["Mes", "Bodas", { role: "style" }], 
+            ["Enero", jan, "fill-color: #c5a2fc"],
+            ["Febrero", feb, "fill-color: #7342bf"],
+            ["Marzo", mar, "fill-color: #f9e3fc"],
+            ["abril", apr, "fill-color: #e8e2f1"],
+            ["Mayo", may, "fill-color: #843ef5"],
+            ["Junio", jun, "fill-color: #52367a"],
+            ["Julio", jul, "fill-color: #43144b"],
+            ["Agosto", aug, "fill-color: #f36ce8"],
+            ["Septiembre", sep, "fill-color: #8118a1"],
+            ["Octubre", oct, "fill-color: #b16dc5"],
+            ["Noviembre", nov, "fill-color: #755d79"],
+            ["Diciembre", dec, "fill-color: #ce74ba"]
+          ]
         });
-        
-        
+
+       
       })
     }
   }
+ 
 
   render() {
+    const margin = {top: 20, right: 20, bottom: 30, left: 40};
+
     return (
     <div>
-        <div className="ctn-dashboard pt-4 mb-5">
+         <div className="ctn-dashboard pt-4 mb-5"> 
         <Navbar/>
               <div className="container"> 
               <div className="row">
@@ -231,15 +286,16 @@ export default class Dashboard extends Component {
                   <PostIt icon={iconUser} title={"Usuarios"} number={this.state.totalusers}/>
                   </div>
                   <div className="indicator">
-                  <PostIt icon={iconGest} title={"Invitados"} number={200}/>
+                  <PostIt icon={iconGest} title={"Invitados"} number={this.state.maxInvitados}/>
                   </div>
                   <div className="indicator">
-                  <PostIt icon={iconCash} title={"Presupuesto"} number={120000}/>
+                  <PostIt icon={iconCash} title={"Presupuesto"} number={Math.round(this.state.averagebuget)}/>
                   </div>
                 </div>   
                 <div className="col-12 mt-5 container-tab">
                   <label className="title-section">Usuarios Registrados</label>
-                  <Table className="tab mb-5 table-striped table-bordered"> 
+                  <div class="table-responsive-sm">
+                    <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
                       <tr>
                         <th>Correo</th>
@@ -248,19 +304,23 @@ export default class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                       {this.state.users.map((users) => 
+                       {this.state.users.reverse().map((users, index) => 
+                        index < 10 ? 
                         <tr>
                           <td >{users.email}</td>
                           <td >{users.name}</td>
                           <td >{users.lastName}</td>
                         </tr>
+                        : ''
                       )}
                     </tbody>
                   </Table>
+                  </div>
                 </div>
                 <div className="col-12 mt-5 container-tab">
                   <label className="title-section">Bodas Registrados</label>
-                  <Table className="tab mb-5 table-striped table-bordered"> 
+                  <div class="table-responsive-sm">
+                    <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
                       <tr>
                         <th>Boda</th>
@@ -271,73 +331,88 @@ export default class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                       {this.state.events.map((events) => 
+                       {this.state.events.reverse().map((events, index) => 
+                        index < 10 ? 
                         <tr>
                           <td >{events.nameEvent}</td>
                           <td >{events.location}</td>
-                          <td >{events.eventDay}</td>
+                          <td >{events.eventDate.slice(0, 10)}</td>
                           <td >{events.eventTime}</td>
-                          <td >{events.buget}</td>
-                        </tr>
+                          <td className="text-right"><small>$ </small>{events.buget} <small>MXN</small></td>
+                        </tr> : ''
                         )}
                     </tbody>
                   </Table>
+                  </div>
                 </div>
-                <div className="col-12 mt-5 container-charts">
-                  <ChartBar chartData={this.state.chartDataBar} className="grafica" legendPosition="bottom"/>
+                <div className="col-12 mt-5 container-charts" id="container_bar">
+
+                  <Chart 
+                    chartType="BarChart" 
+                    options={this.state.optionBar} 
+                    width="100%" 
+                    height="500px" 
+                    data={this.state.dataBar} 
+                  />
+
                 </div>
                 <div className="dashboard-body">
-                  <div className="row w-100 justify-content-between">
                   
-                    <div className="col-12 col-md-5 container-charts">
-                      <ChartPie chartData={this.state.chartDataPie}  legendPosition="bottom"/>
+                    <div className="col-12 col-md-6 container-charts ">
+                      {/* <ChartPie chartData={this.state.chartDataPie}  legendPosition="bottom"/> */}
+                      <label className="title-section">Gastos promedio por evento</label>
+
+                      <Chart
+                        width={'100%'}
+                        height={'500px'}
+                        chartType="PieChart"
+                        loader={<div>Cargando...</div>}
+                        data={this.state.dataPie}
+                        options={{
+                          title: 'Gastos promedio por evento',
+                          slices: {
+                            0: {color: '#c5a2fc'},
+                            1: {color: '#7342bf'},
+                            2: {color: '#f9e3fc'},
+                            3: {color: '#e8e2f1'},
+                            4: {color: '#843ef5'},
+                            5: {color: '#52367a'},
+                            6: {color: '#43144b'},
+                            7: {color: '#f36ce8'},
+                            8: {color: '#8118a1'},
+                            9: {color: '#b16dc5'},
+                            10: {color: '#755d79'},
+                            11: {color: '#ce74ba'}
+                          }
+                        }}
+                      />
                     </div>
-                    <div className="col-12 col-md-5 container-tab">
+                    <div className="col-12 col-md-5 container-tab offset-md-1">
                       <label className="title-section">Gastos populares en bodas</label>
-                      <Table className="tab mb-5 table-striped table-bordered"> 
-                      <thead className="thead-dark">
-                        <tr>
-                          <th>Gasto</th>
-                          <th>Costo promedio</th>
-                        </tr>
-                      </thead> 
-                      <tbody>  
-                        <tr>
-                          <td>Vestido</td>
-                          <td>18000</td>
-                        </tr>
-                        <tr>
-                          <td>Comida</td>
-                          <td>35000</td>
-                        </tr>
-                        <tr>
-                          <td>Salón</td>
-                          <td>15500</td>
-                        </tr>
-                        <tr>
-                          <td>Adorno</td>
-                          <td>33000</td>
-                        </tr>
-                        <tr>
-                          <td>Recuerdos</td>
-                          <td>6000</td>
-                        </tr>
-                        <tr>
-                          <td>Flores</td>
-                          <td>22650</td>
-                        </tr>
-                        <tr>
-                          <td>Bebidas</td>
-                          <td>26120</td>
-                        </tr>
-                      </tbody>
-                    </Table>
+                      <div class="table-responsive-sm">
+                        <Table className="tab mb-5 table-striped table-bordered"> 
+                          <thead className="thead-dark">
+                            <tr>
+                              <th>Gasto</th>
+                              <th>Costo promedio</th>
+                            </tr>
+                          </thead> 
+                          <tbody>  
+                          {this.state.dataPieTable.map((expense, index) => 
+                            <tr>
+                              <td className="text-capitalize">{expense[0]}</td>
+                              <td className="text-right"><small>$</small> {expense[1]}  <small>MXN</small> </td>
+                            </tr>
+                          )}
+                            
+                          </tbody>
+                        </Table>
+                      </div>
                     </div>
-                  </div>
                 </div>
               </div>
         <Footer/>
-        </div>
+        </div> 
     </div>
     );
   }
