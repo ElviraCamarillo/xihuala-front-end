@@ -36,7 +36,25 @@ export default class Dashboard extends Component {
     
   }
 
-  
+  getChartDataBar(){
+    let data = this.state.eventPerMonth
+    this.setState({
+      chartDataBar:{
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        datasets:[
+          {
+            label:'Bodas en por mes',
+            data: data,
+            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
+              '#e8e2f1','#843ef5', '#52367a', '#43144b',
+              '#f36ce8',  '#8118a1',  '#b16dc5', '#755d79',
+              '#ce74ba'
+            ]
+          }
+        ]
+      }
+    });
+  }
 
   getChartDataPie(){
     this.setState({
@@ -166,25 +184,7 @@ export default class Dashboard extends Component {
       })
     }
   }
-  getChartDataBar(){
-    let data = this.state.eventPerMonth
-    this.setState({
-      chartDataBar:{
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        datasets:[
-          {
-            label:'Bodas en por mes',
-            data: data,
-            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
-              '#e8e2f1','#843ef5', '#52367a', '#43144b',
-              '#f36ce8',  '#8118a1',  '#b16dc5', '#755d79',
-              '#ce74ba'
-            ]
-          }
-        ]
-      }
-    });
-  }
+ 
 
   render() {
     return (
