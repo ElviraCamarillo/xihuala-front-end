@@ -284,49 +284,52 @@ export default class Dashboard extends Component {
                   <ChartBar chartData={this.state.chartDataBar} className="grafica" legendPosition="bottom"/>
                 </div>
                 <div className="dashboard-body">
-                  <div className="col-md-6 container-charts">
-                   <ChartPie chartData={this.state.chartDataPie}  legendPosition="bottom"/>
-                  </div>
-                  <div className="col-12 col-md-5 container-tab">
-                  <label className="title-section">Gastos populares en bodas</label>
-                  <Table className="tab mb-5 table-striped table-bordered"> 
-                    <thead className="thead-dark">
-                      <tr>
-                        <th>Gasto</th>
-                        <th>Costo promedio</th>
-                      </tr>
-                    </thead> 
-                    <tbody>  
-                      <tr>
-                        <td>Vestido</td>
-                        <td>18000</td>
-                      </tr>
-                      <tr>
-                        <td>Comida</td>
-                        <td>35000</td>
-                      </tr>
-                      <tr>
-                        <td>Salón</td>
-                        <td>15500</td>
-                      </tr>
-                      <tr>
-                        <td>Adorno</td>
-                        <td>33000</td>
-                      </tr>
-                      <tr>
-                        <td>Recuerdos</td>
-                        <td>6000</td>
-                      </tr>
-                      <tr>
-                        <td>Flores</td>
-                        <td>22650</td>
-                      </tr>
-                      <tr>
-                        <td>Bebidas</td>
-                        <td>26120</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <div className="row w-100 justify-content-between">
+                  
+                    <div className="col-12 col-md-5 container-charts">
+                      <ChartPie chartData={this.state.chartDataPie}  legendPosition="bottom"/>
+                    </div>
+                    <div className="col-12 col-md-5 container-tab">
+                      <label className="title-section">Gastos populares en bodas</label>
+                      <Table className="tab mb-5 table-striped table-bordered"> 
+                      <thead className="thead-dark">
+                        <tr>
+                          <th>Gasto</th>
+                          <th>Costo promedio</th>
+                        </tr>
+                      </thead> 
+                      <tbody>  
+                        <tr>
+                          <td>Vestido</td>
+                          <td>18000</td>
+                        </tr>
+                        <tr>
+                          <td>Comida</td>
+                          <td>35000</td>
+                        </tr>
+                        <tr>
+                          <td>Salón</td>
+                          <td>15500</td>
+                        </tr>
+                        <tr>
+                          <td>Adorno</td>
+                          <td>33000</td>
+                        </tr>
+                        <tr>
+                          <td>Recuerdos</td>
+                          <td>6000</td>
+                        </tr>
+                        <tr>
+                          <td>Flores</td>
+                          <td>22650</td>
+                        </tr>
+                        <tr>
+                          <td>Bebidas</td>
+                          <td>26120</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                    </div>
                   </div>
                 </div>
               </div>
