@@ -54,7 +54,7 @@ export default class Login extends Component {
     console.log(payload)
     if(payload.success === true){
       const sessionObj = await Api.getUserSession(payload.data.token)      
-      console.log('redirect to home')
+      console.log('redirect to home modify')
       localStorage.setItem('tokenapp', payload.data.token);
       localStorage.setItem('userapp', sessionObj.data.session.user.typeUser);
       this.props.history.push(`/home`)
