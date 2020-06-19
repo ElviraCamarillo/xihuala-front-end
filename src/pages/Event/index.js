@@ -44,7 +44,7 @@ export default class Event extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+    // console.log(token)
     if(token == null){
       this.props.history.push(`/login`)
       return
@@ -52,7 +52,7 @@ export default class Event extends Component {
 
     // buscar los eventos con este id user
     async function getSession (token){
-      console.log(token)
+      // console.log(token)
       const sessionObj = await Api.getUserSession(token)
       return sessionObj
     }
@@ -85,7 +85,7 @@ export default class Event extends Component {
     const expenses = this.state.expenses
     const idUser = this.state.idUser
 
-    console.log(this.props)
+    // console.log(this.props)
     const currentDate = new Date().toISOString().split("T")[0]
 
     if(this.state.nameEvent === '') {
@@ -156,7 +156,7 @@ export default class Event extends Component {
 
   // valid number phone
   onHandleNumberChange = e => {
-    console.log(e.target)
+    // console.log(e.target)
     if (/^\d+$/.test(e.target.value)) {
       this.setState({
           [e.target.name]: parseInt(e.target.value )

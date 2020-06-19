@@ -45,7 +45,7 @@ export default class ConfirmGuest extends Component {
     const search = this.props.history.location.search
     const idEvent = path.split('/')[2]
     const email_guest = search.substring(7)
-    console.log(idEvent, search.substring(7), email_guest)  
+    // console.log(idEvent, search.substring(7), email_guest)  
 
     async function getEvent (idEvent){
       const sessionObj = await Api.getEvent(idEvent)
@@ -53,15 +53,15 @@ export default class ConfirmGuest extends Component {
     }
     const payload = getEvent(idEvent)
     payload.then( (resultEvent) => {
-      console.log(resultEvent)
+      // console.log(resultEvent)
       let dataEvent = {}
       for(let item in resultEvent.data.event.guests){
-        console.log(resultEvent.data.event.guests[item].emailFamily)
+        // console.log(resultEvent.data.event.guests[item].emailFamily)
         if(email_guest === resultEvent.data.event.guests[item].emailFamily){
           dataEvent = resultEvent.data.event.guests[item]
         }
       }
-      console.log(dataEvent)
+      // console.log(dataEvent)
       this.setState({
         nameFamily: dataEvent.nameFamily,
         emailFamily: dataEvent.emailFamily,
@@ -81,14 +81,14 @@ export default class ConfirmGuest extends Component {
     const note = this.state.note
     const status = 'confirmado'
 
-    console.log(this.props)
+    // console.log(this.props)
     var path = this.props.location.pathname
     const largeEvent = path.substring(7)
     const idEvent= largeEvent.substring(0,24)
 
     if(nameFamily == '') {
       // si pass no coinciden
-      console.log('Faltan datos')
+      // console.log('Faltan datos')
       this.setState({
         isConfirm: false,
       });
@@ -102,9 +102,9 @@ export default class ConfirmGuest extends Component {
 
     }else{
       // si todo ok
-      console.log(note)
+      // console.log(note)
       const payload = await Api.confirmGuestEvent(idEvent, {nameFamily, numberGuests, emailFamily, note, status})
-      console.log(payload)
+      // console.log(payload)
       if(payload.success === true){
 
         this.setState({
@@ -144,7 +144,7 @@ export default class ConfirmGuest extends Component {
     const search = this.props.history.location.search
     const id_event = path.split('/')[2]
     const email_guest = search.split('/')[2]
-    console.log(search.substring(7))  
+    // console.log(search.substring(7))  
     return (
       <div className="ctn__confirm pt-3">
           <Navbar/>

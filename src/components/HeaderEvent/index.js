@@ -9,7 +9,7 @@ import './HeaderEvent.css'
 
 export default function HeaderEvent(props) {
 
-  console.log(props)
+  // console.log(props)
   const idEvent = props.id
   const active = props.active
 

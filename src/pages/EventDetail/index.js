@@ -37,8 +37,8 @@ export default class EventDetail extends Component {
     const token = window.localStorage.getItem('tokenapp')
     var path = this.props.location.pathname
     const idEvent = path.substring(8)
-    console.log(token)
-    console.log(`aquí esta el path ${path}`)
+    // console.log(token)
+    // console.log(`aquí esta el path ${path}`)
     if(token === null) {
       this.props.history.push(`/login`)
     }else{
@@ -48,7 +48,7 @@ export default class EventDetail extends Component {
       }
       const payload = getEvent(idEvent)
       payload.then( (resultEvent) => {
-        console.log(resultEvent)
+        // console.log(resultEvent)
         this.setState({
           event: resultEvent.data.event
         });

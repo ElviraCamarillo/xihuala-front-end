@@ -12,14 +12,14 @@ import {
 
 
 export default function Card(props) {
-  console.log(props)
+  // console.log(props)
   const card = props.obj
 
   const oneDay = 24 * 60 * 60 * 1000;
   const firstDate = new Date();
   const secondDate = new Date(card.eventDate);
   const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-  console.log(diffDays)
+  // console.log(diffDays)
 
   let confirmados = 0;
   let totalGuests = 0;
@@ -32,7 +32,7 @@ export default function Card(props) {
     totalGuests = totalGuests + card.guests[guest].numberGuests
   }
   for(let expense in card.expenses){
-    console.log(card.expenses[expense])
+    // console.log(card.expenses[expense])
     totalExpense = totalExpense + parseInt(card.expenses[expense].expenseAmount)
   }
 

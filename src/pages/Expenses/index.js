@@ -50,7 +50,7 @@ export default class Expenses extends Component {
           expenses.push(resultEvent.data.event.expenses[item])
           totalExpenses = totalExpenses + parseInt(resultEvent.data.event.expenses[item].expenseAmount)
         }
-        console.log(expenses)
+        // console.log(expenses)
         this.setState({
           event: [resultEvent.data.event],
           expenses: expenses,

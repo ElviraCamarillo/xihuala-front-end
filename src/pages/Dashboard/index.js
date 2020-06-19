@@ -194,16 +194,16 @@ export default class Dashboard extends Component {
           }
         }
         var bug = bugets.reduce((acc, cvalue) =>{
-          console.log(acc, cvalue)
+          // console.log(acc, cvalue)
           return acc + cvalue
         }, 0)
-        console.log(bug, events.length)
+        // console.log(bug, events.length)
         this.setState({
           maxInvitados: maxInvitados,
           averagebuget: bug / events.length
         })
 
-        console.log('bugets', bugets)
+        // console.log('bugets', bugets)
 
         let arrayToFilter =  []
         for(let itemFilter = 0; itemFilter < expensesArray.length; itemFilter++){
@@ -223,15 +223,15 @@ export default class Dashboard extends Component {
             if(expensesArray[itemPieX].expenseDescription.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()  === uniqueArray[itemPie] ){
               acc = acc + expensesArray[itemPieX].expenseAmount
               len = len + 1
-              console.log(expensesArray[itemPieX])
+              // console.log(expensesArray[itemPieX])
             }
             
           }
-          console.log('acc', acc, len)
+          // console.log('acc', acc, len)
           arrayToPie.push([uniqueArray[itemPie],acc / len])
           arrayToPieTable.push([uniqueArray[itemPie],acc / len])
         }
-        console.log(arrayToPie)
+        // console.log(arrayToPie)
         this.setState({
           dataPie: [...arrayToPie],
           dataPieTable: arrayToPieTable

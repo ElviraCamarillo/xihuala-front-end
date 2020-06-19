@@ -25,7 +25,7 @@ export default class Navbar extends Component {
   }
   logOut() {
     localStorage.removeItem('tokenapp');
-    console.log(`localStorage: ${localStorage}`)
+    // console.log(`localStorage: ${localStorage}`)
     window.location.href = '/';
   }
   componentDidMount(){

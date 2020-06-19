@@ -6,7 +6,7 @@ import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
 
 function Confirmation (props) {
-  console.log(props)
+  // console.log(props)
   const hash = (props.location.pathname).substring(13)
   const { replace } = props.history
   useEffect(() => {
