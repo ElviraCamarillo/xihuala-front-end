@@ -11,7 +11,6 @@ async function login (email, password) {
         })
       })
       const payload = await response.json()
-      console.log(payload)
       if (payload.success === false) {
         return payload
       } else {
@@ -21,7 +20,6 @@ async function login (email, password) {
         return payload
       }
     } catch (error) {
-      console.log('error hand', error)
       return {
         message: error,
         data: {
@@ -32,7 +30,6 @@ async function login (email, password) {
   }
 async function newUser (dataNewUSer) {
   try {
-    console.log(dataNewUSer)
     const response = await window.fetch(`${API_URL}/users/signup`, {
       method: 'POST',
       headers: {
@@ -40,12 +37,9 @@ async function newUser (dataNewUSer) {
       },
       body: JSON.stringify({ ...dataNewUSer })
     })
-    console.log(response)
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('Error al crear nuevo usuario')
-    console.log(error)
     return {
       data: {
         newPost: ''
@@ -63,12 +57,9 @@ async function newUser (dataNewUSer) {
         },
         body: JSON.stringify({ ...dataUSer })
       })
-      console.log(response)
       const payload = await response.json()
       return payload
     } catch (error) {
-      console.log('Error al modificar usuario')
-      console.log(error)
       return {
         data: {
           userUpdated: ''
@@ -84,7 +75,6 @@ async function newUser (dataNewUSer) {
       const payload = await response.json()
       return payload
     } catch (error) {
-      console.log('error', error)
       return {
         data: {
           session: []
@@ -94,14 +84,12 @@ async function newUser (dataNewUSer) {
 }
 async function getEventsByUserId (token, id_user) {
   try {
-    console.log(id_user)
     const response = await window.fetch(`${API_URL}/events/user/${id_user}`, {
       headers: { authorization: token }
     })
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         session: []
@@ -119,7 +107,6 @@ async function newEvent (dataNewEvent,token) {
       },
       body: JSON.stringify({ ...dataNewEvent })
     })
-    console.log(response)
     const payload = await response.json()
     if (payload.success === false) {
       return payload
@@ -130,8 +117,6 @@ async function newEvent (dataNewEvent,token) {
       return payload
     }
   } catch (error) {
-    console.log('Error al crear nuevo evento')
-    console.log(error)
     return {
       data: {
         newEvent: ''
@@ -141,12 +126,10 @@ async function newEvent (dataNewEvent,token) {
 }
 async function getEvent (id_event) {
   try {
-    console.log(id_event)
     const response = await window.fetch(`${API_URL}/events/${id_event}`)
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         event: []
@@ -156,12 +139,10 @@ async function getEvent (id_event) {
 }
 async function getEventGuests (id_event) {
   try {
-    console.log(id_event)
     const response = await window.fetch(`${API_URL}/events/${id_event}`)
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         event: []
@@ -171,8 +152,6 @@ async function getEventGuests (id_event) {
 }
 async function addGuestEvent (id_event, dataNewEvent ) {
   try {
-    console.log(id_event)
-    console.log(dataNewEvent)
     const response = await window.fetch(`${API_URL}/events/${id_event}/addguest`, {
       method: 'PUT',
       headers: {
@@ -183,7 +162,6 @@ async function addGuestEvent (id_event, dataNewEvent ) {
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         event: []
@@ -193,8 +171,6 @@ async function addGuestEvent (id_event, dataNewEvent ) {
 }
 async function confirmGuestEvent (id_event, dataNewEvent ) {
   try {
-    console.log(id_event)
-    console.log(dataNewEvent)
     const response = await window.fetch(`${API_URL}/events/${id_event}/confirmguest`, {
       method: 'PUT',
       headers: {
@@ -205,7 +181,6 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         event: []
@@ -216,8 +191,6 @@ async function confirmGuestEvent (id_event, dataNewEvent ) {
 
 async function deleteExpense (id_event, dataExpense ) {
   try {
-    console.log(dataExpense)
-    
     const response = await window.fetch(`${API_URL}/events/${id_event}/deleteExpense`, {
       method: 'PUT',
       headers: {
@@ -228,7 +201,6 @@ async function deleteExpense (id_event, dataExpense ) {
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         expense: []
@@ -239,7 +211,6 @@ async function deleteExpense (id_event, dataExpense ) {
 
 async function updateProfile (token, idUser, userUpdated) {
   try {
-    console.log(userUpdated)
     const response = await window.fetch(`${API_URL}/users/${idUser}`, {
       method: 'PATCH',
       headers: {
@@ -248,12 +219,9 @@ async function updateProfile (token, idUser, userUpdated) {
       },
       body: JSON.stringify(userUpdated)
     })
-    console.log(response)
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('Error al actualizar el usuario')
-    console.log(error)
     return {
       data: {
         user: ''
@@ -263,8 +231,7 @@ async function updateProfile (token, idUser, userUpdated) {
 }
 async function newExpense (id_event, dataNewExpense ) {
   try {
-    console.log(id_event)
-    console.log(dataNewExpense)
+   
     const response = await window.fetch(`${API_URL}/events/${id_event}/addexpense`, {
       method: 'PUT',
       headers: {
@@ -275,7 +242,7 @@ async function newExpense (id_event, dataNewExpense ) {
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
+    
     return {
       data: {
         event: []
@@ -290,7 +257,6 @@ async function validateEmail (hash) {
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('error', error)
     return {
       data: {
         session: []
@@ -309,12 +275,9 @@ async function getUsers (token) {
         authorization: token
       },
     })
-    console.log(response)
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('Error al encontrar usuarios')
-    console.log(error)
     return {
       data: {
         users: []
@@ -332,12 +295,9 @@ async function getAllEvents (token) {
         authorization: token
       },
     })
-    console.log(response)
     const payload = await response.json()
     return payload
   } catch (error) {
-    console.log('Error al encontrar eventos')
-    console.log(error)
     return {
       data: {
         events: []

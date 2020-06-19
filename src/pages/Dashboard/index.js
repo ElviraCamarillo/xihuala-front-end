@@ -24,46 +24,19 @@ export default class Dashboard extends Component {
       events:[],
       totalevents: 0,
       averagebuget:0,
-      dates:[],
-      jan:0,
-      feb:0,
-      mar:0,
-      apr:0,
-      may:0,
-      jun:0,
-      jul:0,
-      aug:0,
-      sep:0,
-      oct:0,
-      nov:0,
-      dec:0
+      eventPerMonth:[]
     }
+    
     this.getChartDataBar = this.getChartDataBar.bind(this)
   }
 
   componentWillMount(){
     this.getChartDataBar();
-    this.getChartDataPie();
+    /* this.getChartDataPie(); */
+    
   }
 
-  getChartDataBar(){
-    this.setState({
-      chartDataBar:{
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        datasets:[
-          {
-            label:'Bodas en por mes',
-            data:[10,40,50,30,15,10,6,7,6,9,10,21],
-            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
-              '#e8e2f1','#843ef5', '#52367a', '#43144b',
-              '#f36ce8',  '#8118a1',  '#b16dc5', '#755d79',
-              '#ce74ba'
-            ]
-          }
-        ]
-      }
-    });
-  }
+  
 
   getChartDataPie(){
     this.setState({
@@ -85,7 +58,7 @@ export default class Dashboard extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+   
     if(token == null){
       this.props.history.push(`/login`)
       return
@@ -100,7 +73,6 @@ export default class Dashboard extends Component {
       }
       const payload = getUsers(token)
       payload.then( (resultUsers) => {
-        console.log(resultUsers)
         let totalusers = 0
         let users = []
         for(let item in resultUsers.data.users){
@@ -120,11 +92,10 @@ export default class Dashboard extends Component {
       }
       const payloadEvent = getAllEvents(token)
       payloadEvent.then( (resultEvents) => {
-        console.log(resultEvents)
         let totalevents = 0
         let events = []
         let dates = []
-        let totalbuget
+        let bugets = []
         let averagebuget
         let jan = 0
         let feb = 0
@@ -138,13 +109,13 @@ export default class Dashboard extends Component {
         let oct = 0
         let nov = 0
         let dec = 0
+        let eventPerMonth=[]
         for(let item in resultEvents.data.event){
           events.push(resultEvents.data.event[item])
+          bugets.push(resultEvents.data.event[item].buget)
           totalevents = totalevents + 1
           let date = (resultEvents.data.event[item].eventDate)
           let month = date.slice(5,7)
-          console.log(date)
-          console.log(month)
           if (month === "01"){
             jan = jan + 1
           }
@@ -182,39 +153,43 @@ export default class Dashboard extends Component {
             dec = dec + 1
           }
         }
-        console.log(mar)
-        console.log(jul)
-        for(let item in resultEvents.data.event.buget){
-          totalbuget = totalbuget + 1
-        }
-        averagebuget= totalbuget/totalevents
-        
+        eventPerMonth.push(jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec)
+        console.log(eventPerMonth)
         this.setState({
           events: [resultEvents.data.event],
           totalevents: totalevents,
           events: events,
           averagebuget: averagebuget,
-          jan: jan,
-          feb: feb,
-          mar: mar,
-          apr: apr,
-          may: may,
-          jun: jun,
-          jul: jul,
-          aug: aug,
-          sep: sep,
-          oct: oct,
-          nov: nov,
-          dec: dec
+          eventPerMonth:eventPerMonth
+        
         });
       })
     }
+  }
+  getChartDataBar(){
+    let data = this.state.eventPerMonth
+    this.setState({
+      chartDataBar:{
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        datasets:[
+          {
+            label:'Bodas en por mes',
+            data: data,
+            backgroundColor:[ '#c5a2fc', '#7342bf', '#f9e3fc',
+              '#e8e2f1','#843ef5', '#52367a', '#43144b',
+              '#f36ce8',  '#8118a1',  '#b16dc5', '#755d79',
+              '#ce74ba'
+            ]
+          }
+        ]
+      }
+    });
   }
 
   render() {
     return (
     <div>
-        <div className="ctn-dashboard pt-4 mb-5">
+         <div className="ctn-dashboard pt-4 mb-5"> 
         <Navbar/>
               <div className="container"> 
               <div className="row">
@@ -284,7 +259,6 @@ export default class Dashboard extends Component {
                   <ChartBar chartData={this.state.chartDataBar} className="grafica" legendPosition="bottom"/>
                 </div>
                 <div className="dashboard-body">
-                  <div className="row w-100 justify-content-between">
                   
                     <div className="col-12 col-md-5 container-charts">
                       <ChartPie chartData={this.state.chartDataPie}  legendPosition="bottom"/>
@@ -330,11 +304,10 @@ export default class Dashboard extends Component {
                       </tbody>
                     </Table>
                     </div>
-                  </div>
                 </div>
               </div>
         <Footer/>
-        </div>
+        </div> 
     </div>
     );
   }
