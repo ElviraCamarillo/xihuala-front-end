@@ -7,3 +7,11 @@ footer p {
   margin: 0px;
   font-size: 17px;
 }
+footer a{
+  text-decoration: none;
+  color: #7342BF;
+}
+footer a:hover{
+  text-decoration: underline;
+  color: #441f7d;
+}

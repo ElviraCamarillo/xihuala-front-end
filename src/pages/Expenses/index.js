@@ -189,7 +189,7 @@ export default class Expenses extends Component {
           active="gastos" 
         />
         <div className="wrap__inner pt-5">
-          <div className='d-flex pb-5'>
+          <div className='d-flex pb-2 pb-md-5'>
             <h1 className='title__section'>Control de Gastos</h1>
           </div>
           <section className='row'>
@@ -224,20 +224,20 @@ export default class Expenses extends Component {
             <div className='container-table'>
 
             <div className={`wrap__totalguests mb-3 rounded ${finalBudget <= 0 ? "warn__header" : ""}`}>
-              <div className="row">
-                <div className="col-6">
+              <div className="row align-items-center">
+                <div className="col-5 col-md-7 title__restante">
                   Presupuesto restante
                 </div>
-                <div className="col-6 text-right">
-                  {finalBudget}
+                <div className="col-7 col-md-5 text-right"> $
+                  {finalBudget} <span class="currency__indicator">MXN</span>
                 </div>
               </div>              
             </div>
 
               <div className='initial-budget d-flex justify-content-between align-items-center pt-4 pb-4 mb-3 pl-3 pr-3'>
                 <div>Presupuesto inicial</div>
-                <div className="col-6 text-right">
-                {buget}
+                <div className="col-6 text-right"> $
+                {buget} <span class="currency__indicator">MXN</span>
                 </div>
               </div>
               <Table className="table mb-5 table-striped table-bordered">
@@ -251,8 +251,8 @@ export default class Expenses extends Component {
                 <tbody>
                   {this.state.expenses.map((expense, index) => 
                     <tr>
-                      <td key={`expense_data${index}`}>{expense.expenseDescription}</td>
-                      <td key={`expense_data${index}`}>{expense.expenseAmount}</td>
+                      <td key={`expense_data${index}`} class="text-capitalize">{expense.expenseDescription}</td>
+                      <td key={`expense_data${index}`}>$ {expense.expenseAmount}</td>
                       <td className="text-center">
                         <div className='delete-expense' 
                               data-expensedescription={expense.expenseDescription}
@@ -266,7 +266,7 @@ export default class Expenses extends Component {
 
               <div className='total-expense d-flex justify-content-between align-items-center pt-4 pb-4 mb-3 pl-3 pr-3'>
                 <div>Gasto Total</div>
-                <div>{totalExpenses}</div>
+                <div>$ {totalExpenses} <span class="currency__indicator">MXN</span></div>
               </div>              
             </div>          
           </section>

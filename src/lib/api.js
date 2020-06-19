@@ -1,4 +1,5 @@
 const API_URL = 'http://xihuala-app-api.mybluemix.net'
+// const API_URL = 'http://localhost:8080'
 
 async function login (email, password) {
     try {

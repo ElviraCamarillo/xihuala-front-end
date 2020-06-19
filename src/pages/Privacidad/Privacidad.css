@@ -1,0 +1,24 @@
+.container__privacidad{
+    margin-top: 8rem;
+    text-align: justify;
+}
+.container__privacidad h1{
+  font-size: 2rem;
+  color: #7342BF;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.container__privacidad h2{
+  font-size: 1.25rem;
+  color: #7342BF;
+  font-weight: 600;
+  margin-top: 1rem;
+
+}
+.container__privacidad h3{
+  font-size: 1.25rem;
+  color: #7342BF;
+  font-weight: 600;
+  margin-top: 1rem;
+}

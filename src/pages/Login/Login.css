@@ -40,8 +40,12 @@
   border: 2px solid #441f7d;
 }
 
-@media screen and (max-width: 640px){
+@media screen and (max-width: 767px){
   .ctn__login{
     margin-top: 56px;
+  }
+  .login-form{
+    margin-left: auto;
+    margin-right: auto;
   }
 }

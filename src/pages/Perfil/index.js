@@ -110,7 +110,7 @@ export default class Perfil extends Component {
     return (
     <div>
         <div className="ctn-profile pt-4 mb-5">
-        <Navbar/>
+          <Navbar/>
             <div className="wrap__inner">
             <h2 className="title__section">Perfil</h2>
             <div className="container-body row">
@@ -173,8 +173,8 @@ export default class Perfil extends Component {
                 </div>
                 </div>
             </div>
-            </div>
-      <Footer/>
+          <Footer/>
+        </div>
     </div>
     );
   }
