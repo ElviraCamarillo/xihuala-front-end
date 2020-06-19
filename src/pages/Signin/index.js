@@ -40,10 +40,10 @@ export default class Signin extends Component {
     const email = this.state.email
     const password = this.state.password
     const verifypassword = this.state.verifyPass
-    console.log(this.props)
+    /*console.log(this.props)*/
     if(verifypassword !== password) {
       // si pass no coinciden
-      console.log('password no coinciden')
+      /*console.log('password no coinciden')*/
       this.setState({
         ispassok: false,
         response: 'Las contraseñas no coinciden',
@@ -61,7 +61,7 @@ export default class Signin extends Component {
     }else{
       // si todo ok
       const payload = await Api.newUser({name, lastName, email, password})
-      console.log(payload)
+      /*console.log(payload)*/
       if(payload.success === true){
         this.setState({
           response: 'Usuario registrado correctamente, por favor valida tu correo electrónico ',

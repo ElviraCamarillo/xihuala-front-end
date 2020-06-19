@@ -29,7 +29,7 @@ export default class Guests extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+    /*console.log(token)*/
     if(token == null){
       this.props.history.push(`/login`)
       return
@@ -47,7 +47,7 @@ export default class Guests extends Component {
       }
       const payload = getEvent(idEvent)
       payload.then( (resultEvent) => {
-        console.log(resultEvent)
+        /*console.log(resultEvent)*/
         let totalguests = 0
         let guests = []
         for(let item in resultEvent.data.event.guests){
@@ -77,7 +77,7 @@ export default class Guests extends Component {
     const note = this.state.note
     const status = 'Pendiente'
 
-    console.log(this.props)
+    /*console.log(this.props)*/
     const token = window.localStorage.getItem('tokenapp')
     var path = this.props.location.pathname
     const largeEvent = path.substring(8)
@@ -85,7 +85,7 @@ export default class Guests extends Component {
 
     if(nameFamily == '') {
       // si pass no coinciden
-      console.log('Faltan datos')
+      /*console.log('Faltan datos')*/
       // this.setState({
       //   ispassok: false,
       //   response: 'Las contraseñas no coinciden',
@@ -102,7 +102,7 @@ export default class Guests extends Component {
     }else{
       // si todo ok
       const payload = await Api.addGuestEvent(idEvent, {nameFamily, numberGuests, emailFamily, note, status})
-      console.log(payload)
+      /*console.log(payload)*/
       if(payload.success === true){
 
         this.setState({

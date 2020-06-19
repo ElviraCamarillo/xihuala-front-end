@@ -26,7 +26,7 @@ export default class Home extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+    /*console.log(token)*/
     if(token == null){
       this.props.history.push(`/login`)
       return
@@ -34,7 +34,7 @@ export default class Home extends Component {
 
     // buscar los eventos con este id user
     async function getSession (token){
-      console.log(token)
+      /*console.log(token)*/
       const sessionObj = await Api.getUserSession(token)
       return sessionObj
     }
@@ -48,7 +48,7 @@ export default class Home extends Component {
       const idUser = result.data.session.user._id
       const events = getEvents(token, idUser)
       events.then((resultEvents)=>{
-        console.log(resultEvents.data.events)
+        /*console.log(resultEvents.data.events)*/
         this.setState({
           events: [...resultEvents.data.events]
         });

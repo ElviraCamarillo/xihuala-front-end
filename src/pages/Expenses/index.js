@@ -24,7 +24,7 @@ export default class Expenses extends Component {
   componentDidMount(){
     // get token
     const token = window.localStorage.getItem('tokenapp')
-    console.log(token)
+    /*console.log(token)*/
     if(token == null) {
       this.props.history.push(`/login`)
       return
@@ -41,16 +41,16 @@ export default class Expenses extends Component {
       const payload = getEvent(idEvent)
 
       payload.then( (resultEvent) => {
-        console.log(resultEvent)
+        /*console.log(resultEvent)*/
         let expenses = []
         let totalExpenses = 0
 
-        console.log(resultEvent.data.event.expenses)
+        /*console.log(resultEvent.data.event.expenses)*/
         for(let item in resultEvent.data.event.expenses){
           expenses.push(resultEvent.data.event.expenses[item])
           totalExpenses = totalExpenses + parseInt(resultEvent.data.event.expenses[item].expenseAmount)
         }
-
+        console.log(expenses)
         this.setState({
           event: [resultEvent.data.event],
           expenses: expenses,
@@ -71,14 +71,14 @@ export default class Expenses extends Component {
     const totalExpenses= parseInt(this.state.totalExpenses)
     const expenseAmount = parseInt(this.state.expenseAmount)
     const dataExpenses = {expenseDescription, expenseAmount}
-    console.log(dataExpenses)
+    /*console.log(dataExpenses)*/
     const token = window.localStorage.getItem('tokenapp')    
     var path = this.props.location.pathname
     const idEvent = path.substring(8, 32)
     event.preventDefault()
-    console.log(this.props)
+    /*console.log(this.props)*/
     if (expenseDescription === '' || expenseAmount === ''){
-      console.log('Datos incompletos')
+      /*console.log('Datos incompletos')*/
       this.setState({
         response: 'Favor de llenar los datos requeridos',
         statusresponse: 'error'
@@ -91,7 +91,7 @@ export default class Expenses extends Component {
       }, 4000)
     } else {
       const payload = await Api.newExpense(idEvent, dataExpenses)
-      console.log(payload)
+      /*console.log(payload)*/
       if(payload.success === true){
 
         this.setState({
@@ -119,17 +119,17 @@ export default class Expenses extends Component {
   async deleteExpense(event) {
     event.preventDefault()
     
-    console.log(event.target.dataset)
+    /*console.log(event.target.dataset)*/
     const expenseDescription = event.target.dataset.expensedescription
     const expenseAmount = event.target.dataset.expenseamount
     // API delete expense
     var path = this.props.location.pathname
     const idEvent = path.substring(8, 32)
-    console.log(idEvent, expenseDescription, expenseAmount)
+    /*console.log(idEvent, expenseDescription, expenseAmount)*/
     
     const payload = await Api.deleteExpense(idEvent, {expenseDescription, expenseAmount})
 
-    console.log(payload)
+    /*console.log(payload)*/
 
     if(payload.success) {
         async function getEvent (idEvent){
@@ -138,11 +138,11 @@ export default class Expenses extends Component {
         }
         const payload = getEvent(idEvent)
         payload.then( (resultEvent) => {
-          console.log(resultEvent)
+          /*console.log(resultEvent)*/
           let expenses = []
           let totalExpenses = 0
     
-          console.log(resultEvent.data.event.expenses)
+          /*console.log(resultEvent.data.event.expenses)*/
           for(let item in resultEvent.data.event.expenses){
             expenses.push(resultEvent.data.event.expenses[item])
             totalExpenses = totalExpenses + parseInt(resultEvent.data.event.expenses[item].expenseAmount)
@@ -169,15 +169,15 @@ export default class Expenses extends Component {
   render() {
     const {event} = this.state
     const { expenseDescription, expenseAmount, totalExpenses, buget } = this.state
-    console.log(expenseDescription, expenseAmount)
-    console.log(event.buget)
+    /*console.log(expenseDescription, expenseAmount)
+    console.log(event.buget)*/
     let finalBudget = 0
     finalBudget = buget - totalExpenses
 
     const path = this.props.location.pathname
     let id_event = path.substring(8)
     id_event = id_event.split('/')[0]
-    console.log(this.props)
+    /*console.log(this.props)*/
 
     return (
       <div className="wrap__home">
