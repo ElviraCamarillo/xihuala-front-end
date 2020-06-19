@@ -29,7 +29,7 @@ export default function HeaderEvent(props) {
             <div>
               <Link className={`event-detail text-dark ${active === "gastos" ? "active" : ""}`} to={{
                 pathname: `/events/${idEvent}/expenses`,
-              }}>CONTROL DE GASTOS</Link>
+              }}>GASTOS</Link>
             </div>        
           </div>
     </header>

@@ -173,7 +173,7 @@ export default class Guests extends Component {
             <div className="container-title">
               <h2 className="title__section">Invitados</h2>
             </div>
-            <div className="container-guests mt-5">
+            <div className="container-guests mt-2 mt-md-5">
               <div className="container-form-guests">
                   <form 
                     action="" 
@@ -251,7 +251,7 @@ export default class Guests extends Component {
                         <td key={`guest_family${index}`}>{guest.nameFamily}</td>
                         <td className='text-center' key={`guest_family${index}`}>{guest.numberGuests}</td>
                         <td className='text-center text-capitalize' key={`guest_family${index}`}>{guest.status}</td>
-                        <td key={`guest_family${index}`}>{guest.note}</td>
+                        <td key={`guest_family${index}`} className="note__guest">{guest.note}</td>
                       </tr>
                     )}
                       
