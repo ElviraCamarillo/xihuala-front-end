@@ -269,7 +269,9 @@ export default class Dashboard extends Component {
 
   render() {
     const margin = {top: 20, right: 20, bottom: 30, left: 40};
-
+    const { averagebuget } = this.state
+    const roundNumber = Math.round(averagebuget)
+    const averagebuget2 = new Intl.NumberFormat().format(roundNumber)
     return (
     <div>
          <div className="ctn-dashboard pt-4 mb-5"> 
@@ -289,11 +291,11 @@ export default class Dashboard extends Component {
                   <PostIt icon={iconGest} title={"Invitados"} number={this.state.maxInvitados}/>
                   </div>
                   <div className="indicator">
-                  <PostIt icon={iconCash} title={"Presupuesto"} number={Math.round(this.state.averagebuget)}/>
+                  <PostIt icon={iconCash} title={"Presupuesto"} number={`$${averagebuget2}`}/>
                   </div>
                 </div>   
                 <div className="col-12 mt-5 container-tab">
-                  <label className="title-section">Usuarios Registrados</label>
+                  <label className="title-section">Usuarios Registradas</label>
                   <div class="table-responsive-sm">
                     <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
@@ -401,7 +403,7 @@ export default class Dashboard extends Component {
                           {this.state.dataPieTable.map((expense, index) => 
                             <tr>
                               <td className="text-capitalize">{expense[0]}</td>
-                              <td className="text-right"><small>$</small> {expense[1]}  <small>MXN</small> </td>
+                              <td className="text-right"><small>$</small> {Math.round(expense[1])}  <small>MXN</small> </td>
                             </tr>
                           )}
                             
