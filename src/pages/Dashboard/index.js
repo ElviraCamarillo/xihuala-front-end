@@ -203,6 +203,7 @@ export default class Dashboard extends Component {
           averagebuget: bug / events.length
         })
 
+        
         // console.log('bugets', bugets)
 
         let arrayToFilter =  []
