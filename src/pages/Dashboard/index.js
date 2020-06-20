@@ -295,7 +295,7 @@ export default class Dashboard extends Component {
                   </div>
                 </div>   
                 <div className="col-12 mt-5 container-tab">
-                  <label className="title-section">Usuarios Registradas</label>
+                  <label className="title-section">Usuarios Registrados</label>
                   <div class="table-responsive-sm">
                     <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
@@ -320,7 +320,7 @@ export default class Dashboard extends Component {
                   </div>
                 </div>
                 <div className="col-12 mt-5 container-tab">
-                  <label className="title-section">Bodas Registrados</label>
+                  <label className="title-section">Bodas Registradas</label>
                   <div class="table-responsive-sm">
                     <Table className="tab mb-5 table-striped table-bordered"> 
                     <thead className="thead-dark">
